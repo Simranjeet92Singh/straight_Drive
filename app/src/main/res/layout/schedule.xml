@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/stadium_phone"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context=".fragments.Schedule">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:weightSum="2"
+        android:layout_marginTop="20sp"
+
+
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="Schedule"
+            android:textSize="20dp"
+            android:padding="10sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:layout_marginRight="20sp">
+        <TextView
+            android:id="@+id/points_table"
+            android:layout_width="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Points Table "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="@drawable/rectangular_with_border"
+            android:paddingLeft="10dp"
+            ></TextView>
+    </LinearLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/linMatch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="3"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="Match1"
+            android:textSize="20dp"
+            android:padding="10sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold">
+
+        </TextView>
+        <EditText
+            android:id="@+id/macth1"
+            android:singleLine="true"
+            android:layout_width="400dp"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_sides_white"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="50dp"
+            ></EditText>
+        <TextView
+            android:id="@+id/match1Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_marginLeft="50dp"
+            android:text="  Play  "
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="10dp"
+
+            android:background="@drawable/right_circular_corner_white"
+            android:textStyle="bold">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linMatch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="3"
+        android:layout_marginTop="1sp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="Match2"
+            android:textSize="20dp"
+            android:padding="10sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold">
+
+        </TextView>
+        <EditText
+            android:id="@+id/macth2"
+            android:singleLine="true"
+            android:layout_width="400dp"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_sides_white"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="50dp"
+            ></EditText>
+        <TextView
+            android:id="@+id/match2Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_marginLeft="50dp"
+            android:text="  Play  "
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="10dp"
+
+            android:background="@drawable/right_circular_corner_white"
+            android:textStyle="bold">
+
+        </TextView>
+    </LinearLayout><LinearLayout
+    android:id="@+id/linMatch3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="3"
+    android:layout_marginTop="1sp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Match3"
+        android:textSize="20dp"
+        android:padding="10sp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+    <EditText
+        android:id="@+id/macth3"
+        android:singleLine="true"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_sides_white"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="50dp"
+        ></EditText>
+    <TextView
+        android:id="@+id/match3Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:text="  Play  "
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+
+        android:background="@drawable/right_circular_corner_white"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout><LinearLayout
+    android:id="@+id/linMatch4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="3"
+    android:layout_marginTop="1sp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Match4"
+        android:textSize="20dp"
+        android:padding="10sp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+    <EditText
+        android:id="@+id/macth4"
+        android:singleLine="true"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_sides_white"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="50dp"
+        ></EditText>
+    <TextView
+        android:id="@+id/match4Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:text="  Play  "
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+
+        android:background="@drawable/right_circular_corner_white"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout><LinearLayout
+    android:id="@+id/linMatch5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="3"
+    android:layout_marginTop="1dp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Match5"
+        android:textSize="20dp"
+        android:padding="10sp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+    <EditText
+        android:id="@+id/macth5"
+        android:singleLine="true"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_sides_white"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="50dp"
+        ></EditText>
+    <TextView
+        android:id="@+id/match5Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:text="  Play  "
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+
+        android:background="@drawable/right_circular_corner_white"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout><LinearLayout
+    android:id="@+id/linMatch6"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="3"
+    android:layout_marginTop="1dp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Match6"
+        android:textSize="20dp"
+        android:padding="10sp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+    <EditText
+        android:id="@+id/macth6"
+        android:singleLine="true"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_sides_white"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="50dp"
+        ></EditText>
+    <TextView
+        android:id="@+id/match6Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:text="  Play  "
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+
+        android:background="@drawable/right_circular_corner_white"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout><LinearLayout
+    android:id="@+id/linMatch7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="3"
+    android:layout_marginTop="10sp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="  Final   "
+        android:textSize="20dp"
+        android:padding="10sp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+    <EditText
+        android:id="@+id/macth7"
+        android:singleLine="true"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_sides_white"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="50dp"
+        ></EditText>
+    <TextView
+        android:id="@+id/match7Button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:text="  Play  "
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="10dp"
+
+        android:background="@drawable/right_circular_corner_white"
+        android:textStyle="bold">
+
+    </TextView>
+</LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

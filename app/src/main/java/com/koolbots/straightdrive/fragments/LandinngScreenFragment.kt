@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.koolbots.straightdrive.R
 import kotlin.math.acos
@@ -17,6 +18,8 @@ import kotlin.math.acos
 class LandinngScreenFragment : Fragment() {
     private var privacyPolicyButton:TextView?=null
     private var newGame:TextView?=null
+    private var tournamentButton:TextView?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -49,6 +52,12 @@ class LandinngScreenFragment : Fragment() {
 
         })
 
+        tournamentButton=view.findViewById(R.id.tournament)
+
+        tournamentButton?.setOnClickListener({
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("",""),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+        Toast.makeText(requireContext(),"hello",Toast.LENGTH_SHORT).show()
+        })
         //Tournament and series button click
 
     }
