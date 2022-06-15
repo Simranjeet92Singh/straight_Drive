@@ -21,6 +21,9 @@
         <entry key="app/src/main/res/layout/fragment_score_card.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/fragment_tournament.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/inning_finish_dialog.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/points_table.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/points_table_list_headers.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/points_table_list_item.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/recent_game_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recentlistheader.xml" value="0.25" />
         <entry key="app/src/main/res/layout/schedule.xml" value="0.18" />
