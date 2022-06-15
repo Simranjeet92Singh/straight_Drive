@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ScoreCardFragment"
+    android:id="@+id/main_layout"
+
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/score_card_team_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="Team B Score Card">
+    </TextView>
+    <ScrollView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+          <androidx.recyclerview.widget.RecyclerView
+              android:background="@color/table_border"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/batters_list"
+              android:paddingBottom="1dp">
+
+          </androidx.recyclerview.widget.RecyclerView>
+          <RelativeLayout
+              android:layout_margin="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentStart="true"
+                  android:layout_alignParentLeft="true">
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Extras"
+                      android:textSize="18dp"
+                      android:textColor="@color/black"
+                      android:textStyle="bold"></TextView>
+
+                  <TextView
+                      android:id="@+id/score_card_wd_lg"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 WD, 0 LG"
+                      android:textSize="18dp"
+                      android:textColor="@color/black"
+                      android:layout_marginLeft="15dp">
+
+                  </TextView>
+
+              </LinearLayout>
+              <TextView
+                  android:id="@+id/score_card_scoe_wickets"
+                  android:layout_alignParentEnd="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Total 0/0 in 0.0 overs"
+                  android:textSize="18dp"
+                  android:textColor="@color/black"
+                  android:textStyle="bold"
+                  android:layout_alignParentRight="true"></TextView>
+          </RelativeLayout>
+          <LinearLayout
+              xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:weightSum="5"
+              android:padding="10dp"
+              android:background="@drawable/recent_games_header_background">
+              <TextView
+                  android:layout_marginLeft="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:textColor="@color/black"
+                  android:gravity="left"
+                  android:text="BOWLER"
+                  android:fontFamily="@font/roboto"
+                  android:textSize="15dp"
+                  > </TextView>    <TextView
+              android:fontFamily="@font/roboto"
+              android:textSize="15dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:textColor="@color/black"
+              android:gravity="left"
+              android:text="OVERS"
+              >
+
+          </TextView>
+              <TextView
+                  android:fontFamily="@font/roboto"
+                  android:textSize="14sp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:textColor="@color/black"
+                  android:gravity="left"
+                  android:text="RUNS"
+                  >
+
+              </TextView>
+              <TextView
+                  android:fontFamily="@font/roboto"
+                  android:textSize="15dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:textColor="@color/black"
+                  android:gravity="left"
+                  android:text="EXTRAS"
+                  >
+
+              </TextView>
+              <TextView
+                  android:paddingLeft="7dp"
+                  android:fontFamily="@font/roboto"
+                  android:textSize="15dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:textColor="@color/black"
+                  android:gravity="left"
+                  android:text="WICKETS"
+                  >
+
+              </TextView>
+
+          </LinearLayout>
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/bowlers_list"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+          </androidx.recyclerview.widget.RecyclerView>
+
+      </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

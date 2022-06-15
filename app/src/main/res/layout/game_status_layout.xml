@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="2"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+
+    android:background="@color/white">
+   <LinearLayout
+       android:background="@color/white"
+      android:layout_marginBottom="5dp"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_weight="1"
+       android:orientation="vertical"
+       >
+       <TextView
+           android:id="@+id/teamAName"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/black"
+           android:text="Team A"
+           android:textStyle="bold"
+           android:textSize="16sp"
+           android:layout_marginBottom="3dp">
+       </TextView>
+       <LinearLayout
+           android:background="@color/white"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="horizontal"
+           android:weightSum="4">
+           <LinearLayout
+               android:background="@color/white"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:orientation="horizontal"
+               android:weightSum="3">
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_weight="1"
+                   android:background="@color/white"
+                   >
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:background="@color/white"
+                       app:cardBackgroundColor="@color/white"
+                       >
+                      <LinearLayout
+
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:gravity="center"
+
+                          android:background="@drawable/left_circular_corner_blue">
+                          <TextView
+                              android:id="@+id/teamAScore"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:text="25/2"
+                              android:textColor="@color/white"
+                              android:textSize="24sp"
+                              android:textStyle="bold">
+
+                          </TextView>
+                          <TextView
+                              android:id="@+id/teamAOvers"
+                              android:gravity="center"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:textSize="14sp"
+                              android:textColor="@color/white"
+                              android:text="(5.0 over)">
+
+                          </TextView>
+
+                      </LinearLayout>
+                   </androidx.cardview.widget.CardView>
+
+
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:background="@color/white">
+
+                 <androidx.cardview.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:elevation="8dp"
+                     android:divider="@android:color/transparent"
+                     android:dividerHeight="0.0px"
+                     android:clipToPadding="false"
+                     android:clipChildren="false"
+                     app:cardElevation="10dp"
+                     android:layout_marginTop="2dp"
+                     android:layout_marginBottom="2dp"
+                     app:cardPreventCornerOverlap="false"
+                     android:background="@color/white"
+                     app:cardBackgroundColor="@color/white"
+
+                     >
+                     <LinearLayout
+                         android:background="@color/white"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:gravity="center"
+                         android:orientation="vertical">
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="6s"
+                             android:textColor="@color/black"
+                             android:textSize="24sp"
+                             android:textStyle="bold">
+
+                         </TextView>
+                         <TextView
+                             android:id="@+id/teamASixes"
+                             android:gravity="center"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:textSize="14sp"
+                             android:textColor="@color/text_gray"
+                             android:text="4">
+
+                         </TextView>
+                     </LinearLayout>
+                 </androidx.cardview.widget.CardView>
+
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:background="@color/white">
+
+                  <androidx.cardview.widget.CardView
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+
+                      android:elevation="8dp"
+                      android:divider="@android:color/transparent"
+                      android:dividerHeight="0.0px"
+                      android:clipToPadding="false"
+                      android:clipChildren="false"
+                      app:cardElevation="10dp"
+                      android:layout_marginTop="2dp"
+                      android:layout_marginRight="2dp"
+                      android:layout_marginBottom="2dp"
+                      app:cardPreventCornerOverlap="false"
+                      android:background="@color/white"
+                      app:cardBackgroundColor="@color/white"
+                      >
+                      <LinearLayout
+                          android:background="@color/white"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:gravity="center">
+                          <TextView
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:text="4s"
+                              android:textColor="@color/black"
+                              android:textSize="24sp"
+                              android:textStyle="bold">
+
+                          </TextView>
+                          <TextView
+                              android:id="@+id/teamAFours"
+                              android:gravity="center"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:textSize="14sp"
+                              android:textColor="@color/text_gray"
+                              android:text="5">
+
+                          </TextView>
+
+                      </LinearLayout>
+                  </androidx.cardview.widget.CardView>
+               </LinearLayout>
+
+
+       </LinearLayout>
+           <LinearLayout
+               android:background="@drawable/rounded_corners"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="3">
+          <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:elevation="8dp"
+              android:layout_marginLeft="20dp"
+              android:divider="@android:color/transparent"
+              android:dividerHeight="0.0px"
+              android:clipToPadding="false"
+              android:clipChildren="false"
+              app:cardElevation="10dp"
+              android:layout_marginBottom="4dp"
+              android:layout_marginRight="4dp"
+              app:cardPreventCornerOverlap="false"
+              android:background="@color/white"
+              app:cardBackgroundColor="@color/white"
+              >
+              <ImageView
+
+                  android:padding="5dp"
+                  android:id="@+id/score_card_ta"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+
+                  android:background="@drawable/right_circular_corner_white"
+                  android:src="@drawable/score_card_phone">
+
+              </ImageView>
+          </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+   </LinearLayout>
+
+   </LinearLayout>
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/teamBName"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Team B"
+            android:textStyle="bold"
+            android:textSize="16sp">
+        </TextView>
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <LinearLayout
+                android:background="@drawable/rounded_corners"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@color/primary_blue">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        app:cardBackgroundColor="@color/white"
+
+
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="@drawable/left_circular_corner_orange">
+                            <TextView
+                                android:id="@+id/teamBScore"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="25/2"
+                                android:textColor="@color/white"
+                                android:textSize="24sp"
+                                android:textStyle="bold">
+
+                            </TextView>
+                            <TextView
+                                android:id="@+id/teamBOvers"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/white"
+                                android:text="(5.0 over)">
+
+                            </TextView>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/white">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:elevation="8dp"
+                        android:divider="@android:color/transparent"
+                        android:dividerHeight="0.0px"
+                        android:clipToPadding="false"
+                        android:clipChildren="false"
+                        app:cardElevation="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        app:cardPreventCornerOverlap="false"
+                        android:background="@color/white"
+                        app:cardBackgroundColor="@color/white"
+
+                        >
+
+                        <LinearLayout
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="6s"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/teamBSixes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="@color/text_gray"
+                                android:textSize="14sp">
+
+                            </TextView>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/white">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:elevation="8dp"
+                        android:divider="@android:color/transparent"
+                        android:dividerHeight="0.0px"
+                        android:clipToPadding="false"
+                        android:clipChildren="false"
+                        app:cardElevation="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginRight="2dp"
+                        app:cardPreventCornerOverlap="false"
+                        android:background="@color/white"
+                        app:cardBackgroundColor="@color/white"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="@color/white">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="4s"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold">
+
+                            </TextView>
+                            <TextView
+                                android:id="@+id/teamBFours"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_gray"
+                                android:text="5">
+
+                            </TextView>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight="3">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="8dp"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    app:cardElevation="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="4dp"
+                    app:cardPreventCornerOverlap="false"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    app:cardBackgroundColor="@color/white"
+                    >
+                    <ImageView
+                        android:padding="5dp"
+                        android:id="@+id/score_card_tb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:background="@drawable/right_circular_corner_white"
+                        android:src="@drawable/score_card_phone">
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

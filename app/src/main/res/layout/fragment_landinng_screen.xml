@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mobile_bg"
+    tools:context=".fragments.LandinngScreenFragment"
+    android:gravity="center"
+    android:orientation="vertical">
+   <LinearLayout
+       android:layout_gravity="left"
+       android:layout_marginLeft="45dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:gravity="center"
+       >
+       <ImageView
+           android:layout_width="250dp"
+           android:layout_height="wrap_content"
+           android:src="@drawable/mobile_logo">
+
+       </ImageView>
+       <TextView
+           android:id="@+id/games"
+           android:layout_marginTop="0dp"
+           android:layout_width="200dp"
+           android:layout_height="40dp"
+           android:fontFamily="@font/roboto"
+           android:textColor="@color/white"
+           android:textSize="21sp"
+           android:gravity="center"
+           android:text="Quick Match"
+           android:textStyle="bold"
+
+           android:background="@drawable/rounded_sides_orange_stroked_white">
+
+       </TextView>
+       <TextView
+           android:id="@+id/tournament"
+           android:layout_marginTop="5dp"
+           android:layout_width="200dp"
+           android:layout_height="40dp"
+           android:fontFamily="@font/roboto"
+           android:textColor="@color/white"
+           android:textSize="21sp"
+           android:gravity="center"
+           android:text="Tournament"
+           android:textStyle="bold"
+
+           android:background="@drawable/rounded_sides_orange_stroked_white">
+
+       </TextView> <TextView
+       android:id="@+id/series"
+       android:layout_marginTop="5dp"
+       android:layout_width="200dp"
+       android:layout_height="40dp"
+       android:fontFamily="@font/roboto"
+       android:textColor="@color/white"
+       android:textSize="21sp"
+       android:gravity="center"
+       android:text="Series"
+       android:textStyle="bold"
+
+       android:background="@drawable/rounded_sides_orange_stroked_white">
+
+   </TextView>
+       <TextView
+           android:layout_marginBottom="10dp"
+           android:layout_marginTop="20dp"
+           android:layout_width="wrap_content"
+           android:gravity="center"
+           android:layout_height="wrap_content"
+           android:textColor="@color/white"
+           android:textSize="15sp"
+           android:id="@+id/privacy_policy"
+           android:textStyle="bold"
+           android:text="@string/underlineprivacypolicy"
+           android:background="@drawable/rounded_sides_orange_stroked_white">
+           >
+
+       </TextView>
+       <ImageView
+           android:layout_marginTop="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/koolbots_logo_mobile">
+
+       </ImageView>
+   </LinearLayout>
+
+
+
+
+</LinearLayout>

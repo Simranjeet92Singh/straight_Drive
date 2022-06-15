@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">StraightDrive Score</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="underlineprivacypolicy"> <u>PRIVACY POLICY</u></string>
+    <string name="privacy_policy_text">This privacy policy governs your use of the software application StraightDrive for mobile  devices that was created by the developer KoolBots. StraightDrive app is perfect for  keeping score while you are enjoying StraightDrive Cricket Tabletop game. Learn more at <a> https://www.koolbots.com</a></string>
+    <string name="data_retention_policy">We do not collect any personal data other than the device id to collect statistics of the  games played. If you like us to delete the user provided data that you have provided via the  application, please contact us at support@koolbots.com</string>
+    <string name="out_out_rights">You can stop all collection of information by the application easily by uninstalling the app.  You may use the standard uninstall process as may be available as part of your mobile  device </string>
+    <string name="contact">If you have any questions regarding privacy while using the StraightDrive app or  StraightDrive Cricket game, you can learn more details at <a>https://www.koolbots.com</a> or  can contact us via email at support@koolbots.com</string>
+</resources>

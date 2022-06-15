@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PrivacyPolicyFragment"
+    android:padding="10dp">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Privacy Policy:"
+                android:textColor="@color/primary_orange"
+                android:textSize="24dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+
+                android:id="@+id/privacy_policy_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto"
+                android:paddingLeft="10dp"
+                android:text="@string/privacy_policy_text"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+
+                android:textStyle="bold"></TextView>
+            <TextView
+
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Data Retention Policy:"
+                android:textColor="@color/primary_orange"
+                android:textSize="24dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/retension"
+                android:layout_marginTop="20dp"
+                android:gravity="left|center"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/roboto"
+
+                android:paddingLeft="10dp"
+                android:text="@string/data_retention_policy"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+
+                android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Out-Out Rights:"
+                android:textColor="@color/primary_orange"
+                android:textSize="24dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:gravity="left|center"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/roboto"
+                android:paddingLeft="10dp"
+                android:text="@string/out_out_rights"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+
+                android:textStyle="bold"></TextView>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Contact:"
+                android:textColor="@color/primary_orange"
+                android:textSize="30dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <TextView
+                   android:id="@+id/con"
+                   android:layout_marginTop="20dp"
+                   android:gravity="left|center"
+                   android:paddingBottom="0dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+
+                   android:fontFamily="@font/roboto"
+
+                   android:paddingLeft="10dp"
+                   android:text="@string/contact"
+                   android:textColor="@color/black"
+                   android:textSize="16dp"
+
+                   android:textStyle="bold"></TextView>
+
+
+           </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

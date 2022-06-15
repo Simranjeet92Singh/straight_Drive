@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent">
+    <androidx.cardview.widget.CardView
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/winning_team"
+                android:layout_marginTop="20dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_phone">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/game_won_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="First Inning Completed"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Would you like to start second inning?"
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="14dp"
+                ></TextView>
+            <View
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/table_border"></View>
+            <LinearLayout
+                android:background="@color/primary_orange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                >
+                <TextView
+                    android:id="@+id/no"
+                    android:padding="7dp"
+                    android:background="@color/primary_orange"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto"
+                    android:text="NO"
+                    android:gravity="center"
+                    >
+
+                </TextView>
+                <TextView
+                    android:id="@+id/yes"
+                    android:padding="7dp"
+                    android:background="@color/primary_blue"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto"
+                    android:text="YES"
+                    android:gravity="center"
+                    >
+
+                </TextView>
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
