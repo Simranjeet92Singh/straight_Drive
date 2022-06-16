@@ -21,10 +21,23 @@ class Schedule : Fragment(){
     private val noOfOvers=BooleanArray(4)
     private val whichTeamPlaying=BooleanArray(2)
     private var pointsTable:TextView?=null
+    private var match: Match? = null
+    private var match1:TextView?=null
+    private var match2:TextView?=null
+    private var match3:TextView?=null
+    private var match4:TextView?=null
+    private var match5:TextView?=null
+    private var match6:TextView?=null
+    private var match7:TextView?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
 
+            match = it.getSerializable(INNING) as Match
+
+        }
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +51,25 @@ class Schedule : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val ac=activity as AppCompatActivity
         whichTeamPlaying[1]=true
-        noOfOvers[0]=true
+
         match1Button=view.findViewById(R.id.match1Button)
         pointsTable=view.findViewById(R.id.points_table)
+        match1=view.findViewById(R.id.macth1)
+        match2=view.findViewById(R.id.macth2)
+        match3=view.findViewById(R.id.macth3)
+        match4=view.findViewById(R.id.macth4)
+        match5=view.findViewById(R.id.macth5)
+        match6=view.findViewById(R.id.macth6)
+        match7=view.findViewById(R.id.macth7)
+
+       match1?.text="Team A Vs Team B"
+        match2?.text="Team A Vs Team B"
+        match3?.text="Team A Vs Team B"
+        match4?.text="Team A Vs Team B"
+        match5?.text="Team A Vs Team B"
+        match6?.text="Team A Vs Team B"
+        match7?.text="Top 1 Team Vs Top 2 Team"
+
         pointsTable?.setOnClickListener{
 
             fragmentManager?.beginTransaction()?.replace(android.R.id.content, PointsTable.newInstance(null),"game")?.commit()
@@ -51,33 +80,14 @@ class Schedule : Fragment(){
             val teamB="teamb"
 
 
-            if(teamA==null||teamA=="")
-            {
-                Snackbar.make(it,"Please enter Team 1 name",1500).show()
-                return@setOnClickListener
-            }
-            if(teamB==null||teamB=="")
-            {
-                Snackbar.make(it,"Please enter Team 2 name",1500).show()
-                return@setOnClickListener
-            }
-            if(teamA.trim().toLowerCase().equals(teamB.trim().toLowerCase()))
-            {
-                Snackbar.make(it,"Please enter distinct  names of both the  teams",1500).show()
-                return@setOnClickListener
-            }
+
             val match=Match(
                 team1 = teamA,
                 team2 = teamB
             )
-            if(whichTeamPlaying[0])
-            {
+
                 match.firstBattingTeam=teamA
-            }
-            else
-            {
-                match.firstBattingTeam=teamB
-            }
+
 
 
             if(noOfOvers[0])
@@ -94,11 +104,7 @@ class Schedule : Fragment(){
                 match?.totalOvers=20.toDouble()
 
             }
-            else
-            {
-                match?.totalOvers=50.toDouble()
 
-            }
 
             match?.matchDate="2021-25-2021"
             fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()

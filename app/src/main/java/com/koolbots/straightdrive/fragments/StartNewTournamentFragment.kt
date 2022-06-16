@@ -130,12 +130,12 @@ class StartNewTournamentFragment : Fragment() {
             {
                 match?.totalOvers=5.toDouble()
             }
-            else if(noOfOvers[1])
+             if(noOfOvers[1])
             {
                 match?.totalOvers=10.toDouble()
 
             }
-            else if(noOfOvers[2])
+             if(noOfOvers[2])
             {
                 match?.totalOvers=20.toDouble()
 
@@ -146,7 +146,7 @@ class StartNewTournamentFragment : Fragment() {
 
 
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(android.R.id.content, Schedule.newInstance(null))?.addToBackStack(null)
+                ?.replace(android.R.id.content, Schedule.newInstance(match))
                 ?.commit()
 
         }
