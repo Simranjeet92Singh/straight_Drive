@@ -23,12 +23,26 @@ data class Match(
     var winningTeam: String?="",
     var first_team_play:Boolean=false,
     var second_team_playing:Boolean=false,
-    var firstPlaying:Boolean=true
+    var firstPlaying:Boolean=true,
+   //Tournament
+    @Ignore
+    var pointsTableModel: PointsTableModel=PointsTableModel(),
+    var tournamentName:String="",
+    var teamCount:Int=3,
+    var pointsTableAJson:String="",
+    var pointsTableBJson:String="",
+    var pointsTableCJson:String="",
+    var pointsTableDJson:String=""
+
+
+
+
 ):Serializable{
 
 init {
     inning1?.teamName=team1
     inning2?.teamName=team2
+
 }
 
 }

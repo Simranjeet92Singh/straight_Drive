@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -20,6 +19,7 @@ import com.koolbots.straightdrive.R
 import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.adapters.RecentGamesAdapter
 import com.koolbots.straightdrive.adapters.TournamentAdapter
+import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
 import com.koolbots.straightdrive.database.tournament.TournamentDAO
 import com.koolbots.straightdrive.database.tournament.TournamentDatabase
@@ -28,12 +28,14 @@ import com.koolbots.straightdrive.models.TournamentModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TournamentFragment : Fragment(){
 
     private var mainLayout: LinearLayout?=null
-    private var tournamentList:ArrayList<TournamentModel>?= ArrayList()
-    private var tournamentDAO: TournamentDAO?=null
+    private var matches:ArrayList<Match>?= ArrayList()
+    private var matchDAO: MatchAccessDAO?=null
     private var tournament:RecyclerView?=null
 
     override fun onAttach(context: Context) {
@@ -86,37 +88,41 @@ class TournamentFragment : Fragment(){
         val act=activity?:return
         tournament?.layoutManager= LinearLayoutManager(act.applicationContext)
             tournament?.setHasFixedSize(true)
+
         GlobalScope.launch {
-        tournamentDAO=TournamentDatabase.getInstance(act.applicationContext).tournamentDAO()
-
-            tournamentList= tournamentDAO?.getAllTournament() as ArrayList<TournamentModel>
-
-            tournamentList?.forEach(
+            matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
+            matches= matchDAO?.getAllMatch() as ArrayList<Match>
+            //Log.d("Console","Matches found"+matches?.size)
+            val cmp = compareBy<Match> { LocalDateTime.parse(it.matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")) }
+            matches?.forEach(
                 {
                     var str=""
                     var y:Int?=0
                     var m:Int?=0
                     var d:Int?=0
-                    var dates=it.dateOfMatch?.split("-")
+                    var dates=it.matchDate?.split("-")
                     y=dates?.get(0)?.toInt()
                     m=dates?.get(1)?.toInt()
                     d=dates?.get(2)?.toInt()
                     if (m != null&&d!=null) {
-                        it.dateOfMatch=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
+                        it.matchDate=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
 
                     }
-                    Log.d("Date",it.dateOfMatch?:"")
+                    Log.d("Date",it.matchDate?:"")
                 }
 
             )
-            tournamentList?.sortByDescending {it.dateOfMatch  }
+            matches?.sortByDescending {it.matchDate  }
             MainScope().launch {
                 val tournamentAdapter=
-                   TournamentAdapter(act.applicationContext, fragmentManager,tournamentList)
+                    TournamentAdapter(act.applicationContext, fragmentManager,matches)
                 tournament?.adapter=tournamentAdapter
-                Log.d("Console","Matches found  "+tournamentList?.size)
+                Log.d("Console","Matches found  "+matches?.size)
 
-        }
+            }
+
+
+
 
         }
         val newTournament=view.findViewById<TextView>(R.id.new_tournament)

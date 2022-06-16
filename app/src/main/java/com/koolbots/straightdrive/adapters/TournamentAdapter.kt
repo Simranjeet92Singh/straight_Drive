@@ -14,9 +14,10 @@ import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.fragments.NewGameFragment
 import com.koolbots.straightdrive.fragments.RecentGamesDashBoard
 import com.koolbots.straightdrive.models.Inning
+import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
-class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<TournamentModel>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
+class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<Match>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
 
     class holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var viewGame: Button?=null
@@ -54,8 +55,8 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 //        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
 
         holder.tournamentName?.text=match?.tournamentName
-        holder.noOfMatches?.text=match?.numberOfMatches
-        holder.date?.text=match?.dateOfMatch
+        holder.noOfMatches?.text=match?.teamCount.toString()
+        holder.date?.text=match?.matchDate
 
 
     }
