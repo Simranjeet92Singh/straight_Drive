@@ -21,8 +21,7 @@ import com.koolbots.straightdrive.adapters.RecentGamesAdapter
 import com.koolbots.straightdrive.adapters.TournamentAdapter
 import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
-import com.koolbots.straightdrive.database.tournament.TournamentDAO
-import com.koolbots.straightdrive.database.tournament.TournamentDatabase
+
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 import kotlinx.coroutines.GlobalScope
@@ -37,6 +36,12 @@ class TournamentFragment : Fragment(){
     private var matches:ArrayList<Match>?= ArrayList()
     private var matchDAO: MatchAccessDAO?=null
     private var tournament:RecyclerView?=null
+    private var fromTournament="fromTournament"
+    private var fromSeies="fromSeries"
+    private var isFromSeries:Boolean?=null
+    private var isFromTournamnt:Boolean?=null
+    private var font:TextView?=null
+    private var newTournament:TextView?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -47,7 +52,8 @@ class TournamentFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+          isFromSeries=it.getSerializable(fromSeies) as Boolean
+            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
         }
     }
 
@@ -61,6 +67,7 @@ class TournamentFragment : Fragment(){
         super.onPause()
 
     }
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,6 +80,8 @@ class TournamentFragment : Fragment(){
         }
 
         mainLayout=view.findViewById(R.id.main_layout)
+        newTournament=view.findViewById(R.id.new_tournament)
+        font=view.findViewById(R.id.font)
         if(SharedData.notchHeight>0)
         {
             val layout=mainLayout?:null
@@ -126,19 +135,44 @@ class TournamentFragment : Fragment(){
 
         }
         val newTournament=view.findViewById<TextView>(R.id.new_tournament)
-        newTournament.setOnClickListener{
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(null))?.addToBackStack(null)?.commit()
+
+        if(isFromTournamnt == false) {
+        font?.setText("Series")
+        newTournament?.setText("New Series")
 
         }
+        newTournament.setOnClickListener{
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(null))?.addToBackStack(null)?.commit()
+
+            }
+
+
 
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TournamentFragment()
+        fun newInstance(param1: String, param2: String,isFromTournament:Boolean,isFromSeries:Boolean) :TournamentFragment{
+
+
+               return TournamentFragment().apply {
+                   arguments = Bundle().apply {
+                       putSerializable(fromTournament, isFromTournament)
+                       putSerializable(fromSeies, isFromTournament)
+
+                   }
+               }
+
+
+        }
+
     }
+
+
+
+
+
 
     private fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
         if (view.layoutParams is ViewGroup.MarginLayoutParams) {

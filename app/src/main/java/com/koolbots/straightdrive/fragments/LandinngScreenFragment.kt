@@ -19,6 +19,7 @@ class LandinngScreenFragment : Fragment() {
     private var privacyPolicyButton:TextView?=null
     private var newGame:TextView?=null
     private var tournamentButton:TextView?=null
+    private var series:TextView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +56,14 @@ class LandinngScreenFragment : Fragment() {
         tournamentButton=view.findViewById(R.id.tournament)
 
         tournamentButton?.setOnClickListener({
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("",""),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
-        Toast.makeText(requireContext(),"hello",Toast.LENGTH_SHORT).show()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",true,false),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+
         })
-        //Tournament and series button click
+        series=view.findViewById(R.id.series)
+        series?.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",false,true),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+
+        }
 
     }
 
