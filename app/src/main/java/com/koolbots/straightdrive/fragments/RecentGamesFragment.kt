@@ -53,6 +53,8 @@ class RecentGamesFragment : Fragment() {
         arguments?.let {
 //            matches= it.getSerializable(INNING) as ArrayList<Match>?
             match= it.getSerializable(INNING) as Match?
+            Log.d("toment button ========",match.toString())
+
         }
     }
 
@@ -102,6 +104,8 @@ class RecentGamesFragment : Fragment() {
         GlobalScope.launch {
             matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
            matches= matchDAO?.getAllMatch() as ArrayList<Match>
+            Log.d("tournament button **********",matches.toString())
+
             //Log.d("Console","Matches found"+matches?.size)
             val cmp = compareBy<Match> { LocalDateTime.parse(it.matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")) }
             matches?.forEach(
@@ -149,13 +153,32 @@ class RecentGamesFragment : Fragment() {
                         val n=Match()
 
 
+                        val maxLogSize = 1000
+                        val stringLength = n.toString().length
+                        for (i in 0..stringLength / maxLogSize) {
+                            val start = i * maxLogSize
+                            var end = (i + 1) * maxLogSize
+                            end = if (end > n.toString().length) n.toString().length else end
+                            Log.v("----**------", n.toString().substring(start, end))
+                        }
 
                         recentgamesList?.add(i,n!!)
                     }
                 }
 
                     val recentGamesAdapter=RecentGamesAdapter(act.applicationContext, fragmentManager,recentgamesList)
-                        Log.d("----------------------------------",recentgamesList.toString())
+
+                val maxLogSize = 1000
+                val stringLength = recentgamesList.toString().length
+                for (i in 0..stringLength / maxLogSize) {
+                    val start = i * maxLogSize
+                    var end = (i + 1) * maxLogSize
+                    end = if (end > recentgamesList.toString().length) recentgamesList.toString().length else end
+                    Log.v("----------------------------------", recentgamesList.toString().substring(start, end))
+                }
+
+
+
                     recentGames?.adapter=recentGamesAdapter
                     Log.d("Console","Matches found  "+matches?.size)
 

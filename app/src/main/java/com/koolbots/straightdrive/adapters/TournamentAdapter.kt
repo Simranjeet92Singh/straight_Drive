@@ -43,6 +43,9 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
+        if(match?.team1==""){
+
+
         holder.viewGame?.setOnClickListener({
 //            fragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
@@ -57,8 +60,10 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 //        holder.tournamentName?.text=match?.tournamentName
         holder.noOfMatches?.text=match?.teamCount.toString()
         holder.date?.text=match?.matchDate
-
-
+        }
+        else{
+            // do nothing
+        }
     }
 
     override fun getItemCount(): Int {

@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,7 @@ class StartNewTournamentFragment : Fragment() {
         arguments?.let {
 
             match = it.getSerializable(INNING) as Match
+            Log.d("tourt button ========",match.toString())
 
         }
 
@@ -122,10 +124,11 @@ class StartNewTournamentFragment : Fragment() {
                 Snackbar.make(it,"Please enter Tournament name",1500).show()
                 return@setOnClickListener
             }
-            val match=Match(
+             match=Match(
                 team1 = "teamA",
                 team2 = "teamB"
             )
+
             if(noOfOvers[0])
             {
                 match?.totalOvers=5.toDouble()

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class Schedule : Fragment(){
         arguments?.let {
 
             match = it.getSerializable(INNING) as Match
+            Log.d("tournament button ========",match.toString())
 
         }
 
@@ -120,7 +122,7 @@ class Schedule : Fragment(){
                 team1 = teamA,
                 team2 = teamB
             )
-
+            match?.isFromTournament=true
                 match.firstBattingTeam=teamA
 
 
@@ -141,6 +143,7 @@ class Schedule : Fragment(){
             }
 
             match?.matchDate="2021-25-2021"
+
             fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
         }
 

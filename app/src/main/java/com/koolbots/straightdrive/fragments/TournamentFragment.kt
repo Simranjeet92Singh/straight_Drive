@@ -59,6 +59,8 @@ class TournamentFragment : Fragment(){
             match= it.getSerializable(INNING) as Match?
 //          isFromSeries=it.getSerializable(fromSeies) as Boolean
 //            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
+            Log.d("tournament button ========",match.toString())
+
         }
     }
 
@@ -97,6 +99,7 @@ class TournamentFragment : Fragment(){
 
 
         }
+        recentgamesList?.clear()
         tournament= view.findViewById(R.id.tournament_games_list)
 
         val act=activity?:return
@@ -133,7 +136,7 @@ class TournamentFragment : Fragment(){
                 for (i in 0..matches?.size!!-1) {
 
 
-                    if (matches?.get(i)?.isFromTournament == false && matches?.get(i)?.isFromSeries == false) {
+                    if (matches?.get(i)?.isFromTournament == true && matches?.get(i)?.isFromSeries == false) {
                         val t = matches?.get(i)
                         recentgamesList?.add(i, t!!)
 
@@ -147,7 +150,14 @@ class TournamentFragment : Fragment(){
 
                     } else {
                         val n = Match()
-
+                        val maxLogSize = 1000
+                        val stringLength = n.toString().length
+                        for (i in 0..stringLength / maxLogSize) {
+                            val start = i * maxLogSize
+                            var end = (i + 1) * maxLogSize
+                            end = if (end > n.toString().length) n.toString().length else end
+                            Log.v("----**------", n.toString().substring(start, end))
+                        }
 
 
                         recentgamesList?.add(i, n!!)
@@ -155,7 +165,7 @@ class TournamentFragment : Fragment(){
 
                 }
                 val tournamentAdapter=
-                    TournamentAdapter(act.applicationContext, fragmentManager,matches)
+                    TournamentAdapter(act.applicationContext, fragmentManager,recentgamesList)
                 tournament?.adapter=tournamentAdapter
                 Log.d("Console","Matches found  "+matches?.size)
 

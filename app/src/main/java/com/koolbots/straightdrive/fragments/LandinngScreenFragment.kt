@@ -39,10 +39,12 @@ class LandinngScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        match = Match()
 
         newGame=view.findViewById(R.id.games)
         newGame?.setOnClickListener(
                 {
+
                     match?.isFromSeries=false
                     match?.isFromTournament=false
                     activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
@@ -64,6 +66,7 @@ class LandinngScreenFragment : Fragment() {
 
             match?.isFromSeries=false
             match?.isFromTournament=true
+            Log.d("tournament button ========",match.toString())
             activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",true,match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
 
         })

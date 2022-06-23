@@ -1,13 +1,17 @@
 package com.koolbots.straightdrive.adapters
 
 import android.content.Context
+import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -27,6 +31,9 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
         var team2:TextView?=null
         var date:TextView?=null
         var score:TextView?=null
+        var card: CardView?=null
+        var rootView:LinearLayout?=null
+        var parms:LinearLayout.LayoutParams?=null
 
         init {
             viewGame=itemView.findViewById(R.id.view_game)
@@ -35,6 +42,9 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
             team2=itemView.findViewById(R.id.recent_team2)
             date=itemView.findViewById(R.id.recent_date)
             score=itemView.findViewById(R.id.recent_score)
+            card=itemView.findViewById(R.id.card)
+            rootView=itemView.findViewById(R.id.llout)
+             parms = LinearLayout.LayoutParams(0,0)
         }
 
     }
@@ -46,7 +56,7 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
 
-        if(match?.team1!=""){
+        if(match?.key!=0){
             holder.viewGame?.setOnClickListener({
                 fragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
@@ -65,7 +75,9 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
 
 
         }else{
-            // do nothing
+           holder.card?.visibility=View.GONE
+            holder.rootView?.layoutParams=holder.parms
+
         }
 
     }
