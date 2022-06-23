@@ -45,22 +45,28 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
-        holder.viewGame?.setOnClickListener({
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
-        })
-        holder.rematchGame?.setOnClickListener({
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content,NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
+        if(match?.team1!=""){
+            holder.viewGame?.setOnClickListener({
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
-        })
-        val inningOne:Inning=SerializationToJson.toInning(match?.inning1Json)
-        val inningTwo:Inning=SerializationToJson.toInning(match?.inning2Json)
+            })
+            holder.rematchGame?.setOnClickListener({
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content,NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
 
-        holder.team1?.text=match?.team1
-        holder.team2?.text=match?.team2
-        holder.date?.text=match?.matchDate
-        holder.score?.text=""+inningOne.score+"/"+inningOne.wickets+"  |  "+inningTwo.score+"/"+inningTwo.wickets
+            })
+            val inningOne:Inning=SerializationToJson.toInning(match?.inning1Json)
+            val inningTwo:Inning=SerializationToJson.toInning(match?.inning2Json)
 
+            holder.team1?.text=match?.team1
+            holder.team2?.text=match?.team2
+            holder.date?.text=match?.matchDate
+            holder.score?.text=""+inningOne.score+"/"+inningOne.wickets+"  |  "+inningTwo.score+"/"+inningTwo.wickets
+
+
+        }else{
+            // do nothing
+        }
 
     }
 

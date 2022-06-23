@@ -27,12 +27,15 @@ data class Match(
    //Tournament
     @Ignore
     var pointsTableModel: PointsTableModel=PointsTableModel(),
-    var tournamentName:String="",
+    var tournamentJson:String="",
+    var seriesJson:String="",
     var teamCount:Int=3,
     var pointsTableAJson:String="",
     var pointsTableBJson:String="",
     var pointsTableCJson:String="",
-    var pointsTableDJson:String=""
+    var pointsTableDJson:String="",
+    var isFromTournament:Boolean=false,
+    var isFromSeries:Boolean=false,
 
 
 

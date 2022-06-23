@@ -143,13 +143,20 @@ class StartNewTournamentFragment : Fragment() {
             match?.matchDate="2021-25-2021"
 
 
-
+            if(noOfTeams[0]){
+                match?.teamCount=3
+            }
+            if(noOfTeams[1]){
+                match?.teamCount=4
+            }
 
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(android.R.id.content, Schedule.newInstance(match))
                 ?.commit()
 
         }
+
+
 
         fiveOvers?.setOnClickListener(
             {
@@ -189,6 +196,7 @@ class StartNewTournamentFragment : Fragment() {
             t4name?.setBackgroundResource(R.drawable.rounded_sides_white)
 
         })
+
 
     }
 

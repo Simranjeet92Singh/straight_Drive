@@ -54,7 +54,7 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
 //        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
 
-        holder.tournamentName?.text=match?.tournamentName
+//        holder.tournamentName?.text=match?.tournamentName
         holder.noOfMatches?.text=match?.teamCount.toString()
         holder.date?.text=match?.matchDate
 

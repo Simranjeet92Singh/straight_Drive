@@ -34,6 +34,7 @@ class TournamentFragment : Fragment(){
 
     private var mainLayout: LinearLayout?=null
     private var matches:ArrayList<Match>?= ArrayList()
+    private var match:Match?=null
     private var matchDAO: MatchAccessDAO?=null
     private var tournament:RecyclerView?=null
     private var fromTournament="fromTournament"
@@ -42,6 +43,8 @@ class TournamentFragment : Fragment(){
     private var isFromTournamnt:Boolean?=null
     private var font:TextView?=null
     private var newTournament:TextView?=null
+    private val INNING:String="match"
+    private val recentgamesList: ArrayList<Match>?=ArrayList()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,8 +55,10 @@ class TournamentFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-          isFromSeries=it.getSerializable(fromSeies) as Boolean
-            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
+
+            match= it.getSerializable(INNING) as Match?
+//          isFromSeries=it.getSerializable(fromSeies) as Boolean
+//            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
         }
     }
 
@@ -123,6 +128,32 @@ class TournamentFragment : Fragment(){
             )
             matches?.sortByDescending {it.matchDate  }
             MainScope().launch {
+
+
+                for (i in 0..matches?.size!!-1) {
+
+
+                    if (matches?.get(i)?.isFromTournament == false && matches?.get(i)?.isFromSeries == false) {
+                        val t = matches?.get(i)
+                        recentgamesList?.add(i, t!!)
+
+
+//                        recentgamesList?.get(i)?.team1=matches?.get(i)?.team1.toString()!!
+//                        recentgamesList?.get(i)?.team2=matches?.get(i)?.team2.toString()!!
+//                        recentgamesList?.get(i)?.matchDate=matches?.get(i)?.matchDate.toString()!!
+//                        recentgamesList?.get(i)?.inning1Json=matches?.get(i)?.inning1Json.toString()!!
+//                        recentgamesList?.get(i)?.inning2Json=matches?.get(i)?.inning2Json.toString()!!
+
+
+                    } else {
+                        val n = Match()
+
+
+
+                        recentgamesList?.add(i, n!!)
+                    }
+
+                }
                 val tournamentAdapter=
                     TournamentAdapter(act.applicationContext, fragmentManager,matches)
                 tournament?.adapter=tournamentAdapter
@@ -142,7 +173,7 @@ class TournamentFragment : Fragment(){
 
         }
         newTournament.setOnClickListener{
-                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(null))?.addToBackStack(null)?.commit()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.addToBackStack(null)?.commit()
 
             }
 
@@ -153,13 +184,13 @@ class TournamentFragment : Fragment(){
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String,isFromTournament:Boolean,isFromSeries:Boolean) :TournamentFragment{
+        fun newInstance(param1: String, param2: String,isFromTournament:Boolean,match:Match?) :TournamentFragment{
 
 
                return TournamentFragment().apply {
                    arguments = Bundle().apply {
                        putSerializable(fromTournament, isFromTournament)
-                       putSerializable(fromSeies, isFromTournament)
+                       putSerializable(INNING, match)
 
                    }
                }
