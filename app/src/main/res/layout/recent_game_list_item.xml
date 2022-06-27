@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="5"
-
+        android:id="@+id/llout"
     android:layout_marginBottom="1dp"
     android:layout_marginLeft="1dp"
     android:layout_marginRight="1dp"
     >
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 <LinearLayout

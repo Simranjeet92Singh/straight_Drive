@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -20,21 +19,32 @@ import com.koolbots.straightdrive.R
 import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.adapters.RecentGamesAdapter
 import com.koolbots.straightdrive.adapters.TournamentAdapter
+import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
-import com.koolbots.straightdrive.database.tournament.TournamentDAO
-import com.koolbots.straightdrive.database.tournament.TournamentDatabase
+
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TournamentFragment : Fragment(){
 
     private var mainLayout: LinearLayout?=null
-    private var tournamentList:ArrayList<TournamentModel>?= ArrayList()
-    private var tournamentDAO: TournamentDAO?=null
+    private var matches:ArrayList<Match>?= ArrayList()
+    private var match:Match?=null
+    private var matchDAO: MatchAccessDAO?=null
     private var tournament:RecyclerView?=null
+    private var fromTournament="fromTournament"
+    private var fromSeies="fromSeries"
+    private var isFromSeries:Boolean?=null
+    private var isFromTournamnt:Boolean?=null
+    private var font:TextView?=null
+    private var newTournament:TextView?=null
+    private val INNING:String="match"
+    private val recentgamesList: ArrayList<Match>?=ArrayList()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -45,6 +55,11 @@ class TournamentFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
+            match= it.getSerializable(INNING) as Match?
+//          isFromSeries=it.getSerializable(fromSeies) as Boolean
+//            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
+            Log.d("tournament button ========",match.toString())
 
         }
     }
@@ -59,6 +74,7 @@ class TournamentFragment : Fragment(){
         super.onPause()
 
     }
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,6 +87,8 @@ class TournamentFragment : Fragment(){
         }
 
         mainLayout=view.findViewById(R.id.main_layout)
+        newTournament=view.findViewById(R.id.new_tournament)
+        font=view.findViewById(R.id.font)
         if(SharedData.notchHeight>0)
         {
             val layout=mainLayout?:null
@@ -81,58 +99,121 @@ class TournamentFragment : Fragment(){
 
 
         }
+        recentgamesList?.clear()
         tournament= view.findViewById(R.id.tournament_games_list)
 
         val act=activity?:return
         tournament?.layoutManager= LinearLayoutManager(act.applicationContext)
             tournament?.setHasFixedSize(true)
+
         GlobalScope.launch {
-        tournamentDAO=TournamentDatabase.getInstance(act.applicationContext).tournamentDAO()
-
-            tournamentList= tournamentDAO?.getAllTournament() as ArrayList<TournamentModel>
-
-            tournamentList?.forEach(
+            matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
+            matches= matchDAO?.getAllMatch() as ArrayList<Match>
+            //Log.d("Console","Matches found"+matches?.size)
+            val cmp = compareBy<Match> { LocalDateTime.parse(it.matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")) }
+            matches?.forEach(
                 {
                     var str=""
                     var y:Int?=0
                     var m:Int?=0
                     var d:Int?=0
-                    var dates=it.dateOfMatch?.split("-")
+                    var dates=it.matchDate?.split("-")
                     y=dates?.get(0)?.toInt()
                     m=dates?.get(1)?.toInt()
                     d=dates?.get(2)?.toInt()
                     if (m != null&&d!=null) {
-                        it.dateOfMatch=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
+                        it.matchDate=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
 
                     }
-                    Log.d("Date",it.dateOfMatch?:"")
+                    Log.d("Date",it.matchDate?:"")
                 }
 
             )
-            tournamentList?.sortByDescending {it.dateOfMatch  }
+            matches?.sortByDescending {it.matchDate  }
             MainScope().launch {
-                val tournamentAdapter=
-                   TournamentAdapter(act.applicationContext, fragmentManager,tournamentList)
-                tournament?.adapter=tournamentAdapter
-                Log.d("Console","Matches found  "+tournamentList?.size)
 
-        }
+
+                for (i in 0..matches?.size!!-1) {
+
+
+                    if (matches?.get(i)?.isFromTournament == true && matches?.get(i)?.isFromSeries == false) {
+                        val t = matches?.get(i)
+                        recentgamesList?.add(i, t!!)
+
+
+//                        recentgamesList?.get(i)?.team1=matches?.get(i)?.team1.toString()!!
+//                        recentgamesList?.get(i)?.team2=matches?.get(i)?.team2.toString()!!
+//                        recentgamesList?.get(i)?.matchDate=matches?.get(i)?.matchDate.toString()!!
+//                        recentgamesList?.get(i)?.inning1Json=matches?.get(i)?.inning1Json.toString()!!
+//                        recentgamesList?.get(i)?.inning2Json=matches?.get(i)?.inning2Json.toString()!!
+
+
+                    } else {
+                        val n = Match()
+                        val maxLogSize = 1000
+                        val stringLength = n.toString().length
+                        for (i in 0..stringLength / maxLogSize) {
+                            val start = i * maxLogSize
+                            var end = (i + 1) * maxLogSize
+                            end = if (end > n.toString().length) n.toString().length else end
+                            Log.v("----**------", n.toString().substring(start, end))
+                        }
+
+
+                        recentgamesList?.add(i, n!!)
+                    }
+
+                }
+                val tournamentAdapter=
+                    TournamentAdapter(act.applicationContext, fragmentManager,recentgamesList)
+                tournament?.adapter=tournamentAdapter
+                Log.d("Console","Matches found  "+matches?.size)
+
+            }
+
+
+
 
         }
         val newTournament=view.findViewById<TextView>(R.id.new_tournament)
-        newTournament.setOnClickListener{
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(null))?.addToBackStack(null)?.commit()
+
+        if(isFromTournamnt == false) {
+        font?.setText("Series")
+        newTournament?.setText("New Series")
 
         }
+        newTournament.setOnClickListener{
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.addToBackStack(null)?.commit()
+
+            }
+
+
 
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TournamentFragment()
+        fun newInstance(param1: String, param2: String,isFromTournament:Boolean,match:Match?) :TournamentFragment{
+
+
+               return TournamentFragment().apply {
+                   arguments = Bundle().apply {
+                       putSerializable(fromTournament, isFromTournament)
+                       putSerializable(INNING, match)
+
+                   }
+               }
+
+
+        }
+
     }
+
+
+
+
+
 
     private fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
         if (view.layoutParams is ViewGroup.MarginLayoutParams) {

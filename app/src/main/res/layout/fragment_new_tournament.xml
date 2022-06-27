@@ -54,7 +54,7 @@
 </TextView>
                 <EditText
                     android:singleLine="true"
-                    android:id="@+id/team1"
+                    android:id="@+id/tName"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:textColor="@color/black"
@@ -159,7 +159,7 @@
                         android:weightSum="2">
 
                         <TextView
-                            android:id="@+id/first_team_playing"
+                            android:id="@+id/three"
 
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -172,7 +172,7 @@
                             android:textSize="16sp"></TextView>
 
                         <TextView
-                            android:id="@+id/second_team_playing"
+                            android:id="@+id/four"
 
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -212,14 +212,15 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
+        android:id="@+id/t1name"
         android:singleLine="true"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
-        ></EditText>
+        ></TextView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -232,14 +233,15 @@
             android:textStyle="bold">
 
         </TextView>
-        <EditText
+        <TextView
+            android:id="@+id/t2name"
             android:singleLine="true"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:textColor="@color/black"
             android:background="@drawable/rounded_sides_white"
             android:paddingLeft="10dp"
-            ></EditText>
+            ></TextView>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -259,15 +261,17 @@
             android:textStyle="bold">
 
         </TextView>
-        <EditText
+        <TextView
+            android:id="@+id/t3name"
             android:singleLine="true"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:textColor="@color/black"
             android:background="@drawable/rounded_sides_white"
             android:paddingLeft="10dp"
-            ></EditText>
+            ></TextView>
         <TextView
+            android:id="@+id/tv4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Team 4"
@@ -279,14 +283,15 @@
             android:textStyle="bold">
 
         </TextView>
-        <EditText
+        <TextView
+            android:id="@+id/t4name"
             android:singleLine="true"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:textColor="@color/black"
             android:background="@drawable/rounded_sides_white"
             android:paddingLeft="10dp"
-            ></EditText>
+            ></TextView>
     </LinearLayout>
 
 </LinearLayout>

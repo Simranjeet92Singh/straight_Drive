@@ -14,9 +14,10 @@ import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.fragments.NewGameFragment
 import com.koolbots.straightdrive.fragments.RecentGamesDashBoard
 import com.koolbots.straightdrive.models.Inning
+import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
-class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<TournamentModel>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
+class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<Match>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
 
     class holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var viewGame: Button?=null
@@ -42,6 +43,9 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
+        if(match?.team1==""){
+
+
         holder.viewGame?.setOnClickListener({
 //            fragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
@@ -53,11 +57,13 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
 //        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
 
-        holder.tournamentName?.text=match?.tournamentName
-        holder.noOfMatches?.text=match?.numberOfMatches
-        holder.date?.text=match?.dateOfMatch
-
-
+//        holder.tournamentName?.text=match?.tournamentName
+        holder.noOfMatches?.text=match?.teamCount.toString()
+        holder.date?.text=match?.matchDate
+        }
+        else{
+            // do nothing
+        }
     }
 
     override fun getItemCount(): Int {

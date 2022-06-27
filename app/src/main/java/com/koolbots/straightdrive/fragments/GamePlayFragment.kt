@@ -58,14 +58,6 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var over_change_:MediaPlayer?=null
     private var wide_:MediaPlayer?=null
     private var date=System.currentTimeMillis()
-
-
-
-
-
-
-
-
     private var mainLayout: LinearLayout?=null
     private var match:Match?=null
 
@@ -138,6 +130,8 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 //        wide_?.prepare()
         arguments?.let {
                 match=it.getSerializable("match") as Match
+            Log.d("tt button ========",match.toString())
+
         }
         Log.d("Console team Playing",""+match?.firstBattingTeam)
         gameController= GameController((match))
@@ -754,8 +748,16 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         no?.setOnClickListener({
             match_end_?.stop()
             alertDialog.dismiss()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("",""))?.commit()
 
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+            val maxLogSize = 1000
+            val stringLength = match.toString().length
+            for (i in 0..stringLength / maxLogSize) {
+                val start = i * maxLogSize
+                var end = (i + 1) * maxLogSize
+                end = if (end > match.toString().length) match.toString().length else end
+                Log.v("----**------", match.toString().substring(start, end))
+            }
         })
 
 

@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.koolbots.straightdrive.R
+import com.koolbots.straightdrive.models.Match
 import kotlin.math.acos
 
 
@@ -19,6 +20,8 @@ class LandinngScreenFragment : Fragment() {
     private var privacyPolicyButton:TextView?=null
     private var newGame:TextView?=null
     private var tournamentButton:TextView?=null
+    private var series:TextView?=null
+    private var match:Match?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +39,23 @@ class LandinngScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        match = Match()
 
         newGame=view.findViewById(R.id.games)
         newGame?.setOnClickListener(
                 {
 
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesFragment.newInstance("",""),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+                    match?.isFromSeries=false
+                    match?.isFromTournament=false
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
 
                 }
 
         )
         privacyPolicyButton=view.findViewById(R.id.privacy_policy)
         privacyPolicyButton?.setOnClickListener({
+
+
             activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,PrivacyPolicyFragment.newInstance("",""),"Privacy Policy  Fragment")?.addToBackStack(null)?.commit()
 
         })
@@ -55,10 +63,21 @@ class LandinngScreenFragment : Fragment() {
         tournamentButton=view.findViewById(R.id.tournament)
 
         tournamentButton?.setOnClickListener({
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("",""),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
-        Toast.makeText(requireContext(),"hello",Toast.LENGTH_SHORT).show()
+
+            match?.isFromSeries=false
+            match?.isFromTournament=true
+            Log.d("tournament button ========",match.toString())
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",true,match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+
         })
-        //Tournament and series button click
+        series=view.findViewById(R.id.series)
+        series?.setOnClickListener{
+
+            match?.isFromSeries=true
+            match?.isFromTournament=false
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",false,match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+
+        }
 
     }
 
