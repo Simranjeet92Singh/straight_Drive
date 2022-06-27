@@ -9,6 +9,7 @@ data class TournamentModel(
 //   @PrimaryKey(autoGenerate = true)
 //    var key:Int?=0,
     var tournamentName:String?="",
+
     var numberOfMatches:String?="",
     var isTournamentCompleted:Boolean?=false,
     var winnerName:String?="",
@@ -20,5 +21,4 @@ data class TournamentModel(
     var isMatch6Completed:Boolean?=false,
     var isMatch7Completed:Boolean?=false,
 
-):Serializable {
-}
+):Serializable 
