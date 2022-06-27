@@ -21,19 +21,12 @@ data class Match(
      var status: String?="",
     var totalOvers: Double?=0.0,
     var winningTeam: String?="",
+    var loosingTeam: String?="",
     var first_team_play:Boolean=false,
     var second_team_playing:Boolean=false,
     var firstPlaying:Boolean=true,
    //Tournament
-    @Ignore
-    var pointsTableModel: PointsTableModel=PointsTableModel(),
-    var tournamentJson:String="",
-    var seriesJson:String="",
-    var teamCount:Int=3,
-    var pointsTableAJson:String="",
-    var pointsTableBJson:String="",
-    var pointsTableCJson:String="",
-    var pointsTableDJson:String="",
+
     var isFromTournament:Boolean=false,
     var isFromSeries:Boolean=false,
 

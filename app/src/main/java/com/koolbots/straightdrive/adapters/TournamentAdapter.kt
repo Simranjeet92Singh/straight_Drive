@@ -17,7 +17,7 @@ import com.koolbots.straightdrive.models.Inning
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
-class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<Match>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
+class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<TournamentModel>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
 
     class holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var viewGame: Button?=null
@@ -43,7 +43,7 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
-        if(match?.team1==""){
+        if(match?.tournamentName==""){
 
 
         holder.viewGame?.setOnClickListener({
@@ -59,7 +59,7 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
 //        holder.tournamentName?.text=match?.tournamentName
         holder.noOfMatches?.text=match?.teamCount.toString()
-        holder.date?.text=match?.matchDate
+        holder.date?.text=match?.date
         }
         else{
             // do nothing

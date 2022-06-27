@@ -4,16 +4,13 @@ import android.util.Log
 import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.Util.UtilityFunctions
-import com.koolbots.straightdrive.models.Batter
-import com.koolbots.straightdrive.models.Bowler
-import com.koolbots.straightdrive.models.Match
-import com.koolbots.straightdrive.models.SharedMusicData
+import com.koolbots.straightdrive.models.*
 import kotlinx.coroutines.processNextEventInCurrentThread
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameController(var match : Match?) {
+class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
     private var score=0
     private var balls:Double?=(match?.totalOvers)
     private var curentBalls=0
@@ -401,14 +398,19 @@ class GameController(var match : Match?) {
             if(match?.inning1?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
             }
             else if(match?.inning2?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
 
             }
             else{
-                match?.winningTeam="Both Team"
+                match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+
             }
         }
         else if((match?.first_team_play?:true&&match?.second_team_playing?:true&&(UtilityFunctions.overToBalls(match?.inning2?.overs?:0.0) ==balls?.toInt())))
@@ -418,14 +420,20 @@ class GameController(var match : Match?) {
             if(match?.inning1?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
             }
             else if(match?.inning2?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
+
 
             }
             else{
                 match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+
             }
         }
         else
@@ -436,22 +444,41 @@ class GameController(var match : Match?) {
             {
 
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
+
             }
 
             else if(match?.first_team_play?:true&&match?.second_team_playing?:true&&(w)>=10)
 
             {
                 match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
 
             }
             else if(match?.first_team_play?:false&&match?.second_team_playing?:false&&match?.inning2?.score?:0==match?.inning1?.score?:0&&match?.inning2?.wickets?:0>=10)
             {
 
                 match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+
             }
         }
 
         return match
+    }
+
+    fun tournament(wTeam:String?,lTeam:String?):TournamentModel{
+
+
+
+        if(wTeam =="Team A" && lTeam =="Team B"){
+            val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                }
+
+
+        return tournamentModel!!
+
     }
 
     private fun incrementBall()

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.koolbots.straightdrive.R
 import com.koolbots.straightdrive.models.Match
+import com.koolbots.straightdrive.models.TournamentModel
 import java.util.*
 
 class StartNewTournamentFragment : Fragment() {
@@ -36,6 +37,9 @@ class StartNewTournamentFragment : Fragment() {
     private var tv4: TextView? = null
     private val noOfOvers = BooleanArray(3)
     private val noOfTeams = BooleanArray(2)
+    private var tournamentModel:TournamentModel?=null
+
+
 
 
     override fun onAttach(context: Context) {
@@ -69,7 +73,7 @@ class StartNewTournamentFragment : Fragment() {
         val ac = activity as AppCompatActivity
         ac ?: return
         ac.supportActionBar?.show()
-
+        tournamentModel= TournamentModel()
         fiveOvers = view.findViewById(R.id.five_overs)
         tenOvers = view.findViewById(R.id.ten_overs)
         twentyOvers = view.findViewById(R.id.twenty_overs)
@@ -147,14 +151,15 @@ class StartNewTournamentFragment : Fragment() {
 
 
             if(noOfTeams[0]){
-                match?.teamCount=3
+                tournamentModel?.teamCount=3
             }
             if(noOfTeams[1]){
-                match?.teamCount=4
+                tournamentModel?.teamCount=4
             }
+            tournamentModel?.tournamentName=tournamentName
 
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(android.R.id.content, Schedule.newInstance(match))
+                ?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))
                 ?.commit()
 
         }

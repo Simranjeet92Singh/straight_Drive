@@ -94,6 +94,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var batter_b:TextView?=null
      private var music:LinkedList<MediaPlayer> = LinkedList<MediaPlayer>()
     private var handler=Handler()
+    private var tournamentModel:TournamentModel?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,11 +131,12 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 //        wide_?.prepare()
         arguments?.let {
                 match=it.getSerializable("match") as Match
+                tournamentModel=it.getSerializable("t") as TournamentModel
             Log.d("tt button ========",match.toString())
 
         }
         Log.d("Console team Playing",""+match?.firstBattingTeam)
-        gameController= GameController((match))
+        gameController= GameController(match,tournamentModel)
     }
 
 
@@ -314,10 +316,11 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     companion object {
 
         @JvmStatic
-        fun newInstance(match: Match) =
+        fun newInstance(match: Match,tournamentModel: TournamentModel) =
             GamePlayFragment().apply {
                 arguments=Bundle().apply {
                     putSerializable("match",match)
+                    putSerializable("t",tournamentModel)
                 }
             }
     }

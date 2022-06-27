@@ -16,9 +16,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.koolbots.straightdrive.R
 import com.koolbots.straightdrive.models.Match
+import com.koolbots.straightdrive.models.TournamentModel
 
 class Schedule : Fragment(){
     private val INNING:String="match"
+    private val TOURNAMENT:String="tournament"
     private var match1Button:TextView?=null
     private var match2Button:TextView?=null
     private var match3Button:TextView?=null
@@ -42,6 +44,7 @@ class Schedule : Fragment(){
     private var linmatch6:LinearLayout?=null
     private var linmatch7:LinearLayout?=null
     private var tv_match4:TextView?=null
+    private var tournamentModel:TournamentModel?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +52,9 @@ class Schedule : Fragment(){
         arguments?.let {
 
             match = it.getSerializable(INNING) as Match
-            Log.d("tournament button ========",match.toString())
+            tournamentModel=it.getSerializable(TOURNAMENT) as TournamentModel
+
+            Log.d("tment button ========",match.toString())
 
         }
 
@@ -86,7 +91,7 @@ class Schedule : Fragment(){
         linmatch6=view.findViewById(R.id.linMatch6)
         linmatch7=view.findViewById(R.id.linMatch7)
         tv_match4=view.findViewById(R.id.tv_match4)
-        if(match?.teamCount==3){
+        if(tournamentModel?.teamCount==3){
             match1?.text="Team A Vs Team B"
             match2?.text="Team C Vs Team A"
             match3?.text="Team B Vs Team C"
@@ -97,7 +102,7 @@ class Schedule : Fragment(){
             linmatch7?.visibility=View.GONE
 
         }
-        if(match?.teamCount==4){
+        if(tournamentModel?.teamCount==4){
             match1?.text="Team A Vs Team B"
             match2?.text="Team C Vs Team A"
             match3?.text="Team B Vs Team C"
@@ -112,173 +117,216 @@ class Schedule : Fragment(){
             fragmentManager?.beginTransaction()?.replace(android.R.id.content, PointsTable.newInstance(null),"game")?.commit()
 
         }
-        match1Button?.setOnClickListener{
-            val teamA="Team A "
-            val teamB="Team B"
+
+        if(tournamentModel?.isMatch1Completed == true){
+            match1Button?.text="View"
+
+        }else if (tournamentModel?.isMatch1Started == true)
+        {
+            match1Button?.text="Play"
+            match1Button?.setOnClickListener{
+                val teamA="Team A "
+                val teamB="Team B"
 
 
 
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
-            match?.isFromTournament=true
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
+                match?.isFromTournament=true
                 match.firstBattingTeam=teamA
 
 
 
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
             }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-
-            match?.matchDate="2021-25-2021"
-
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
         }
 
-        match2Button?.setOnClickListener{
-            val teamA="Team C "
-            val teamB="Team A"
+        else if(tournamentModel?.isMatch2Completed == true){
+            match2Button?.text="View"
+
+        }else if (tournamentModel?.isMatch2Started == true)
+        {
+            match1Button?.text="Play"
+            match2Button?.setOnClickListener{
+                val teamA="Team C "
+                val teamB="Team A"
 
 
 
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
 
-            match.firstBattingTeam=teamA
+                match.firstBattingTeam=teamA
 
 
 
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
             }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
 
+        }else if(tournamentModel?.isMatch3Completed == true){
+            match3Button?.text="View"
+
+        }else if (tournamentModel?.isMatch3Started == true)
+        {
+            match3Button?.text="Play"
+            match3Button?.setOnClickListener{
+                val teamA="Team B "
+                val teamB="Team C"
+
+
+
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
+
+                match.firstBattingTeam=teamA
+
+
+
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
             }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
 
+        }else if(tournamentModel?.isMatch4Completed == true){
+            match1Button?.text="View"
+
+        }else if (tournamentModel?.isMatch4Started == true)
+        {
+            match4Button?.text="Play"
+            match4Button?.setOnClickListener{
+                val teamA="Team D "
+                val teamB="Team B"
+
+
+
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
+
+                match.firstBattingTeam=teamA
+
+
+
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
             }
 
-            match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
+        }else if(tournamentModel?.isMatch5Completed == true){
+            match5Button?.text="View"
+
+        }else if (tournamentModel?.isMatch5Started == true)
+        {
+            match5Button?.text="Play"
+            match5Button?.setOnClickListener{
+                val teamA="Team A "
+                val teamB="Team D"
+
+
+
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
+
+                match.firstBattingTeam=teamA
+
+
+
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
+            }
         }
-        match3Button?.setOnClickListener{
-            val teamA="Team B "
-            val teamB="Team C"
 
+    else if(tournamentModel?.isMatch6Completed == true){
+        match6Button?.text="View"
 
-
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
-
-            match.firstBattingTeam=teamA
-
-
-
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
-            }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-
-            match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
-        }
-        match4Button?.setOnClickListener{
-            val teamA="Team D "
-            val teamB="Team B"
-
-
-
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
-
-            match.firstBattingTeam=teamA
-
-
-
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
-            }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-
-            match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
-        }
-        match5Button?.setOnClickListener{
-            val teamA="Team A "
-            val teamB="Team D"
-
-
-
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
-
-            match.firstBattingTeam=teamA
-
-
-
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
-            }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-
-            match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
-        }
+    }else if (tournamentModel?.isMatch6Started == true)
+    {
+        match6Button?.text="Play"
         match6Button?.setOnClickListener{
             val teamA="Team D "
             val teamB="Team A"
@@ -310,41 +358,54 @@ class Schedule : Fragment(){
             }
 
             match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
         }
-        match7Button?.setOnClickListener{
-            val teamA="teama"
-            val teamB="teamb"
+    }
+        else if(tournamentModel?.isMatch7Completed == true){
+            match7Button?.text="View"
+
+        }else if (tournamentModel?.isMatch7Started == true)
+        {
+            match7Button?.text="Play"
+            match7Button?.setOnClickListener{
+                val teamA="teama"
+                val teamB="teamb"
 
 
 
-            val match=Match(
-                team1 = teamA,
-                team2 = teamB
-            )
+                val match=Match(
+                    team1 = teamA,
+                    team2 = teamB
+                )
 
-            match.firstBattingTeam=teamA
+                match.firstBattingTeam=teamA
 
 
 
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                else if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                else if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+                match?.matchDate="2021-25-2021"
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
             }
-            else if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-            else if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-
-            match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
         }
+
+
+
+
+
 
 
 
@@ -352,29 +413,28 @@ class Schedule : Fragment(){
 
 
 
-
-
-
-
-
     companion object {
 
         @JvmStatic
-        fun newInstance(match: Match?):Schedule {
+        fun newInstance(match: Match?,tournamentModel: TournamentModel?):Schedule {
             if(match!=null)
             {
                 return Schedule().apply {
                     arguments = Bundle().apply {
                         putSerializable(INNING, match)
+                        putSerializable(TOURNAMENT,tournamentModel)
                     }
                 }
             }
             else
             {
                 val m= Match()
+                val n=TournamentModel()
                 return Schedule().apply {
                     arguments = Bundle().apply {
                         putSerializable(INNING, m)
+
+                        putSerializable(TOURNAMENT,n)
                     }
                 }
             }

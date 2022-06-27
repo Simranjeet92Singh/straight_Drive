@@ -21,6 +21,8 @@ import com.koolbots.straightdrive.adapters.RecentGamesAdapter
 import com.koolbots.straightdrive.adapters.TournamentAdapter
 import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDb
 
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
@@ -34,8 +36,10 @@ class TournamentFragment : Fragment(){
 
     private var mainLayout: LinearLayout?=null
     private var matches:ArrayList<Match>?= ArrayList()
+    private var tournamentList:ArrayList<TournamentModel>? = ArrayList()
     private var match:Match?=null
-    private var matchDAO: MatchAccessDAO?=null
+    private var tournamentModel:TournamentModel?=null
+    private var tournamentDAO: TournamentDAO?=null
     private var tournament:RecyclerView?=null
     private var fromTournament="fromTournament"
     private var fromSeies="fromSeries"
@@ -44,7 +48,7 @@ class TournamentFragment : Fragment(){
     private var font:TextView?=null
     private var newTournament:TextView?=null
     private val INNING:String="match"
-    private val recentgamesList: ArrayList<Match>?=ArrayList()
+    private val recentgamesList: ArrayList<TournamentModel>?=ArrayList()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -107,37 +111,37 @@ class TournamentFragment : Fragment(){
             tournament?.setHasFixedSize(true)
 
         GlobalScope.launch {
-            matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
-            matches= matchDAO?.getAllMatch() as ArrayList<Match>
+            tournamentDAO= TournamentDb.getInstance(act.applicationContext).tournamentDAO()
+            tournamentList= tournamentDAO?.getAllMatch() as ArrayList<TournamentModel>
             //Log.d("Console","Matches found"+matches?.size)
-            val cmp = compareBy<Match> { LocalDateTime.parse(it.matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")) }
-            matches?.forEach(
+//            val cmp = compareBy<Match> { LocalDateTime.parse(it., DateTimeFormatter.ofPattern("yyyy-MM-dd")) }
+            tournamentList?.forEach(
                 {
                     var str=""
                     var y:Int?=0
                     var m:Int?=0
                     var d:Int?=0
-                    var dates=it.matchDate?.split("-")
+                    var dates=it.date?.split("-")
                     y=dates?.get(0)?.toInt()
                     m=dates?.get(1)?.toInt()
                     d=dates?.get(2)?.toInt()
                     if (m != null&&d!=null) {
-                        it.matchDate=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
+                        it.date=""+y+"-"+(if(m<=9){ "0"+m.toString() }else{ m.toString()+"" }+"-"+if(d<=9){ "0"+d.toString()}else{d.toString()})
 
                     }
-                    Log.d("Date",it.matchDate?:"")
+                    Log.d("Date",it.date?:"")
                 }
 
             )
-            matches?.sortByDescending {it.matchDate  }
+            tournamentList?.sortByDescending {it.date  }
             MainScope().launch {
 
 
-                for (i in 0..matches?.size!!-1) {
+                for (i in 0..tournamentList?.size!!-1) {
 
 
-                    if (matches?.get(i)?.isFromTournament == true && matches?.get(i)?.isFromSeries == false) {
-                        val t = matches?.get(i)
+                    if (tournamentList?.get(i)?.isFromSeries==false) {
+                        val t = tournamentList?.get(i)
                         recentgamesList?.add(i, t!!)
 
 
@@ -149,7 +153,7 @@ class TournamentFragment : Fragment(){
 
 
                     } else {
-                        val n = Match()
+                        val n = TournamentModel()
                         val maxLogSize = 1000
                         val stringLength = n.toString().length
                         for (i in 0..stringLength / maxLogSize) {
