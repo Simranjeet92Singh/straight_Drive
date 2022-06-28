@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ import com.koolbots.straightdrive.models.Inning
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
-class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<TournamentModel>?): RecyclerView.Adapter<TournamentAdapter.holder>() {
+class TournamentAdapter(val context:Context, val fragmentManager: FragmentManager?, val list: ArrayList<TournamentModel>?, val isFromTournament:Boolean?): RecyclerView.Adapter<TournamentAdapter.holder>() {
 
     class holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var viewGame: Button?=null
@@ -25,6 +26,8 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
         var tournamentName: TextView?=null
         var noOfMatches: TextView?=null
         var date: TextView?=null
+        var rootView: LinearLayout?=null
+        var parms: LinearLayout.LayoutParams?=null
 
 
         init {
@@ -33,6 +36,8 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
             tournamentName=itemView.findViewById(R.id.tournamentName)
             noOfMatches=itemView.findViewById(R.id.noOfMatches)
             date=itemView.findViewById(R.id.recent_date)
+            rootView=itemView.findViewById(R.id.lloutT)
+            parms = LinearLayout.LayoutParams(0,0)
         }
 
     }
@@ -42,24 +47,54 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
     }
 
     override fun onBindViewHolder(holder: holder, position: Int) {
+
         val match=list?.get(position)
 
+            if(isFromTournament==true){
 
+                if(match?.isFromSeries == false){
 
-        holder.viewGame?.setOnClickListener({
+                    holder.viewGame?.setOnClickListener({
 //            fragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
-        })
-        holder.rematchGame?.setOnClickListener({
+                    })
+                    holder.rematchGame?.setOnClickListener({
 //            fragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
 
-        })
+                    })
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
 //        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
 
-        holder.tournamentName?.text=match?.tournamentName
-        holder.noOfMatches?.text=match?.numberOfMatches.toString()
-        holder.date?.text=match?.date
+                    holder.tournamentName?.text=match?.tournamentName
+                    holder.noOfMatches?.text=match?.numberOfMatches.toString()
+                    holder.date?.text=match?.date
+
+
+                }else{
+                    holder.rootView?.layoutParams=holder.parms
+                }
+            }else{
+                if(match?.isFromSeries == true){
+                    holder.viewGame?.setOnClickListener({
+//            fragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
+
+                    })
+                    holder.rematchGame?.setOnClickListener({
+//            fragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
+
+                    })
+//        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
+//        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
+
+                    holder.tournamentName?.text=match?.tournamentName
+                    holder.noOfMatches?.text=match?.numberOfMatches.toString()
+                    holder.date?.text=match?.date
+                }else
+                {
+                    holder.rootView?.layoutParams=holder.parms
+                }
+            }
+
 
     }
 

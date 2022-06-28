@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -38,8 +39,15 @@ class StartNewTournamentFragment : Fragment() {
     private var match: Match? = null
     private var tv4: TextView? = null
     private val noOfOvers = BooleanArray(3)
-    private val noOfTeams = BooleanArray(2)
+    private val noOfTeams = BooleanArray(3)
     private var tournamentModel:TournamentModel?=null
+
+    private var nFourm:TextView?=null
+    private var tv_teams:TextView?=null
+    private var lloutT3T4:LinearLayout?=null
+    private var tv_five:TextView?=null
+
+    private var lloutTeams:LinearLayout?=null
 
 
 
@@ -85,7 +93,7 @@ class StartNewTournamentFragment : Fragment() {
         t3name = view.findViewById(R.id.t3name)
         t4name = view.findViewById(R.id.t4name)
         threeTeam = view.findViewById(R.id.three)
-        fourTeam = view.findViewById(R.id.four)
+        fourTeam = view.findViewById(R.id.seven)
         tv4 = view.findViewById(R.id.tv4)
         tv4?.setTextColor(Color.GRAY)
         t4name?.setTextColor(Color.GRAY)
@@ -94,8 +102,13 @@ class StartNewTournamentFragment : Fragment() {
         t2name?.text = "Team B"
         t3name?.text = "Team C"
         t4name?.text = "Team D"
+        nFourm=view.findViewById(R.id.nameForm)
+       tv_teams=view.findViewById(R.id.tv_teams)
+         lloutT3T4=view.findViewById(R.id.lloutT3T4)
+         tv_five=view.findViewById(R.id.five)
+        startNewTournament=view.findViewById(R.id.start_tournament)
+        lloutTeams=view.findViewById(R.id.lloutTeams)
 
-        startNewTournament = view.findViewById<TextView>(R.id.start_tournament)
 
 
         setOnClickListeners()
@@ -120,60 +133,117 @@ class StartNewTournamentFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setOnClickListeners() {
 
-        startNewTournament?.setOnClickListener {
+        if(match?.isFromSeries ==true){
+            startNewTournament?.setOnClickListener {
 
-            val tournamentName=tournamentName?.text.toString()
+                val tournamentName=tournamentName?.text.toString()
 
 
-            if(tournamentName==null||tournamentName=="")
-            {
-                Snackbar.make(it,"Please enter Tournament name",1500).show()
-                return@setOnClickListener
+                if(tournamentName==null||tournamentName=="")
+                {
+                    Snackbar.make(it,"Please enter Series name",1500).show()
+                    return@setOnClickListener
+                }
+
+                tournamentModel= TournamentModel()
+
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+
+
+                if(noOfTeams[0]){
+                    tournamentModel?.teamCount=3
+                }
+                if(noOfTeams[1]){
+                    tournamentModel?.teamCount=5
+                }
+                if(noOfTeams[2]){
+                    tournamentModel?.teamCount=7
+                }
+                val pointsTable=PointsTableModel()
+
+                tournamentModel?.tournamentName=tournamentName
+                tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableCJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableDJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.isFromSeries=true
+
+
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))
+                    ?.commit()
+
             }
-             match=Match(
-                team1 = "teamA",
-                team2 = "teamB"
-            )
-            tournamentModel= TournamentModel()
 
-            if(noOfOvers[0])
-            {
-                match?.totalOvers=5.toDouble()
+        }else{
+            startNewTournament?.setOnClickListener {
+
+                val tournamentName=tournamentName?.text.toString()
+
+
+                if(tournamentName==null||tournamentName=="")
+                {
+                    Snackbar.make(it,"Please enter Tournament name",1500).show()
+                    return@setOnClickListener
+                }
+
+                tournamentModel= TournamentModel()
+
+                if(noOfOvers[0])
+                {
+                    match?.totalOvers=5.toDouble()
+                }
+                if(noOfOvers[1])
+                {
+                    match?.totalOvers=10.toDouble()
+
+                }
+                if(noOfOvers[2])
+                {
+                    match?.totalOvers=20.toDouble()
+
+                }
+
+
+
+                if(noOfTeams[0]){
+                    tournamentModel?.teamCount=3
+                }
+                if(noOfTeams[2]){
+                    tournamentModel?.teamCount=4
+                }
+                val pointsTable=PointsTableModel()
+                match?.isFromTournament=true
+                tournamentModel?.tournamentName=tournamentName
+                tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableCJson=SerializationToJson.fromPointsTable(pointsTable)
+                tournamentModel?.pointsTableDJson=SerializationToJson.fromPointsTable(pointsTable)
+
+
+
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))
+                    ?.commit()
+
             }
-             if(noOfOvers[1])
-            {
-                match?.totalOvers=10.toDouble()
-
-            }
-             if(noOfOvers[2])
-            {
-                match?.totalOvers=20.toDouble()
-
-            }
-            match?.matchDate="2021-25-2021"
-
-
-            if(noOfTeams[0]){
-                tournamentModel?.teamCount=3
-            }
-            if(noOfTeams[1]){
-                tournamentModel?.teamCount=4
-            }
-            val pointsTable=PointsTableModel()
-            match?.isFromTournament=true
-            tournamentModel?.tournamentName=tournamentName
-            tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
-            tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
-            tournamentModel?.pointsTableCJson=SerializationToJson.fromPointsTable(pointsTable)
-            tournamentModel?.pointsTableDJson=SerializationToJson.fromPointsTable(pointsTable)
-
-
-
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))
-                ?.commit()
-
         }
+
+
 
 
 
@@ -206,9 +276,18 @@ class StartNewTournamentFragment : Fragment() {
 
             }
         )
-        fourTeam?.setOnClickListener({
+        tv_five?.setOnClickListener({
             Arrays.fill(noOfTeams, false)
             noOfTeams[1] = true
+            updateteamUI()
+            tv4?.setTextColor(Color.WHITE)
+            t4name?.setTextColor(Color.BLACK)
+            t4name?.setBackgroundResource(R.drawable.rounded_sides_white)
+
+        })
+        fourTeam?.setOnClickListener({
+            Arrays.fill(noOfTeams, false)
+            noOfTeams[2] = true
             updateteamUI()
             tv4?.setTextColor(Color.WHITE)
             t4name?.setTextColor(Color.BLACK)
@@ -225,17 +304,36 @@ class StartNewTournamentFragment : Fragment() {
             if(noOfTeams[0]){
                 threeTeam?.setBackgroundResource(R.drawable.right_circular_background_blue_20)
                 threeTeam?.setTextColor(Color.WHITE)
+                tv_five?.setBackgroundResource(android.R.color.white)
+                tv_five?.setTextColor(Color.BLACK)
                 fourTeam?.setBackgroundResource(R.drawable.right_circular_white_20)
                 fourTeam?.setTextColor(Color.BLACK)
-            }else if(noOfTeams[1]){
+            } else if(noOfTeams[1]){
                 threeTeam?.setBackgroundResource(R.drawable.left_circular_background_20)
                 threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(R.color.primary_blue)
+                tv_five?.setTextColor(Color.WHITE)
+                fourTeam?.setBackgroundResource(R.drawable.right_circular_white_20)
+                fourTeam?.setTextColor(Color.BLACK)
+            }
+
+
+            else if(noOfTeams[2]){
+                threeTeam?.setBackgroundResource(R.drawable.left_circular_background_20)
+                threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(android.R.color.white)
+                tv_five?.setTextColor(Color.BLACK)
                 fourTeam?.setBackgroundResource(R.drawable.left_circular_blue_20)
                 fourTeam?.setTextColor(Color.WHITE)
-            }else
+            }
+
+
+            else
             {
                 threeTeam?.setBackgroundResource(R.drawable.left_circular_background_20)
                 threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(android.R.color.white)
+                tv_five?.setTextColor(Color.BLACK)
                 fourTeam?.setBackgroundResource(R.drawable.right_circular_white_20)
                 fourTeam?.setTextColor(Color.WHITE)
             }
@@ -251,12 +349,23 @@ class StartNewTournamentFragment : Fragment() {
             }else if(noOfTeams[1]){
                 threeTeam?.setBackgroundResource(R.drawable.left_circular_white_30)
                 threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(R.color.primary_blue)
+                tv_five?.setTextColor(Color.WHITE)
+                fourTeam?.setBackgroundResource(R.drawable.right_circular_white_30)
+                fourTeam?.setTextColor(Color.BLACK)
+            }else if(noOfTeams[2]){
+                threeTeam?.setBackgroundResource(R.drawable.left_circular_white_30)
+                threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(android.R.color.white)
+                tv_five?.setTextColor(Color.BLACK)
                 fourTeam?.setBackgroundResource(R.drawable.right_circular_blue_30)
                 fourTeam?.setTextColor(Color.WHITE)
             }else
             {
                 threeTeam?.setBackgroundResource(R.drawable.left_circular_white_30)
                 threeTeam?.setTextColor(Color.BLACK)
+                tv_five?.setBackgroundResource(android.R.color.white)
+                tv_five?.setTextColor(Color.BLACK)
                 fourTeam?.setBackgroundResource(R.drawable.right_circular_white_30)
                 fourTeam?.setTextColor(Color.WHITE)
             }
@@ -265,6 +374,8 @@ class StartNewTournamentFragment : Fragment() {
     }
 
     private fun updateOversUI() {
+
+
         val context = activity?.applicationContext ?: return
         if (!isTablet(context)) {
             if (noOfOvers[0]) {
@@ -336,6 +447,23 @@ class StartNewTournamentFragment : Fragment() {
 
             }
         }
+
+    if(match?.isFromSeries==true){
+    startNewTournament?.text="START Series!!!"
+        tv_teams?.text="Matches"
+        lloutT3T4?.visibility=View.GONE
+
+        nFourm?.text="New Series Form"
+
+
+    }
+        else{
+            tv_five?.visibility=View.GONE
+            fourTeam?.text="4"
+            lloutTeams?.weightSum=2f
+
+
+    }
     }
 
 

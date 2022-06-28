@@ -138,43 +138,17 @@ class TournamentFragment : Fragment(){
 
             MainScope().launch {
 
-
-                for (i in 0..tournamentList?.size!!-1) {
-
-
-                    if (tournamentList?.get(i)?.isFromSeries==false) {
-                        val t = tournamentList?.get(i)
-                        recentgamesList?.add(i, t!!)
-
-
-//                        recentgamesList?.get(i)?.team1=matches?.get(i)?.team1.toString()!!
-//                        recentgamesList?.get(i)?.team2=matches?.get(i)?.team2.toString()!!
-//                        recentgamesList?.get(i)?.matchDate=matches?.get(i)?.matchDate.toString()!!
-//                        recentgamesList?.get(i)?.inning1Json=matches?.get(i)?.inning1Json.toString()!!
-//                        recentgamesList?.get(i)?.inning2Json=matches?.get(i)?.inning2Json.toString()!!
-
-
-                    } else {
-                        val n = TournamentModel()
-                        val maxLogSize = 1000
-                        val stringLength = n.toString().length
-                        for (i in 0..stringLength / maxLogSize) {
-                            val start = i * maxLogSize
-                            var end = (i + 1) * maxLogSize
-                            end = if (end > n.toString().length) n.toString().length else end
-                            Log.v("----**------", n.toString().substring(start, end))
-                        }
-
-
-                        recentgamesList?.add(i, n!!)
-                    }
-
+                if(match?.isFromSeries==true){
+                    val tournamentAdapter=
+                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,false)
+                    tournament?.adapter=tournamentAdapter
+                }else{
+                    val tournamentAdapter=
+                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,true)
+                    tournament?.adapter=tournamentAdapter
                 }
-                Log.d("==tournamentList",tournamentList.toString())
-                Log.d("==recentGame list",recentgamesList.toString())
-                val tournamentAdapter=
-                    TournamentAdapter(act.applicationContext, fragmentManager,recentgamesList)
-                tournament?.adapter=tournamentAdapter
+
+
                 Log.d("Console","Matches found  "+matches?.size)
 
             }
@@ -183,13 +157,15 @@ class TournamentFragment : Fragment(){
 
 
         }
+
         val newTournament=view.findViewById<TextView>(R.id.new_tournament)
 
-        if(isFromTournamnt == false) {
+        if(match?.isFromSeries == true) {
         font?.setText("Series")
         newTournament?.setText("New Series")
 
         }
+
         newTournament.setOnClickListener{
                 activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.addToBackStack(null)?.commit()
 

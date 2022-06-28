@@ -66,7 +66,7 @@ class LandinngScreenFragment : Fragment() {
 
             match?.isFromSeries=false
             match?.isFromTournament=true
-            Log.d("tournament button ========",match.toString())
+
             activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
 
         })
