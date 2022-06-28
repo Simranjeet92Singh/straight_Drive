@@ -67,7 +67,7 @@ class LandinngScreenFragment : Fragment() {
             match?.isFromSeries=false
             match?.isFromTournament=true
             Log.d("tournament button ========",match.toString())
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",true,match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
 
         })
         series=view.findViewById(R.id.series)
@@ -75,7 +75,7 @@ class LandinngScreenFragment : Fragment() {
 
             match?.isFromSeries=true
             match?.isFromTournament=false
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",false,match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
 
         }
 

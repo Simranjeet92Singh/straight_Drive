@@ -37,6 +37,16 @@ class SerializationToJson
         {
             return gson.toJson(pointsTable)
         }
+
+        fun fromTournamtent(tournamentModel: TournamentModel?):String
+        {
+            return gson.toJson(tournamentModel)
+        }
+        fun toTournament(json:String?):TournamentModel{
+
+            return return gson.fromJson(json,
+            object : TypeToken<TournamentModel>() {}.type)
+        }
         fun toPointsTable(json:String?):PointsTableModel{
             return return gson.fromJson(json,
             object: TypeToken<PointsTableModel>() {}.type)

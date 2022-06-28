@@ -43,7 +43,7 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
-        if(match?.tournamentName==""){
+
 
 
         holder.viewGame?.setOnClickListener({
@@ -57,13 +57,10 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
 //        val inningTwo: Inning = SerializationToJson.toInning(match?.inning2Json)
 
-//        holder.tournamentName?.text=match?.tournamentName
-        holder.noOfMatches?.text=match?.teamCount.toString()
+        holder.tournamentName?.text=match?.tournamentName
+        holder.noOfMatches?.text=match?.numberOfMatches.toString()
         holder.date?.text=match?.date
-        }
-        else{
-            // do nothing
-        }
+
     }
 
     override fun getItemCount(): Int {

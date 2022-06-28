@@ -63,7 +63,7 @@ class TournamentFragment : Fragment(){
             match= it.getSerializable(INNING) as Match?
 //          isFromSeries=it.getSerializable(fromSeies) as Boolean
 //            isFromTournamnt=it.getSerializable(fromTournament) as Boolean
-            Log.d("tournament button ========",match.toString())
+            Log.d("tout button ========",match.toString())
 
         }
     }
@@ -134,6 +134,8 @@ class TournamentFragment : Fragment(){
 
             )
             tournamentList?.sortByDescending {it.date  }
+
+
             MainScope().launch {
 
 
@@ -168,6 +170,8 @@ class TournamentFragment : Fragment(){
                     }
 
                 }
+                Log.d("==tournamentList",tournamentList.toString())
+                Log.d("==recentGame list",recentgamesList.toString())
                 val tournamentAdapter=
                     TournamentAdapter(act.applicationContext, fragmentManager,recentgamesList)
                 tournament?.adapter=tournamentAdapter
@@ -198,12 +202,12 @@ class TournamentFragment : Fragment(){
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String,isFromTournament:Boolean,match:Match?) :TournamentFragment{
+        fun newInstance(param1: String, param2: String,match:Match?) :TournamentFragment{
 
 
                return TournamentFragment().apply {
                    arguments = Bundle().apply {
-                       putSerializable(fromTournament, isFromTournament)
+//                       putSerializable(fromTournament, isFromTournament)
                        putSerializable(INNING, match)
 
                    }

@@ -33,6 +33,8 @@ import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.Util.UtilityFunctions
 import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDb
 import com.koolbots.straightdrive.models.*
 import com.koolbots.straightdrive.networks.ApiService
 import kotlinx.coroutines.GlobalScope
@@ -86,6 +88,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var redu:CardView?=null
     private var gameController:GameController?=null
     private var matchDAO: MatchAccessDAO?=null
+    private var torunamentDAO:TournamentDAO?=null
     private var clickable=true
     private var scoreCardA:ImageView?=null
     private var scoreCardB:ImageView?=null
@@ -316,15 +319,37 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     companion object {
 
         @JvmStatic
-        fun newInstance(match: Match,tournamentModel: TournamentModel) =
-            GamePlayFragment().apply {
-                arguments=Bundle().apply {
-                    putSerializable("match",match)
-                    putSerializable("t",tournamentModel)
+        fun newInstance(match: Match,tournamentModel: TournamentModel?) :GamePlayFragment{
+            if(tournamentModel != null){
+
+                return  GamePlayFragment().apply {
+                    arguments=Bundle().apply {
+                        putSerializable("match",match)
+                        putSerializable("t",tournamentModel)
+                    }
                 }
+            }else {
+                val t = TournamentModel()
+                return GamePlayFragment().apply {
+                    arguments=Bundle().apply {
+                        putSerializable("match",match)
+                        putSerializable("t",t)
+                    }
+                }
+
             }
+
+
+        }
+
+
+
+
+
     }
- fun stopMusic()
+
+
+    fun stopMusic()
  {
     //music.clear()
  }
@@ -584,8 +609,27 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             match?.inning2Json=SerializationToJson.fromInning(match?.inning2)
             matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
             matchDAO?.addMatch(match)
+
+            tournamentModel?.pointsTableAJson=match?.pointsTableAJson!!
+            tournamentModel?.pointsTableBJson=match?.pointsTableBJson!!
+            tournamentModel?.pointsTableCJson=match?.pointsTableCJson!!
+            tournamentModel?.pointsTableDJson=match?.pointsTableDJson!!
+            tournamentModel?.date=xx
+           tournamentModel?.isMatch1Completed=    match?.isMatch1Completed
+            tournamentModel?.isMatch1Started = match?.isMatch1Started
+           tournamentModel?.isMatch2Started =  match?.isMatch2Started
+
+            Log.d("**-*-*-*-*",tournamentModel.toString())
+            torunamentDAO=TournamentDb.getInstance(act.applicationContext).tournamentDAO()
+            torunamentDAO?.addTournament(tournamentModel)
+
         }
+
+
+
     }
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateUI(mat: Match?) {
@@ -751,8 +795,17 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         no?.setOnClickListener({
             match_end_?.stop()
             alertDialog.dismiss()
+            if(match?.isFromTournament == true && match?.isFromSeries ==false){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentFragment.newInstance("","",match))?.commit()
 
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+            }else if(match?.isFromTournament ==false && match?.isFromSeries == true){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+
+            }else {
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+
+            }
+
             val maxLogSize = 1000
             val stringLength = match.toString().length
             for (i in 0..stringLength / maxLogSize) {

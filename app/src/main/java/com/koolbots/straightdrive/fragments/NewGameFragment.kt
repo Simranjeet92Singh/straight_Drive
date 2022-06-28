@@ -172,7 +172,7 @@ class NewGameFragment : Fragment() {
             }
 
             match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match),"game")?.commit()
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,null),"game")?.commit()
         })
         fiveOvers?.setOnClickListener(
                 {

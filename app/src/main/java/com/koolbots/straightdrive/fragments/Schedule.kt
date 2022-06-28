@@ -130,12 +130,12 @@ class Schedule : Fragment(){
 
 
 
-                val match=Match(
-                    team1 = teamA,
-                    team2 = teamB
-                )
+//                val match=Match(
+//                    team1 = teamA,
+//                    team2 = teamB
+//                )
                 match?.isFromTournament=true
-                match.firstBattingTeam=teamA
+                match?.firstBattingTeam=teamA
 
 
 
@@ -156,7 +156,7 @@ class Schedule : Fragment(){
 
                 match?.matchDate="2021-25-2021"
 
-                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel!!),"game")?.commit()
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match!!,tournamentModel!!),"game")?.commit()
             }
         }
 

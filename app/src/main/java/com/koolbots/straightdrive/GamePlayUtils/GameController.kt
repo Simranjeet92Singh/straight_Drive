@@ -399,7 +399,13 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             {
                 match?.winningTeam=match?.team1
                 match?.loosingTeam=match?.team2
-
+              match?.pointsTableAJson=SerializationToJson.fromTournamtent(SerializationToJson.toTournament(tournament(match?.winningTeam,match?.loosingTeam)?.pointsTableAJson) )
+                match?.pointsTableBJson=SerializationToJson.fromTournamtent(SerializationToJson.toTournament(tournament(match?.winningTeam,match?.loosingTeam)?.pointsTableBJson))
+                match?.pointsTableCJson=SerializationToJson.fromTournamtent(SerializationToJson.toTournament(tournament(match?.winningTeam,match?.loosingTeam)?.pointsTableCJson))
+                match?.pointsTableDJson=SerializationToJson.fromTournamtent(SerializationToJson.toTournament(tournament(match?.winningTeam,match?.loosingTeam)?.pointsTableDJson))
+                match?.isMatch1Completed= tournamentModel?.isMatch1Completed
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
             }
             else if(match?.inning2?.score?:0>match?.inning2?.score?:0)
             {
@@ -473,8 +479,29 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
         if(wTeam =="Team A" && lTeam =="Team B"){
+           val p = PointsTableModel()
+            val  q=PointsTableModel()
             val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+               val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+                            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+                p.teamName=wTeam
+                p.points=k.points+2
+                p.nrr=k.nrr+t
+
+            q.teamName=lTeam
+            q.points=k.points+0
+            q.nrr = k.nrr-t
+
+              tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(p)
+              tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(q)
+              tournamentModel?.isMatch1Completed=true
+            tournamentModel?.isMatch1Started=false
+            tournamentModel?.isMatch2Started=true
+
                 }
+
 
 
         return tournamentModel!!

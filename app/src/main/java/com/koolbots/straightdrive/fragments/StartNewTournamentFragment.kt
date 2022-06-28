@@ -16,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.koolbots.straightdrive.R
+import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.models.Match
+import com.koolbots.straightdrive.models.PointsTableModel
 import com.koolbots.straightdrive.models.TournamentModel
 import java.util.*
 
@@ -73,7 +75,7 @@ class StartNewTournamentFragment : Fragment() {
         val ac = activity as AppCompatActivity
         ac ?: return
         ac.supportActionBar?.show()
-        tournamentModel= TournamentModel()
+
         fiveOvers = view.findViewById(R.id.five_overs)
         tenOvers = view.findViewById(R.id.ten_overs)
         twentyOvers = view.findViewById(R.id.twenty_overs)
@@ -132,6 +134,7 @@ class StartNewTournamentFragment : Fragment() {
                 team1 = "teamA",
                 team2 = "teamB"
             )
+            tournamentModel= TournamentModel()
 
             if(noOfOvers[0])
             {
@@ -156,7 +159,15 @@ class StartNewTournamentFragment : Fragment() {
             if(noOfTeams[1]){
                 tournamentModel?.teamCount=4
             }
+            val pointsTable=PointsTableModel()
+            match?.isFromTournament=true
             tournamentModel?.tournamentName=tournamentName
+            tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableCJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableDJson=SerializationToJson.fromPointsTable(pointsTable)
+
+
 
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))
