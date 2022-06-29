@@ -14,6 +14,7 @@ import com.koolbots.straightdrive.R
 import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.fragments.NewGameFragment
 import com.koolbots.straightdrive.fragments.RecentGamesDashBoard
+import com.koolbots.straightdrive.fragments.Schedule
 import com.koolbots.straightdrive.models.Inning
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
@@ -55,7 +56,7 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
                 if(match?.isFromSeries == false){
 
                     holder.viewGame?.setOnClickListener({
-//            fragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(null,match))?.addToBackStack(null)?.commit()
 
                     })
                     holder.rematchGame?.setOnClickListener({

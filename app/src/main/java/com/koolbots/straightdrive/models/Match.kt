@@ -48,7 +48,8 @@ data class Match(
     var isMatch4Started:Boolean?=false,
     var isMatch5Started:Boolean?=false,
     var isMatch6Started:Boolean?=false,
-    var isMatch7Started:Boolean?=false
+    var isMatch7Started:Boolean?=false,
+
 
 
 ):Serializable{

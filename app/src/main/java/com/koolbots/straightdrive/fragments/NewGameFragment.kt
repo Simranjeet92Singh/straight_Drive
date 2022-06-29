@@ -17,8 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.koolbots.straightdrive.R
+import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.models.Inning
 import com.koolbots.straightdrive.models.Match
+import com.koolbots.straightdrive.models.PointsTableModel
+import com.koolbots.straightdrive.models.TournamentModel
 import kotlinx.coroutines.selects.select
 import java.io.Serializable
 import java.time.LocalDate
@@ -172,7 +175,18 @@ class NewGameFragment : Fragment() {
             }
 
             match?.matchDate="2021-25-2021"
-            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,null),"game")?.commit()
+            val pointsTable=PointsTableModel()
+            val tournamentModel=TournamentModel()
+            tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableCJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.pointsTableDJson=SerializationToJson.fromPointsTable(pointsTable)
+            tournamentModel?.isFromSeries=false
+            match?.isFromSeries=false
+            match?.isFromTournament=false
+
+
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match,tournamentModel),"game")?.commit()
         })
         fiveOvers?.setOnClickListener(
                 {

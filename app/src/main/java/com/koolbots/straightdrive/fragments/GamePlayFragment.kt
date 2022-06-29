@@ -592,6 +592,8 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             Toast.makeText(act,"Match uploaded",Toast.LENGTH_LONG).show()
         }
         match?.matchDate=xx
+
+
         GlobalScope.launch {
             match?.inning1?.bowlers?.forEach() {
                 //it.overs=UtilityFunctions.overToBalls(it.overs).toDouble()
@@ -616,8 +618,23 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             tournamentModel?.pointsTableDJson=match?.pointsTableDJson!!
             tournamentModel?.date=xx
            tournamentModel?.isMatch1Completed=    match?.isMatch1Completed
+            tournamentModel?.isMatch2Completed=    match?.isMatch2Completed
+            tournamentModel?.isMatch3Completed=    match?.isMatch3Completed
+            tournamentModel?.isMatch4Completed=    match?.isMatch4Completed
+
+            tournamentModel?.isMatch5Completed=    match?.isMatch5Completed
+            tournamentModel?.isMatch6Completed=    match?.isMatch6Completed
+            tournamentModel?.isMatch7Completed=    match?.isMatch7Completed
+            tournamentModel?.isMatch5Started = match?.isMatch5Started
+            tournamentModel?.isMatch6Started = match?.isMatch6Started
+            tournamentModel?.isMatch7Started = match?.isMatch7Started
+
             tournamentModel?.isMatch1Started = match?.isMatch1Started
            tournamentModel?.isMatch2Started =  match?.isMatch2Started
+            tournamentModel?.isMatch3Started =  match?.isMatch3Started
+            tournamentModel?.isMatch4Started =  match?.isMatch4Started
+
+            tournamentModel?.tournamentWinnerName=match?.tournamentWinnerName
 
             Log.d("**-*-*-*-*",tournamentModel.toString())
             torunamentDAO=TournamentDb.getInstance(act.applicationContext).tournamentDAO()
