@@ -135,10 +135,18 @@ class TournamentFragment : Fragment(){
 
             MainScope().launch {
 
+                if(match?.isFromSeries==true){
+                    val tournamentAdapter=
+                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,false)
+                    tournament?.adapter=tournamentAdapter
+                }else{
 
                     val tournamentAdapter=
-                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList)
+                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,true)
                     tournament?.adapter=tournamentAdapter
+                }
+
+
 
 
 

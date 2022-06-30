@@ -149,16 +149,16 @@ class StartNewTournamentFragment : Fragment() {
 
                 if(noOfOvers[0])
                 {
-                    match?.totalOvers=5.toDouble()
+                    tournamentModel?.totalOvers=5.toDouble()
                 }
                 if(noOfOvers[1])
                 {
-                    match?.totalOvers=10.toDouble()
+                    tournamentModel?.totalOvers=10.toDouble()
 
                 }
                 if(noOfOvers[2])
                 {
-                    match?.totalOvers=20.toDouble()
+                    tournamentModel?.totalOvers=20.toDouble()
 
                 }
 
@@ -205,16 +205,16 @@ class StartNewTournamentFragment : Fragment() {
 
                 if(noOfOvers[0])
                 {
-                    match?.totalOvers=5.toDouble()
+                    tournamentModel?.totalOvers=5.toDouble()
                 }
                 if(noOfOvers[1])
                 {
-                    match?.totalOvers=10.toDouble()
+                    tournamentModel?.totalOvers=10.toDouble()
 
                 }
                 if(noOfOvers[2])
                 {
-                    match?.totalOvers=20.toDouble()
+                    tournamentModel?.totalOvers=20.toDouble()
 
                 }
 

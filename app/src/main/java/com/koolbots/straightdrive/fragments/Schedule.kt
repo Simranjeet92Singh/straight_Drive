@@ -43,6 +43,7 @@ class Schedule : Fragment(){
     private var linmatch5:LinearLayout?=null
     private var linmatch6:LinearLayout?=null
     private var linmatch7:LinearLayout?=null
+    private var linMatch4:LinearLayout?=null
     private var tv_match4:TextView?=null
     private var tournamentModel:TournamentModel?=null
 
@@ -78,7 +79,7 @@ class Schedule : Fragment(){
         match5Button=view.findViewById(R.id.match5Button)
         match6Button=view.findViewById(R.id.match6Button)
         match7Button=view.findViewById(R.id.match7Button)
-
+        linMatch4=view.findViewById(R.id.linMatch4)
         pointsTable=view.findViewById(R.id.points_table)
         match1=view.findViewById(R.id.macth1)
         match2=view.findViewById(R.id.macth2)
@@ -134,6 +135,47 @@ class Schedule : Fragment(){
 
 //sereis
 
+           if (tournamentModel?.teamCount == 3) {
+               match1?.text = "Team A Vs Team B"
+               match2?.text = "Team A Vs Team B"
+               match3?.text = "Team A Vs Team B"
+//               match4?.text = "Team A Vs Team B"
+//               tv_match4?.text = "Final      "
+               linMatch4?.visibility=View.GONE
+               linmatch5?.visibility = View.GONE
+               linmatch6?.visibility = View.GONE
+               linmatch7?.visibility = View.GONE
+
+           }
+           if (tournamentModel?.teamCount == 5) {
+               match1?.text = "Team A Vs Team B"
+               match2?.text = "Team A Vs Team B"
+               match3?.text = "Team A Vs Team B"
+               match4?.text = "Team A Vs Team B"
+                match5?.text ="Team A Vs Team B"
+//               tv_match4?.text = "Final      "
+//               linmatch5?.visibility = View.GONE
+               linmatch6?.visibility = View.GONE
+               linmatch7?.visibility = View.GONE
+
+           }
+           if (tournamentModel?.teamCount == 7) {
+               match1?.text = "Team A Vs Team B"
+               match2?.text = "Team A Vs Team B"
+               match3?.text = "Team A Vs Team B"
+               match4?.text = "Team A Vs Team B"
+               match5?.text = "Team A Vs Team B"
+               match6?.text = "Team A Vs Team B"
+               match7?.text = "Team A Vs Team B"
+           }
+
+           pointsTable?.setOnClickListener {
+
+               fragmentManager?.beginTransaction()
+                   ?.replace(android.R.id.content, PointsTable.newInstance(null), "game")?.commit()
+
+           }
+
 
        }
 
@@ -145,12 +187,13 @@ class Schedule : Fragment(){
     }
 
     fun toPlayMatch(){
-        if(tournamentModel?.isFromSeries==false){
+        if(tournamentModel?.isFromSeries==false)
+        {
             if (tournamentModel?.isMatch1Started == true)
             {
                 match1Button?.text="Play"
                 match1Button?.setOnClickListener{
-                    val teamA="Team A "
+                    val teamA="Team A"
                     val teamB="Team B"
 
 
@@ -187,7 +230,7 @@ class Schedule : Fragment(){
                 {
                     match2Button?.text="Play"
                     match2Button?.setOnClickListener{
-                        val teamA="Team C "
+                        val teamA="Team C"
                         val teamB="Team A"
 
 
@@ -224,7 +267,7 @@ class Schedule : Fragment(){
             {
                 match3Button?.text="Play"
                 match3Button?.setOnClickListener{
-                    val teamA="Team B "
+                    val teamA="Team B"
                     val teamB="Team C"
 
 
@@ -262,7 +305,7 @@ class Schedule : Fragment(){
             {
                 match4Button?.text="Play"
                 match4Button?.setOnClickListener{
-                    val teamA="Team D "
+                    val teamA="Team D"
                     val teamB="Team B"
 
 
@@ -335,7 +378,7 @@ class Schedule : Fragment(){
             {
                 match6Button?.text="Play"
                 match6Button?.setOnClickListener{
-                    val teamA="Team D "
+                    val teamA="Team D"
                     val teamB="Team A"
 
 
@@ -406,13 +449,269 @@ class Schedule : Fragment(){
         }
 
 
-        else{
-            //series
+        else {
+            if (tournamentModel?.isMatch1Started == true)
+            {
+                match1Button?.text="Play"
+                match1Button?.setOnClickListener{
+                    val teamA="Team A "
+                    val teamB="Team B"
+
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+//                    newmatch=match!!
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
+                }
+            }else if (tournamentModel?.isMatch2Started!!)
+            {
+                match2Button?.text="Play"
+                match2Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
+                }
+
+            }
+            else if (tournamentModel?.isMatch3Started == true)
+            {
+                match3Button?.text="Play"
+                match3Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
+                }
+
+            }
+
+            else if (tournamentModel?.isMatch4Started == true)
+            {
+                match4Button?.text="Play"
+                match4Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
+                }
+
+            }else if (tournamentModel?.isMatch5Started == true)
+            {
+                match5Button?.text="Play"
+                match5Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
+                }
+            }
+
+            else if (tournamentModel?.isMatch6Started == true)
+            {
+                match6Button?.text="Play"
+                match6Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
+                }
+            }
+            else if (tournamentModel?.isMatch7Started == true)
+            {
+                match7Button?.text="Play"
+                match7Button?.setOnClickListener{
+                    val teamA="Team A"
+                    val teamB="Team B"
+
+                    var newmatch=Match(
+                        team1 = teamA,
+                        team2 = teamB
+                    )
+                    newmatch?.isFromSeries=true
+                    newmatch?.firstBattingTeam=teamA
+
+
+
+                    if(noOfOvers[0])
+                    {
+                        newmatch?.totalOvers=5.toDouble()
+                    }
+                    else if(noOfOvers[1])
+                    {
+                        newmatch?.totalOvers=10.toDouble()
+
+                    }
+                    else if(noOfOvers[2])
+                    {
+                        newmatch?.totalOvers=20.toDouble()
+
+                    }
+
+                    newmatch=match!!
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
+                }
+            }
+
         }
     }
 
     fun forViewingMatch(){
-    if(match?.isFromSeries==false){
+    if(match?.isFromSeries==false)
+    {
         if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"
 
@@ -442,8 +741,36 @@ class Schedule : Fragment(){
             match6Button?.text = "View"
         }
 
-    }else{
-        //Series
+    }else
+    {
+        if(tournamentModel?.isMatch1Completed!!){
+            match1Button?.text="View"
+
+        }
+        if (tournamentModel?.isMatch2Completed!!)
+        {
+            match2Button?.text = "View"
+        }
+        if (tournamentModel?.isMatch3Completed!!)
+        {
+            match3Button?.text = "View"
+        }
+        if (tournamentModel?.isMatch7Completed!!)
+        {
+            match7Button?.text = "View"
+        }
+        if (tournamentModel?.isMatch4Completed!!)
+        {
+            match4Button?.text = "View"
+        }
+        if (tournamentModel?.isMatch5Completed!!)
+        {
+            match5Button?.text = "View"
+        }
+        if (tournamentModel?.isMatch6Completed!!)
+        {
+            match6Button?.text = "View"
+        }
 
     }
 

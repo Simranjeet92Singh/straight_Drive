@@ -22,6 +22,7 @@ data class TournamentModel(
     var match5Winner:String?="",
     var match6Winner:String?="",
     var match7Winner:String?="",
+    var totalOvers:Double?=0.0,
 
 
 
@@ -47,6 +48,6 @@ data class TournamentModel(
     var pointsTableCJson:String="",
     var pointsTableDJson:String="",
     var isFromSeries:Boolean?=false,
-    var isFromTournament:Boolean?=true
+    var isFromTournament:Boolean?=false
 
 ):Serializable 
