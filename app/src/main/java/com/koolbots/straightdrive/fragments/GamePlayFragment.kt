@@ -633,8 +633,18 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
            tournamentModel?.isMatch2Started =  match?.isMatch2Started
             tournamentModel?.isMatch3Started =  match?.isMatch3Started
             tournamentModel?.isMatch4Started =  match?.isMatch4Started
+            tournamentModel?.match1Winner=match?.match1Winner
+            tournamentModel?.match2Winner=match?.match2Winner
+            tournamentModel?.match3Winner=match?.match3Winner
+            tournamentModel?.match4Winner=match?.match4Winner
+            tournamentModel?.match5Winner=match?.match5Winner
+            tournamentModel?.match6Winner=match?.match6Winner
+            tournamentModel?.match7Winner=match?.match7Winner
+
 
             tournamentModel?.tournamentWinnerName=match?.tournamentWinnerName
+
+
 
             Log.d("**-*-*-*-*",tournamentModel.toString())
             torunamentDAO=TournamentDb.getInstance(act.applicationContext).tournamentDAO()

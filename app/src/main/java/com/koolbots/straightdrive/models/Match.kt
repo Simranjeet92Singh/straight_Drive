@@ -25,6 +25,7 @@ data class Match(
     var first_team_play:Boolean=false,
     var second_team_playing:Boolean=false,
     var firstPlaying:Boolean=true,
+    var tournamentName:String?="",
    //Tournament
 
     var isFromTournament:Boolean=false,
@@ -49,6 +50,13 @@ data class Match(
     var isMatch5Started:Boolean?=false,
     var isMatch6Started:Boolean?=false,
     var isMatch7Started:Boolean?=false,
+    var match1Winner:String?="",
+    var match2Winner:String?="",
+    var match3Winner:String?="",
+    var match4Winner:String?="",
+    var match5Winner:String?="",
+    var match6Winner:String?="",
+    var match7Winner:String?="",
 
 
 

@@ -15,6 +15,7 @@ import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.fragments.NewGameFragment
 import com.koolbots.straightdrive.fragments.RecentGamesDashBoard
 import com.koolbots.straightdrive.fragments.Schedule
+import com.koolbots.straightdrive.fragments.StartNewTournamentFragment
 import com.koolbots.straightdrive.models.Inning
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
@@ -66,7 +67,11 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
                        })
                        holder.rematchGame?.setOnClickListener({
-//            fragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
+                           var matchT=Match()
+                           matchT.isFromSeries=false
+                           matchT.isFromTournament=true
+                           matchT.tournamentName=match?.tournamentName
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(matchT))?.addToBackStack(null)?.commit()
 
                        })
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)
@@ -91,7 +96,12 @@ class TournamentAdapter(val context:Context, val fragmentManager: FragmentManage
 
                        })
                        holder.rematchGame?.setOnClickListener({
-//            fragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(match))?.addToBackStack(null)?.commit()
+                      var matchT=Match()
+                           matchT.isFromSeries=true
+                           matchT.isFromTournament=false
+                           matchT.tournamentName=match?.tournamentName
+            fragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(matchT))?.addToBackStack(null)?.commit()
+
 
                        })
 //        val inningOne: Inning = SerializationToJson.toInning(match?.inning1Json)

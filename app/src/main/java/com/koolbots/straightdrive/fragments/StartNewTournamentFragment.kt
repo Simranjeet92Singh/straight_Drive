@@ -109,7 +109,7 @@ class StartNewTournamentFragment : Fragment() {
         startNewTournament=view.findViewById(R.id.start_tournament)
         lloutTeams=view.findViewById(R.id.lloutTeams)
 
-
+        tournamentName?.setText(match?.tournamentName!!)
 
         setOnClickListeners()
         if (match != null) {

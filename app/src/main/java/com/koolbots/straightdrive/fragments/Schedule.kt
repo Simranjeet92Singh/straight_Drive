@@ -1,6 +1,7 @@
 package com.koolbots.straightdrive.fragments
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -93,6 +94,7 @@ class Schedule : Fragment(){
         linmatch7=view.findViewById(R.id.linMatch7)
         tv_match4=view.findViewById(R.id.tv_match4)
 
+
         toPlayMatch()
         forViewingMatch()
        if(match?.isFromSeries==false) {
@@ -122,7 +124,7 @@ class Schedule : Fragment(){
            pointsTable?.setOnClickListener {
 
                fragmentManager?.beginTransaction()
-                   ?.replace(android.R.id.content, PointsTable.newInstance(null), "game")?.commit()
+                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.commit()
 
            }
 
@@ -172,7 +174,7 @@ class Schedule : Fragment(){
            pointsTable?.setOnClickListener {
 
                fragmentManager?.beginTransaction()
-                   ?.replace(android.R.id.content, PointsTable.newInstance(null), "game")?.commit()
+                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.commit()
 
            }
 
@@ -187,6 +189,11 @@ class Schedule : Fragment(){
     }
 
     fun toPlayMatch(){
+        val sharedPref: SharedPreferences = activity!!.getSharedPreferences("FinalTeams",
+            Context.MODE_PRIVATE
+        )
+        val k=sharedPref.getString("TeamA","")
+        val j=sharedPref.getString("TeamB","")
         if(tournamentModel?.isFromSeries==false)
         {
             if (tournamentModel?.isMatch1Started == true)
@@ -303,39 +310,76 @@ class Schedule : Fragment(){
 
             else if (tournamentModel?.isMatch4Started == true)
             {
-                match4Button?.text="Play"
-                match4Button?.setOnClickListener{
-                    val teamA="Team D"
-                    val teamB="Team B"
+                if(tournamentModel?.numberOfMatches==3){
+                    match4Button?.text="Play"
+                    match4Button?.setOnClickListener{
+                        val teamA=k
+                        val teamB=j
 
 
 
-                    var newmatch=Match(
-                        team1 = teamA,
-                        team2 = teamB
-                    )
-                    newmatch?.isFromTournament=true
-                    newmatch?.firstBattingTeam=teamA
+                        var newmatch=Match(
+                            team1 = teamA,
+                            team2 = teamB
+                        )
+                        newmatch?.isFromTournament=true
+                        newmatch?.firstBattingTeam=teamA
 
 
 
-                    if(noOfOvers[0])
-                    {
-                        newmatch?.totalOvers=5.toDouble()
+                        if(noOfOvers[0])
+                        {
+                            newmatch?.totalOvers=5.toDouble()
+                        }
+                        else if(noOfOvers[1])
+                        {
+                            newmatch?.totalOvers=10.toDouble()
+
+                        }
+                        else if(noOfOvers[2])
+                        {
+                            newmatch?.totalOvers=20.toDouble()
+
+                        }
+
+                        fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                     }
-                    else if(noOfOvers[1])
-                    {
-                        newmatch?.totalOvers=10.toDouble()
+                }else{
+                    match4Button?.text="Play"
+                    match4Button?.setOnClickListener{
+                        val teamA="Team D"
+                        val teamB="Team B"
 
+
+
+                        var newmatch=Match(
+                            team1 = teamA,
+                            team2 = teamB
+                        )
+                        newmatch?.isFromTournament=true
+                        newmatch?.firstBattingTeam=teamA
+
+
+
+                        if(noOfOvers[0])
+                        {
+                            newmatch?.totalOvers=5.toDouble()
+                        }
+                        else if(noOfOvers[1])
+                        {
+                            newmatch?.totalOvers=10.toDouble()
+
+                        }
+                        else if(noOfOvers[2])
+                        {
+                            newmatch?.totalOvers=20.toDouble()
+
+                        }
+
+                        fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                     }
-                    else if(noOfOvers[2])
-                    {
-                        newmatch?.totalOvers=20.toDouble()
-
-                    }
-
-                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                 }
+
 
             }else if (tournamentModel?.isMatch5Started == true)
             {
@@ -414,8 +458,8 @@ class Schedule : Fragment(){
             {
                 match7Button?.text="Play"
                 match7Button?.setOnClickListener{
-                    val teamA="Team A"
-                    val teamB="Team B"
+                    val teamA=k
+                    val teamB=j
 
                     var newmatch=Match(
                         team1 = teamA,
@@ -714,6 +758,9 @@ class Schedule : Fragment(){
     {
         if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"
+            match1Button?.setOnClickListener({
+
+            })
 
         }
         if (tournamentModel?.isMatch2Completed!!)

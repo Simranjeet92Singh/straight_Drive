@@ -13,10 +13,11 @@
 
     <include layout="@layout/points_table_list_headers"/>
     <androidx.recyclerview.widget.RecyclerView
+
         android:background="@color/light_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tournament_games_list">
+        android:id="@+id/pointsTableList">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
 </LinearLayout>
