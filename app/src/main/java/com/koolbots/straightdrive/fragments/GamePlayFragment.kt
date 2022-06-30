@@ -320,7 +320,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 
         @JvmStatic
         fun newInstance(match: Match,tournamentModel: TournamentModel?) :GamePlayFragment{
-            if(tournamentModel != null){
+//            if(tournamentModel != null){
 
                 return  GamePlayFragment().apply {
                     arguments=Bundle().apply {
@@ -328,16 +328,16 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
                         putSerializable("t",tournamentModel)
                     }
                 }
-            }else {
-                val t = TournamentModel()
-                return GamePlayFragment().apply {
-                    arguments=Bundle().apply {
-                        putSerializable("match",match)
-                        putSerializable("t",t)
-                    }
-                }
-
-            }
+//            }else {
+//                val t = TournamentModel()
+//                return GamePlayFragment().apply {
+//                    arguments=Bundle().apply {
+//                        putSerializable("match",match)
+//                        putSerializable("t",t)
+//                    }
+//                }
+//
+//            }
 
 
         }
@@ -638,7 +638,18 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 
             Log.d("**-*-*-*-*",tournamentModel.toString())
             torunamentDAO=TournamentDb.getInstance(act.applicationContext).tournamentDAO()
-            torunamentDAO?.addTournament(tournamentModel)
+                if(tournamentModel?.key!=0){
+                    torunamentDAO?.update(tournamentModel)
+
+                }else{
+
+
+                    torunamentDAO?.addTournament(tournamentModel)
+                }
+
+
+
+
 
         }
 

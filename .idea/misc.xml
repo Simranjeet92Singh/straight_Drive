@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/batting_card_item.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/custom_action_bar.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/fragment_game_play.xml" value="0.14764492753623187" />
         <entry key="app/src/main/res/layout/fragment_landinng_screen.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/fragment_new_game.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/fragment_new_tournament.xml" value="0.2" />
@@ -23,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_score_card.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/fragment_tournament.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/game_play_update_layout.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/game_status_layout.xml" value="0.2125" />
         <entry key="app/src/main/res/layout/inning_finish_dialog.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/points_table.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/points_table_list_headers.xml" value="0.22" />

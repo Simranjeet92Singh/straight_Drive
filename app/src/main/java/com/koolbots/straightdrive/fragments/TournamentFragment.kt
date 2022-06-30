@@ -41,10 +41,7 @@ class TournamentFragment : Fragment(){
     private var tournamentModel:TournamentModel?=null
     private var tournamentDAO: TournamentDAO?=null
     private var tournament:RecyclerView?=null
-    private var fromTournament="fromTournament"
-    private var fromSeies="fromSeries"
-    private var isFromSeries:Boolean?=null
-    private var isFromTournamnt:Boolean?=null
+
     private var font:TextView?=null
     private var newTournament:TextView?=null
     private val INNING:String="match"
@@ -138,15 +135,11 @@ class TournamentFragment : Fragment(){
 
             MainScope().launch {
 
-                if(match?.isFromSeries==true){
+
                     val tournamentAdapter=
-                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,false)
+                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList)
                     tournament?.adapter=tournamentAdapter
-                }else{
-                    val tournamentAdapter=
-                        TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,true)
-                    tournament?.adapter=tournamentAdapter
-                }
+
 
 
                 Log.d("Console","Matches found  "+matches?.size)

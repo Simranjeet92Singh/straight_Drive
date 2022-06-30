@@ -1,9 +1,6 @@
 package com.koolbots.straightdrive.database.tournament
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
@@ -25,5 +22,6 @@ interface TournamentDAO {
     @Query("delete from `TournamentModel`")
     suspend fun deleteAll()
 
-
+    @Update
+    suspend fun update(tournamentModel:TournamentModel?)
 }

@@ -67,7 +67,7 @@ class LandinngScreenFragment : Fragment() {
             match?.isFromSeries=false
             match?.isFromTournament=true
 
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"tournament  Fragment")?.addToBackStack(null)?.commit()
 
         })
         series=view.findViewById(R.id.series)
@@ -75,7 +75,7 @@ class LandinngScreenFragment : Fragment() {
 
             match?.isFromSeries=true
             match?.isFromTournament=false
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Recent Games  Fragment")?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,TournamentFragment.newInstance("","",match),"Series  Fragment")?.addToBackStack(null)?.commit()
 
         }
 

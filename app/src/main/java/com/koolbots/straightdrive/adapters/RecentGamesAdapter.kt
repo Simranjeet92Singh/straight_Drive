@@ -55,8 +55,8 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
 
     override fun onBindViewHolder(holder: holder, position: Int) {
         val match=list?.get(position)
-
-        if(match?.key!=0){
+        if(match?.isFromSeries==false && match?.isFromTournament==false){
+            if(match?.key!=0){
             holder.viewGame?.setOnClickListener({
                 fragmentManager?.beginTransaction()?.replace(android.R.id.content,RecentGamesDashBoard.newInstance(match))?.addToBackStack(null)?.commit()
 
@@ -74,7 +74,10 @@ class RecentGamesAdapter(val context:Context,val fragmentManager: FragmentManage
             holder.score?.text=""+inningOne.score+"/"+inningOne.wickets+"  |  "+inningTwo.score+"/"+inningTwo.wickets
 
 
-        }else{
+           }
+        }
+
+        else{
            holder.card?.visibility=View.GONE
             holder.rootView?.layoutParams=holder.parms
 

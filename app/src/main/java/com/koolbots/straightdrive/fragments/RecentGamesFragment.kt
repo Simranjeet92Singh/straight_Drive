@@ -132,12 +132,12 @@ class RecentGamesFragment : Fragment() {
 
             MainScope().launch {
 
-                for (i in 0..matches?.size!!-1){
+//                for (i in 0..matches?.size!!-1){
 
 
-                    if(matches?.get(i)?.isFromTournament==false && matches?.get(i)?.isFromSeries==false){
-                        val  t = matches?.get(i)
-                        recentgamesList?.add(i,t!!)
+//                    if(matches?.get(i)?.isFromTournament==false && matches?.get(i)?.isFromSeries==false){
+//                        val  t = matches?.get(i)
+//                        recentgamesList?.add(i,t!!)
 
 
 //                        recentgamesList?.get(i)?.team1=matches?.get(i)?.team1.toString()!!
@@ -149,24 +149,24 @@ class RecentGamesFragment : Fragment() {
 
 
 
-                    }else{
-                        val n=Match()
+//                    }else{
+//                        val n=Match()
+//
+//
+//                        val maxLogSize = 1000
+//                        val stringLength = n.toString().length
+//                        for (i in 0..stringLength / maxLogSize) {
+//                            val start = i * maxLogSize
+//                            var end = (i + 1) * maxLogSize
+//                            end = if (end > n.toString().length) n.toString().length else end
+//                            Log.v("----**------", n.toString().substring(start, end))
+//                        }
+//
+//                        recentgamesList?.add(i,n!!)
+//                    }
+//                }
 
-
-                        val maxLogSize = 1000
-                        val stringLength = n.toString().length
-                        for (i in 0..stringLength / maxLogSize) {
-                            val start = i * maxLogSize
-                            var end = (i + 1) * maxLogSize
-                            end = if (end > n.toString().length) n.toString().length else end
-                            Log.v("----**------", n.toString().substring(start, end))
-                        }
-
-                        recentgamesList?.add(i,n!!)
-                    }
-                }
-
-                    val recentGamesAdapter=RecentGamesAdapter(act.applicationContext, fragmentManager,recentgamesList)
+                    val recentGamesAdapter=RecentGamesAdapter(act.applicationContext, fragmentManager,matches)
 
                 val maxLogSize = 1000
                 val stringLength = recentgamesList.toString().length

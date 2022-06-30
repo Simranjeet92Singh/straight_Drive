@@ -145,7 +145,7 @@ class Schedule : Fragment(){
     }
 
     fun toPlayMatch(){
-        if(match?.isFromSeries==false){
+        if(tournamentModel?.isFromSeries==false){
             if (tournamentModel?.isMatch1Started == true)
             {
                 match1Button?.text="Play"
@@ -159,33 +159,33 @@ class Schedule : Fragment(){
                     team1 = teamA,
                     team2 = teamB
                 )
-                    match?.isFromTournament=true
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    newmatch=match!!
+//                    newmatch=match!!
 
                     fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
                 }
-            }else if (match?.isMatch2Started!!)
+            }else if (tournamentModel?.isMatch2Started!!)
                 {
-                    match1Button?.text="Play"
+                    match2Button?.text="Play"
                     match2Button?.setOnClickListener{
                         val teamA="Team C "
                         val teamB="Team A"
@@ -196,29 +196,26 @@ class Schedule : Fragment(){
                             team1 = teamA,
                             team2 = teamB
                         )
-
-                        match?.firstBattingTeam=teamA
+                        newmatch?.isFromTournament=true
+                        newmatch?.firstBattingTeam=teamA
 
 
 
                         if(noOfOvers[0])
                         {
-                            match?.totalOvers=5.toDouble()
+                            newmatch?.totalOvers=5.toDouble()
                         }
                         else if(noOfOvers[1])
                         {
-                            match?.totalOvers=10.toDouble()
+                            newmatch?.totalOvers=10.toDouble()
 
                         }
                         else if(noOfOvers[2])
                         {
-                            match?.totalOvers=20.toDouble()
+                            newmatch?.totalOvers=20.toDouble()
 
                         }
 
-                        match?.matchDate="2021-25-2021"
-
-                        newmatch=match!!
                         fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
                     }
 
@@ -236,29 +233,27 @@ class Schedule : Fragment(){
                         team1 = teamA,
                         team2 = teamB
                     )
-
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    match?.matchDate="2021-25-2021"
-                    newmatch=match!!
-                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(match!!,tournamentModel!!),"game")?.commit()
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch!!,tournamentModel!!),"game")?.commit()
                 }
 
             }
@@ -276,28 +271,26 @@ class Schedule : Fragment(){
                         team1 = teamA,
                         team2 = teamB
                     )
-
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    match?.matchDate="2021-25-2021"
-                    newmatch=match!!
                     fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                 }
 
@@ -314,28 +307,26 @@ class Schedule : Fragment(){
                         team1 = teamA,
                         team2 = teamB
                     )
-
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    match?.matchDate="2021-25-2021"
-                    newmatch=match!!
                     fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                 }
             }
@@ -353,28 +344,26 @@ class Schedule : Fragment(){
                         team1 = teamA,
                         team2 = teamB
                     )
-
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    match?.matchDate="2021-25-2021"
-                    newmatch=match!!
                     fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                 }
             }
@@ -385,33 +374,30 @@ class Schedule : Fragment(){
                     val teamA="Team A"
                     val teamB="Team B"
 
-
-
                     var newmatch=Match(
                         team1 = teamA,
                         team2 = teamB
                     )
-
-                    match?.firstBattingTeam=teamA
+                    newmatch?.isFromTournament=true
+                    newmatch?.firstBattingTeam=teamA
 
 
 
                     if(noOfOvers[0])
                     {
-                        match?.totalOvers=5.toDouble()
+                        newmatch?.totalOvers=5.toDouble()
                     }
                     else if(noOfOvers[1])
                     {
-                        match?.totalOvers=10.toDouble()
+                        newmatch?.totalOvers=10.toDouble()
 
                     }
                     else if(noOfOvers[2])
                     {
-                        match?.totalOvers=20.toDouble()
+                        newmatch?.totalOvers=20.toDouble()
 
                     }
 
-                    match?.matchDate="2021-25-2021"
                     newmatch=match!!
                     fragmentManager?.beginTransaction()?.replace(android.R.id.content, GamePlayFragment.newInstance(newmatch,tournamentModel!!),"game")?.commit()
                 }
@@ -427,25 +413,31 @@ class Schedule : Fragment(){
 
     fun forViewingMatch(){
     if(match?.isFromSeries==false){
-        if(match?.isMatch1Completed!!){
+        if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"
 
-        }else if (match?.isMatch2Completed!!)
+        }
+        if (tournamentModel?.isMatch2Completed!!)
         {
             match2Button?.text = "View"
-        }else if (match?.isMatch3Completed!!)
+        }
+        if (tournamentModel?.isMatch3Completed!!)
         {
             match3Button?.text = "View"
-        }else if (match?.isMatch7Completed!!)
+        }
+        if (tournamentModel?.isMatch7Completed!!)
         {
             match7Button?.text = "View"
-        }else if (match?.isMatch4Completed!!)
+        }
+        if (tournamentModel?.isMatch4Completed!!)
         {
             match4Button?.text = "View"
-        }else if (match?.isMatch5Completed!!)
+        }
+        if (tournamentModel?.isMatch5Completed!!)
         {
             match5Button?.text = "View"
-        }else if (match?.isMatch6Completed!!)
+        }
+        if (tournamentModel?.isMatch6Completed!!)
         {
             match6Button?.text = "View"
         }

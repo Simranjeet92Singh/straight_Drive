@@ -23,6 +23,8 @@ data class TournamentModel(
     var match6Winner:String?="",
     var match7Winner:String?="",
 
+
+
     var isMatch1Completed:Boolean?=false,
     var isMatch2Completed:Boolean?=false,
     var isMatch3Completed:Boolean?=false,
@@ -44,6 +46,7 @@ data class TournamentModel(
     var pointsTableBJson:String="",
     var pointsTableCJson:String="",
     var pointsTableDJson:String="",
-    var isFromSeries:Boolean?=false
+    var isFromSeries:Boolean?=false,
+    var isFromTournament:Boolean?=true
 
 ):Serializable 

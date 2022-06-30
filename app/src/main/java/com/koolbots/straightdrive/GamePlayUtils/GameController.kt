@@ -708,7 +708,7 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Completed=false
             tournamentModel?.isMatch7Completed=false
 
-            tournamentModel?.isMatch1Completed =false
+            tournamentModel?.isMatch1Completed =true
             tournamentModel?.isMatch2Completed =true
             tournamentModel?.isMatch3Completed =false
             tournamentModel?.isMatch4Completed =false
@@ -726,8 +726,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Completed=false
             tournamentModel?.isMatch7Completed=false
 
-            tournamentModel?.isMatch1Completed =false
-            tournamentModel?.isMatch2Completed =false
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
             tournamentModel?.isMatch3Completed =true
             tournamentModel?.isMatch4Completed =false
         }else if(tournamentModel?.isMatch4Started!!){
@@ -744,9 +744,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Completed=false
             tournamentModel?.isMatch7Completed=false
 
-            tournamentModel?.isMatch1Completed =false
-            tournamentModel?.isMatch2Completed =false
-            tournamentModel?.isMatch3Completed =false
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
             tournamentModel?.isMatch4Completed =true
         }else if(tournamentModel?.isMatch5Started!!){
             tournamentModel?.isMatch1Started = false
@@ -762,10 +762,10 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Completed=false
             tournamentModel?.isMatch7Completed=false
 
-            tournamentModel?.isMatch1Completed =false
-            tournamentModel?.isMatch2Completed =false
-            tournamentModel?.isMatch3Completed =false
-            tournamentModel?.isMatch4Completed =false
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
         }else if(tournamentModel?.isMatch6Started!!){
             tournamentModel?.isMatch1Started = false
             tournamentModel?.isMatch2Started =false
@@ -776,14 +776,14 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Started=false
             tournamentModel?.isMatch7Started=true
 
-            tournamentModel?.isMatch5Completed =false
+            tournamentModel?.isMatch5Completed =true
             tournamentModel?.isMatch6Completed=true
             tournamentModel?.isMatch7Completed=false
 
-            tournamentModel?.isMatch1Completed =false
-            tournamentModel?.isMatch2Completed =false
-            tournamentModel?.isMatch3Completed =false
-            tournamentModel?.isMatch4Completed =false
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
         }else if(tournamentModel?.isMatch7Started!!){
             tournamentModel?.isMatch1Started = false
             tournamentModel?.isMatch2Started =false
@@ -794,14 +794,14 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             tournamentModel?.isMatch6Started=false
             tournamentModel?.isMatch7Started=false
 
-            tournamentModel?.isMatch5Completed =false
-            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch5Completed =true
+            tournamentModel?.isMatch6Completed=true
             tournamentModel?.isMatch7Completed=true
 
-            tournamentModel?.isMatch1Completed =false
-            tournamentModel?.isMatch2Completed =false
-            tournamentModel?.isMatch3Completed =false
-            tournamentModel?.isMatch4Completed =false
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
         }
 
         return tournamentModel!!

@@ -228,6 +228,7 @@ class StartNewTournamentFragment : Fragment() {
                 }
                 val pointsTable=PointsTableModel()
                 match?.isFromTournament=true
+                tournamentModel?.isFromTournament=true
                 tournamentModel?.tournamentName=tournamentName
                 tournamentModel?.pointsTableAJson=SerializationToJson.fromPointsTable(pointsTable)
                 tournamentModel?.pointsTableBJson=SerializationToJson.fromPointsTable(pointsTable)
