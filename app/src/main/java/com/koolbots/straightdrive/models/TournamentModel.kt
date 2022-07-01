@@ -48,6 +48,14 @@ data class TournamentModel(
     var pointsTableCJson:String="",
     var pointsTableDJson:String="",
     var isFromSeries:Boolean?=false,
-    var isFromTournament:Boolean?=false
+    var isFromTournament:Boolean?=false,
+
+    var match1:String="",
+    var match2:String="",
+    var match3:String="",
+    var match4:String="",
+    var match5:String="",
+    var match6:String="",
+    var match7:String="",
 
 ):Serializable 

@@ -976,7 +976,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1011,7 +1013,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1046,7 +1050,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1082,7 +1088,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1117,7 +1125,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1152,7 +1162,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1188,7 +1200,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1223,7 +1237,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1259,7 +1275,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1294,7 +1312,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1330,7 +1350,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1364,7 +1386,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+1
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+1
             q.teamName=lTeam!!
             q.points=j.points+1
             q.matchesPlayed=j.matchesPlayed+1
@@ -1405,7 +1429,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
 
@@ -1441,7 +1467,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1475,7 +1503,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1509,7 +1539,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1544,7 +1576,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1579,7 +1613,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1614,7 +1650,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1649,7 +1687,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1684,7 +1724,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1718,7 +1760,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1753,7 +1797,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.points=j.points+0
             q.matchesPlayed=j.matchesPlayed+1
@@ -1787,7 +1833,9 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
             p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
 
+            q.noOfMatchesWon=j.noOfMatchesWon+0
             q.teamName=lTeam!!
             q.matchesPlayed=j.matchesPlayed+1
 

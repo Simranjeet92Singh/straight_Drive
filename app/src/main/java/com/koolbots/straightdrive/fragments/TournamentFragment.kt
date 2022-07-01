@@ -46,6 +46,7 @@ class TournamentFragment : Fragment(){
     private var newTournament:TextView?=null
     private val INNING:String="match"
     private val recentgamesList: ArrayList<TournamentModel>?=ArrayList()
+    private var noofMatches:TextView?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -79,6 +80,7 @@ class TournamentFragment : Fragment(){
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val ac = activity as AppCompatActivity
         ac ?: return
         ac.supportActionBar?.show()
@@ -86,7 +88,7 @@ class TournamentFragment : Fragment(){
             ac.getWindow().getAttributes().layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
-
+            noofMatches=view.findViewById(R.id.noOFMatchesT)
         mainLayout=view.findViewById(R.id.main_layout)
         newTournament=view.findViewById(R.id.new_tournament)
         font=view.findViewById(R.id.font)
@@ -136,6 +138,7 @@ class TournamentFragment : Fragment(){
             MainScope().launch {
 
                 if(match?.isFromSeries==true){
+                    noofMatches?.text="No of Matches"
                     val tournamentAdapter=
                         TournamentAdapter(act.applicationContext, fragmentManager,tournamentList,false)
                     tournament?.adapter=tournamentAdapter

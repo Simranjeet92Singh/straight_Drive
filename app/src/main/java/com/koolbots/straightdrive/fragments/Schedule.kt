@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.koolbots.straightdrive.R
+import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
@@ -56,7 +57,7 @@ class Schedule : Fragment(){
             match = it.getSerializable(INNING) as Match
             tournamentModel=it.getSerializable(TOURNAMENT) as TournamentModel
 
-            Log.d("tment button ========",match.toString())
+            Log.d("tment button ========",tournamentModel.toString())
 
         }
 
@@ -763,6 +764,8 @@ class Schedule : Fragment(){
         if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"
             match1Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match1)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
 
             })
 
@@ -770,57 +773,150 @@ class Schedule : Fragment(){
         if (tournamentModel?.isMatch2Completed!!)
         {
             match2Button?.text = "View"
+            match2Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match2)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch3Completed!!)
         {
             match3Button?.text = "View"
+            match3Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match3)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch7Completed!!)
         {
             match7Button?.text = "View"
+            match7Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match7)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch4Completed!!)
         {
+            val m =SerializationToJson.toMatch(tournamentModel?.match4)
             match4Button?.text = "View"
+            if(tournamentModel?.teamCount==3){
+
+            match4Button?.setOnClickListener({
+
+
+
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
+                }
+           else{
+
+            match4Button?.setOnClickListener({
+                fragmentManager?.beginTransaction()?.replace(
+                    android.R.id.content,
+                    tournamentDashboard.newInstance(m, tournamentModel!!),
+                    "game"
+                )?.addToBackStack(null)?.commit()
+
+
+            })
+        }
         }
         if (tournamentModel?.isMatch5Completed!!)
         {
             match5Button?.text = "View"
+            match5Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match5)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch6Completed!!)
         {
             match6Button?.text = "View"
+            match6Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match6)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
 
     }else
     {
         if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"
+            match1Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match1)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
 
         }
         if (tournamentModel?.isMatch2Completed!!)
         {
             match2Button?.text = "View"
+            match2Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match2)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch3Completed!!)
         {
             match3Button?.text = "View"
+            match3Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match3)
+                if(tournamentModel?.teamCount==3){
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+                }else{
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+                }
+            })
         }
         if (tournamentModel?.isMatch7Completed!!)
         {
             match7Button?.text = "View"
+            match7Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match7)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch4Completed!!)
         {
             match4Button?.text = "View"
+            match4Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match4)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
         if (tournamentModel?.isMatch5Completed!!)
         {
             match5Button?.text = "View"
+            match5Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match5)
+                if(tournamentModel?.teamCount==5){
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+                }else{
+                    fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+                }
+            })
         }
         if (tournamentModel?.isMatch6Completed!!)
         {
             match6Button?.text = "View"
+            match6Button?.setOnClickListener({
+                val m =SerializationToJson.toMatch(tournamentModel?.match6)
+                fragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(m,tournamentModel!!),"game")?.addToBackStack(null)?.commit()
+
+            })
         }
 
     }

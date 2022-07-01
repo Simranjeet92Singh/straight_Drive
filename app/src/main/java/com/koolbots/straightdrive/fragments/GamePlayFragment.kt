@@ -644,6 +644,48 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 
             tournamentModel?.tournamentWinnerName=match?.tournamentWinnerName
 
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==false
+                &&tournamentModel?.isMatch3Completed!! ==false &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match1=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==false &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match2=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match3=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match4=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match5=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==true
+                &&tournamentModel?.isMatch7Completed!! ==true){
+                tournamentModel?.match6=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==true
+                &&tournamentModel?.isMatch7Completed!! ==true){
+                tournamentModel?.match7=SerializationToJson.fromMatch(match)
+            }
 
 
             Log.d("**-*-*-*-*",tournamentModel.toString())
@@ -843,11 +885,33 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             match_end_?.stop()
             alertDialog.dismiss()
             if(match?.isFromTournament == true && match?.isFromSeries ==false){
-                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))?.commit()
+                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
 
-            }else if(match?.isFromTournament ==false && match?.isFromSeries == true){
-                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))?.commit()
+                }else if(tournamentModel?.teamCount==4 && tournamentModel?.isMatch7Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
 
+                }else{
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(match,tournamentModel))?.commit()
+
+                }
+
+            }
+            else if(match?.isFromTournament ==false && match?.isFromSeries == true){
+                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }else if(tournamentModel?.teamCount==5 && tournamentModel?.isMatch5Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }
+                else if(tournamentModel?.teamCount==7 && tournamentModel?.isMatch7Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }else{
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(match,tournamentModel))?.commit()
+
+                }
             }else {
                 activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
 
