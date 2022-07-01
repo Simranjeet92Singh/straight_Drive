@@ -72,16 +72,37 @@ class PointsTableAdapter (val context: Context, val tournamentModel: TournamentM
                 "Team D"->{
                     holder.llout?.layoutParams=holder.parms
                 }
+                ""->{
+                    holder.llout?.layoutParams=holder.parms
+                }
             }
 
 
 
 
         }else{
-            holder.teamName?.text=match?.teamName
-            holder.points?.text=match?.points.toString()
-            holder.nrr?.text=match?.nrr.toString()
-            holder.matchesPlayed?.text=match?.matchesPlayed.toString()
+            if(tournamentModel?.teamCount==3){
+                if(match?.teamName=="Team D"){
+
+                      holder.llout?.layoutParams=holder.parms
+
+                }else if(match?.teamName==""){
+                    holder.llout?.layoutParams=holder.parms
+                }
+                else{
+                    holder.teamName?.text=match?.teamName
+                    holder.points?.text=match?.points.toString()
+                    holder.nrr?.text=match?.nrr.toString()
+                    holder.matchesPlayed?.text=match?.matchesPlayed.toString()
+                }
+
+            }else{
+                holder.teamName?.text=match?.teamName
+                holder.points?.text=match?.points.toString()
+                holder.nrr?.text=match?.nrr.toString()
+                holder.matchesPlayed?.text=match?.matchesPlayed.toString()
+            }
+
         }
 
 

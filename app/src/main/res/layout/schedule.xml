@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="none">
     <LinearLayout
+        android:padding="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -84,7 +85,7 @@
             android:layout_height="wrap_content"
 
             android:text="Match1"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:padding="10sp"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
@@ -95,6 +96,7 @@
         </TextView>
         <TextView
             android:id="@+id/macth1"
+            android:gravity="center|left"
             android:singleLine="true"
             android:layout_width="400dp"
             android:layout_height="40dp"
@@ -105,15 +107,16 @@
             ></TextView>
         <TextView
             android:id="@+id/match1Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:textColor="@color/black"
             android:layout_marginLeft="50dp"
             android:text="  TBD  "
             android:textSize="20dp"
             android:gravity="center"
             android:fontFamily="@font/roboto"
-            android:paddingLeft="10dp"
+
 
             android:background="@drawable/rounded_sides_white"
             android:textStyle="bold">
@@ -134,7 +137,7 @@
             android:layout_height="wrap_content"
 
             android:text="Match2"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:padding="10sp"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
@@ -146,6 +149,7 @@
         <TextView
             android:id="@+id/macth2"
             android:singleLine="true"
+            android:gravity="center|left"
             android:layout_width="400dp"
             android:layout_height="40dp"
             android:textColor="@color/black"
@@ -155,8 +159,8 @@
             ></TextView>
         <TextView
             android:id="@+id/match2Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:textColor="@color/black"
             android:layout_marginLeft="50dp"
             android:text="  TBD  "
@@ -183,7 +187,7 @@
         android:layout_height="wrap_content"
 
         android:text="Match3"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -195,6 +199,7 @@
     <TextView
         android:id="@+id/macth3"
         android:singleLine="true"
+        android:gravity="center|left"
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:textColor="@color/black"
@@ -204,13 +209,14 @@
         ></TextView>
     <TextView
         android:id="@+id/match3Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
         android:text="  TBD  "
         android:textSize="20dp"
-        android:gravity="center"
+
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
@@ -233,7 +239,7 @@
         android:layout_height="wrap_content"
 
         android:text="Match4"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -246,6 +252,7 @@
         android:id="@+id/macth4"
         android:singleLine="true"
         android:layout_width="400dp"
+        android:gravity="center|left"
         android:layout_height="40dp"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
@@ -254,8 +261,8 @@
         ></TextView>
     <TextView
         android:id="@+id/match4Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
         android:text="  TBD  "
@@ -282,7 +289,7 @@
         android:layout_height="wrap_content"
 
         android:text="Match5"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -296,6 +303,7 @@
         android:singleLine="true"
         android:layout_width="400dp"
         android:layout_height="40dp"
+        android:gravity="center|left"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
@@ -303,8 +311,8 @@
         ></TextView>
     <TextView
         android:id="@+id/match5Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
         android:text="  TBD  "
@@ -331,7 +339,7 @@
         android:layout_height="wrap_content"
 
         android:text="Match6"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -346,14 +354,15 @@
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:textColor="@color/black"
+        android:gravity="center|left"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
         ></TextView>
     <TextView
         android:id="@+id/match6Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
         android:text="  TBD  "
@@ -380,7 +389,7 @@
         android:layout_height="wrap_content"
 
         android:text="  Final   "
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -394,6 +403,7 @@
         android:singleLine="true"
         android:layout_width="400dp"
         android:layout_height="40dp"
+        android:gravity="center|left"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
@@ -401,8 +411,8 @@
         ></TextView>
     <TextView
         android:id="@+id/match7Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
         android:text="  TBD  "

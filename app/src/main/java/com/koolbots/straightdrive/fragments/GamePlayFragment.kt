@@ -135,7 +135,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         arguments?.let {
                 match=it.getSerializable("match") as Match
                 tournamentModel=it.getSerializable("t") as TournamentModel
-            Log.d("tt button ========",match.toString())
+            Log.d("tt button ========",tournamentModel.toString())
 
         }
         Log.d("Console team Playing",""+match?.firstBattingTeam)
@@ -816,11 +816,20 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 
         setUpWinningImageResource(act,image)
         yes?.setOnClickListener({
-            match= Match()
+//            match= Match()
             match_end_?.stop()
             alertDialog.dismiss()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(null))?.commit()
+            if(match?.isFromTournament == true && match?.isFromSeries ==false){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.commit()
 
+            }else if(match?.isFromTournament ==false && match?.isFromSeries == true){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.commit()
+
+            }else {
+                match= Match()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+
+            }
         })
         if(match?.winningTeam.equals("Both Team"))
 
@@ -834,10 +843,10 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             match_end_?.stop()
             alertDialog.dismiss()
             if(match?.isFromTournament == true && match?.isFromSeries ==false){
-                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentFragment.newInstance("","",match))?.commit()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))?.commit()
 
             }else if(match?.isFromTournament ==false && match?.isFromSeries == true){
-                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match,tournamentModel))?.commit()
 
             }else {
                 activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()

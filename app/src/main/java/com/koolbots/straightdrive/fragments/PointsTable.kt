@@ -77,7 +77,7 @@ class PointsTable: Fragment() {
         reverseList.add(sortedList.get(0))
 
 
-        Log.d("",reverseList.toString())
+        Log.d("reverse List ::",reverseList.toString())
         val tournamentAdapter=
             PointsTableAdapter(ac.applicationContext,tournamentModel,reverseList!!)
         rec?.adapter=tournamentAdapter

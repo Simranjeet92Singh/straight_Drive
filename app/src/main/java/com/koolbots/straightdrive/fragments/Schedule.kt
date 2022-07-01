@@ -131,7 +131,7 @@ class Schedule : Fragment(){
            pointsTable?.setOnClickListener {
 
                fragmentManager?.beginTransaction()
-                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.commit()
+                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.addToBackStack(null)?.commit()
 
            }
 
@@ -181,7 +181,7 @@ class Schedule : Fragment(){
            pointsTable?.setOnClickListener {
 
                fragmentManager?.beginTransaction()
-                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.commit()
+                   ?.replace(android.R.id.content, PointsTable.newInstance(tournamentModel), "game")?.addToBackStack(null)?.commit()
 
            }
 
@@ -502,7 +502,7 @@ class Schedule : Fragment(){
             {
                 match1Button?.text="Play"
                 match1Button?.setOnClickListener{
-                    val teamA="Team A "
+                    val teamA="Team A"
                     val teamB="Team B"
 
 
