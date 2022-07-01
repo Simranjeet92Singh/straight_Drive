@@ -54,14 +54,14 @@ class PointsTableAdapter (val context: Context, val tournamentModel: TournamentM
                     holder.teamName?.text=match?.teamName
                     holder.points?.text=match?.points.toString()
                     holder.nrr?.text=match?.nrr.toString()
-                    holder.matchesPlayed?.text=match?.matchesPlayed
+                    holder.matchesPlayed?.text=match?.matchesPlayed.toString()
                 }
 
                 "Team B"->{
                     holder.teamName?.text=match?.teamName
                     holder.points?.text=match?.points.toString()
                     holder.nrr?.text=match?.nrr.toString()
-                    holder.matchesPlayed?.text=match?.matchesPlayed
+                    holder.matchesPlayed?.text=match?.matchesPlayed.toString()
                 }
 
                 "Team C"->{
@@ -81,7 +81,7 @@ class PointsTableAdapter (val context: Context, val tournamentModel: TournamentM
             holder.teamName?.text=match?.teamName
             holder.points?.text=match?.points.toString()
             holder.nrr?.text=match?.nrr.toString()
-            holder.matchesPlayed?.text=match?.matchesPlayed
+            holder.matchesPlayed?.text=match?.matchesPlayed.toString()
         }
 
 

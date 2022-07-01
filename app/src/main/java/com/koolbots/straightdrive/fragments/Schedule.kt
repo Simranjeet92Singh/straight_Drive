@@ -94,9 +94,16 @@ class Schedule : Fragment(){
         linmatch7=view.findViewById(R.id.linMatch7)
         tv_match4=view.findViewById(R.id.tv_match4)
 
+        val sharedPref= ac.getSharedPreferences("FinalTeams",
+            Context.MODE_PRIVATE
+        )
+        val k=sharedPref.getString("TeamA","")
+        val j=sharedPref.getString("TeamB","")
 
-        toPlayMatch()
+        toPlayMatch(k,j)
         forViewingMatch()
+
+
        if(match?.isFromSeries==false) {
 
 
@@ -188,12 +195,9 @@ class Schedule : Fragment(){
 
     }
 
-    fun toPlayMatch(){
-        val sharedPref: SharedPreferences = activity!!.getSharedPreferences("FinalTeams",
-            Context.MODE_PRIVATE
-        )
-        val k=sharedPref.getString("TeamA","")
-        val j=sharedPref.getString("TeamB","")
+    fun toPlayMatch(k:String?,j:String?){
+
+
         if(tournamentModel?.isFromSeries==false)
         {
             if (tournamentModel?.isMatch1Started == true)

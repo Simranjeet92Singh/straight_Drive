@@ -979,14 +979,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
-        }else if(wTeam == "Team A" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team A" && lTeam =="Team C"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1003,14 +1014,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
-        }else if(wTeam == "Team A" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team A" && lTeam =="Team D"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1027,15 +1049,26 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team B" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team A"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1052,15 +1085,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team B" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team C"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1077,14 +1120,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
-        }else if(wTeam == "Team B" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team D"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1101,15 +1155,26 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team C" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team A"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1126,14 +1191,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
-        }else if(wTeam == "Team C" && lTeam =="Team B"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team B"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1150,15 +1226,26 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team C" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team D"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1175,15 +1262,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team D" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team A"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1200,15 +1297,26 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
 
-        }else if(wTeam == "Team D" && lTeam =="Team B"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team B"){
 
             val p = PointsTableModel()
             val  q=PointsTableModel()
@@ -1225,14 +1333,25 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
             return tournamentModel!!
 
-        }else if(wTeam == "Team D" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team C"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
@@ -1248,8 +1367,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+1
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
@@ -1268,8 +1397,10 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
             val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+
             val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
             -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
             p.teamName=wTeam!!
             p.points=k.points+2
             p.nrr=roundOffDecimal(k.nrr+t)
@@ -1277,8 +1408,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
+
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+                l.teamName="Team C"
+                m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
 
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
@@ -1286,8 +1427,10 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
 
+
             return tournamentModel!!
-        }else if(wTeam == "Team A" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team A" && lTeam =="Team C"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
@@ -1301,8 +1444,17 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
 
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
@@ -1311,7 +1463,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team A" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team A" && lTeam =="Team D"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
@@ -1325,8 +1478,17 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            l.teamName="Team B"
+            m.teamName="Team C"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(m)
 
 
             tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
@@ -1335,7 +1497,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team B" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team A"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
@@ -1349,8 +1512,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
@@ -1359,7 +1532,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team B" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team C"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
@@ -1373,8 +1547,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
@@ -1383,7 +1567,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team B" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team B" && lTeam =="Team D"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
@@ -1397,8 +1582,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
@@ -1407,7 +1602,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team C" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team A"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
@@ -1421,8 +1617,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
@@ -1431,7 +1637,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team C" && lTeam =="Team B"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team B"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
@@ -1445,8 +1652,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
@@ -1455,7 +1672,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team C" && lTeam =="Team D"){
+        }
+        if(wTeam == "Team C" && lTeam =="Team D"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
@@ -1469,8 +1687,17 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
 
 
             tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
@@ -1479,7 +1706,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team D" && lTeam =="Team A"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team A"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
@@ -1493,8 +1721,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
@@ -1503,7 +1741,8 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team D" && lTeam =="Team B"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team B"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
@@ -1517,17 +1756,27 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             q.teamName=lTeam!!
             q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
             q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
 
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
-            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
 
 
 
             return tournamentModel!!
-        }else if(wTeam == "Team D" && lTeam =="Team C"){
+        }
+        if(wTeam == "Team D" && lTeam =="Team C"){
             val p = PointsTableModel()
             val  q=PointsTableModel()
             val  j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
@@ -1540,8 +1789,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             p.matchesPlayed=k.matchesPlayed+1
 
             q.teamName=lTeam!!
-            q.points=j.points+0
-            q.nrr = roundOffDecimal(j.nrr+t)
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
 
 
             tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)

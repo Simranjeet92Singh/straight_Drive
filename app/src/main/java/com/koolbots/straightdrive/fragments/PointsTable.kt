@@ -69,14 +69,24 @@ class PointsTable: Fragment() {
         val sortedList :List<PointsTableModel> = pointsTableList?.stream()!!
             .sorted(comparator)
             .collect(Collectors.toList())
-        Log.d("pointsTableList",pointsTableList.toString())
+        var reverseList:ArrayList<PointsTableModel> = ArrayList()
+
+        reverseList.add(sortedList.get(3))
+        reverseList.add(sortedList.get(2))
+        reverseList.add(sortedList.get(1))
+        reverseList.add(sortedList.get(0))
+
+
+        Log.d("",reverseList.toString())
         val tournamentAdapter=
-            PointsTableAdapter(ac.applicationContext,tournamentModel, sortedList!!)
+            PointsTableAdapter(ac.applicationContext,tournamentModel,reverseList!!)
         rec?.adapter=tournamentAdapter
+
+
         val sharedPref:SharedPreferences = ac.getSharedPreferences("FinalTeams",MODE_PRIVATE)
         val editor=sharedPref.edit()
-        editor.putString("TeamA",sortedList?.get(0).teamName)
-        editor.putString("TeamB",sortedList.get(1).teamName)
+        editor.putString("TeamA",reverseList?.get(0).teamName)
+        editor.putString("TeamB",reverseList.get(1).teamName)
         editor.commit()
     }
 

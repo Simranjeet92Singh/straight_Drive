@@ -10,7 +10,7 @@ import com.koolbots.straightdrive.models.Match
 import com.koolbots.straightdrive.models.TournamentModel
 
 
-@Database(entities = [TournamentModel::class], version =5,exportSchema = false)
+@Database(entities = [TournamentModel::class], version =8,exportSchema = false)
 abstract class TournamentDb : RoomDatabase() {
     abstract fun tournamentDAO(): TournamentDAO
     companion object {
