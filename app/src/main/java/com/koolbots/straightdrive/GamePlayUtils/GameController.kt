@@ -4,16 +4,16 @@ import android.util.Log
 import com.koolbots.straightdrive.Util.SerializationToJson
 import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.Util.UtilityFunctions
-import com.koolbots.straightdrive.models.Batter
-import com.koolbots.straightdrive.models.Bowler
-import com.koolbots.straightdrive.models.Match
-import com.koolbots.straightdrive.models.SharedMusicData
+import com.koolbots.straightdrive.fragments.TournamentWonDashBoard
+import com.koolbots.straightdrive.fragments.tournamentDashboard
+import com.koolbots.straightdrive.models.*
 import kotlinx.coroutines.processNextEventInCurrentThread
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameController(var match : Match?) {
+class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
     private var score=0
     private var balls:Double?=(match?.totalOvers)
     private var curentBalls=0
@@ -401,14 +401,128 @@ class GameController(var match : Match?) {
             if(match?.inning1?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
+
+
+
             }
             else if(match?.inning2?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
 
+
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
             else{
-                match?.winningTeam="Both Team"
+
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
+
+                match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
         }
         else if((match?.first_team_play?:true&&match?.second_team_playing?:true&&(UtilityFunctions.overToBalls(match?.inning2?.overs?:0.0) ==balls?.toInt())))
@@ -418,14 +532,122 @@ class GameController(var match : Match?) {
             if(match?.inning1?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
             else if(match?.inning2?.score?:0>match?.inning2?.score?:0)
             {
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
+
+
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
 
             }
             else{
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
+
                 match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
         }
         else
@@ -434,24 +656,1291 @@ class GameController(var match : Match?) {
 
             if(match?.first_team_play?:false&&match?.second_team_playing?:false&&(match?.inning2?.score?:0)>(match?.inning1?.score?:0))
             {
-
                 match?.winningTeam=match?.team2
+                match?.loosingTeam=match?.team1
+
+
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
 
             else if(match?.first_team_play?:true&&match?.second_team_playing?:true&&(w)>=10)
 
             {
-                match?.winningTeam=match?.team1
 
+                match?.winningTeam=match?.team1
+                match?.loosingTeam=match?.team2
+
+
+                tournament(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
             else if(match?.first_team_play?:false&&match?.second_team_playing?:false&&match?.inning2?.score?:0==match?.inning1?.score?:0&&match?.inning2?.wickets?:0>=10)
             {
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
 
                 match?.winningTeam="Both Team "
+                match?.loosingTeam="Both Team "
+                checkMatch()
+                tournamentWon(match?.winningTeam)
+                matchWinner(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
+                match?.isMatch1Started=tournamentModel?.isMatch1Started
+                match?.isMatch2Started=tournamentModel?.isMatch2Started
+                match?.isMatch3Started=tournamentModel?.isMatch3Started
+                match?.isMatch4Started=tournamentModel?.isMatch4Started
+                match?.isMatch5Started=tournamentModel?.isMatch5Started
+                match?.isMatch6Started=tournamentModel?.isMatch6Started
+                match?.isMatch7Started=tournamentModel?.isMatch7Started
+
+                match?.isMatch5Completed=tournamentModel?.isMatch5Completed
+                match?.isMatch6Completed=tournamentModel?.isMatch6Completed
+                match?.isMatch7Completed=tournamentModel?.isMatch7Completed
+
+                match?.isMatch1Completed=tournamentModel?.isMatch1Completed
+                match?.isMatch2Completed=tournamentModel?.isMatch2Completed
+                match?.isMatch3Completed=tournamentModel?.isMatch3Completed
+                match?.isMatch4Completed=tournamentModel?.isMatch4Completed
+                match?.match1Winner=tournamentModel?.match1Winner
+                match?.match2Winner=tournamentModel?.match2Winner
+                match?.match3Winner=tournamentModel?.match3Winner
+                match?.match4Winner=tournamentModel?.match4Winner
+                match?.match5Winner=tournamentModel?.match5Winner
+                match?.match6Winner=tournamentModel?.match6Winner
+                match?.match7Winner=tournamentModel?.match7Winner
+                match?.tournamentWinnerName=tournamentModel?.tournamentWinnerName
             }
         }
 
         return match
+    }
+
+    fun matchWinner(wTeam:String?,lTeam:String?):TournamentModel{
+        if(tournamentModel?.isMatch1Completed==true && tournamentModel?.match1Winner==""){
+            tournamentModel?.match1Winner=wTeam
+
+        }else if(tournamentModel?.isMatch2Completed==true && tournamentModel?.match2Winner==""){
+            tournamentModel?.match2Winner=wTeam
+
+        }else if(tournamentModel?.isMatch3Completed==true && tournamentModel?.match3Winner==""){
+            if(tournamentModel?.isFromSeries==true && tournamentModel?.teamCount==3){
+//            tournamentModel?.tournamentWinnerName=wTeam
+            }
+            tournamentModel?.match3Winner=wTeam
+
+        }else if(tournamentModel?.isMatch4Completed==true&& tournamentModel?.match4Winner==""){
+           if(tournamentModel?.isFromTournament==true && tournamentModel?.teamCount==4){
+//               tournamentModel?.tournamentWinnerName=wTeam
+           }
+            tournamentModel?.match4Winner=wTeam
+
+        }else if(tournamentModel?.isMatch5Completed==true && tournamentModel?.match5Winner==""){
+            if(tournamentModel?.isFromSeries==true && tournamentModel?.teamCount==5)
+            {
+//                tournamentModel?.tournamentWinnerName=wTeam
+            }
+            tournamentModel?.match5Winner=wTeam
+
+        }else if(tournamentModel?.isMatch6Completed==true && tournamentModel?.match6Winner==""){
+            tournamentModel?.match6Winner=wTeam
+
+        }else if(tournamentModel?.isMatch7Completed==true && tournamentModel?.match7Winner==""){
+            tournamentModel?.match7Winner=wTeam
+//            tournamentModel?.tournamentWinnerName=wTeam
+        }
+
+
+
+
+
+        return tournamentModel!!
+    }
+    fun checkMatch():TournamentModel{
+        if(tournamentModel?.isMatch1Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =true
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =false
+            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =false
+            tournamentModel?.isMatch3Completed =false
+            tournamentModel?.isMatch4Completed =false
+
+
+        }else if(tournamentModel?.isMatch2Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =true
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =false
+            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =false
+            tournamentModel?.isMatch4Completed =false
+        }else if(tournamentModel?.isMatch3Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =true
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =false
+            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =false
+        }else if(tournamentModel?.isMatch4Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=true
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =false
+            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
+        }else if(tournamentModel?.isMatch5Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=true
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =true
+            tournamentModel?.isMatch6Completed=false
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
+        }else if(tournamentModel?.isMatch6Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=true
+
+            tournamentModel?.isMatch5Completed =true
+            tournamentModel?.isMatch6Completed=true
+            tournamentModel?.isMatch7Completed=false
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
+        }else if(tournamentModel?.isMatch7Started!!){
+            tournamentModel?.isMatch1Started = false
+            tournamentModel?.isMatch2Started =false
+            tournamentModel?.isMatch3Started =false
+            tournamentModel?.isMatch4Started =false
+
+            tournamentModel?.isMatch5Started=false
+            tournamentModel?.isMatch6Started=false
+            tournamentModel?.isMatch7Started=false
+
+            tournamentModel?.isMatch5Completed =true
+            tournamentModel?.isMatch6Completed=true
+            tournamentModel?.isMatch7Completed=true
+
+            tournamentModel?.isMatch1Completed =true
+            tournamentModel?.isMatch2Completed =true
+            tournamentModel?.isMatch3Completed =true
+            tournamentModel?.isMatch4Completed =true
+        }
+
+        return tournamentModel!!
+    }
+
+    fun tournamentWon(wTeam:String?):TournamentModel{
+
+        if(tournamentModel?.isFromTournament == true && tournamentModel?.isFromSeries ==false){
+            if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
+                tournamentModel?.tournamentWinnerName=wTeam
+            }else if(tournamentModel?.teamCount==4 && tournamentModel?.isMatch7Completed ==true){
+                tournamentModel?.tournamentWinnerName=wTeam
+            }else{
+                tournamentModel?.tournamentWinnerName=""
+
+
+            }
+
+        }
+        else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
+
+
+            if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch3Completed ==true){
+
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
+
+
+            }else if(tournamentModel?.teamCount==5 && tournamentModel?.isMatch5Completed ==true){
+                tournamentModel?.tournamentWinnerName=wTeam
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
+
+            }
+            else if(tournamentModel?.teamCount==7 && tournamentModel?.isMatch7Completed ==true){
+                tournamentModel?.tournamentWinnerName=wTeam
+
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
+            }else{
+                tournamentModel?.tournamentWinnerName=""
+
+            }
+        }
+
+
+        return tournamentModel!!
+    }
+
+//        fun bothTeamWon(wTeam:String?,lTeam:String?):TournamentModel{
+//            if(wTeam == lTeam){
+//                val m =match?.team1
+//                val n =match?.team2
+//                matchBothWon(m,n)
+//            }
+//            return tournamentModel!!
+//        }
+
+    fun matchBothWon(wTeam:String?,lTeam:String?):TournamentModel{
+
+        if(wTeam == "Team A" && lTeam =="Team B"){
+
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+        }
+        if(wTeam == "Team A" && lTeam =="Team C"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+        }
+        if(wTeam == "Team A" && lTeam =="Team D"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team B" && lTeam =="Team A"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team B" && lTeam =="Team C"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+        }
+        if(wTeam == "Team B" && lTeam =="Team D"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team C" && lTeam =="Team A"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+        }
+        if(wTeam == "Team C" && lTeam =="Team B"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team C" && lTeam =="Team D"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team D" && lTeam =="Team A"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+
+        }
+        if(wTeam == "Team D" && lTeam =="Team B"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+
+        }
+        if(wTeam == "Team D" && lTeam =="Team C"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+
+            p.teamName=wTeam!!
+            p.points=k.points+1
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+1
+            q.teamName=lTeam!!
+            q.points=j.points+1
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+            return tournamentModel!!
+        }else{
+            return tournamentModel!!
+        }
+
+    }
+    fun tournament(wTeam:String?,lTeam:String?):TournamentModel{
+
+
+        if(wTeam == "Team A" && lTeam =="Team B"){
+
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+                l.teamName="Team C"
+                m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team A" && lTeam =="Team C"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team A" && lTeam =="Team D"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            l.teamName="Team B"
+            m.teamName="Team C"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team B" && lTeam =="Team A"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team C"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team B" && lTeam =="Team C"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team B" && lTeam =="Team D"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team C" && lTeam =="Team A"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team B"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team C" && lTeam =="Team B"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j= SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            l.teamName="Team A"
+            m.teamName="Team D"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team C" && lTeam =="Team D"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team D" && lTeam =="Team A"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team C"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team D" && lTeam =="Team B"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.points=j.points+0
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            l.teamName="Team C"
+            m.teamName="Team A"
+
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(m)
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }
+        if(wTeam == "Team D" && lTeam =="Team C"){
+            val p = PointsTableModel()
+            val  q=PointsTableModel()
+            val  k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableDJson)
+            val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableCJson)
+            val t = ((match?.inning1?.score)!! /(((match?.inning1?.overs!!.toInt())*6)+(match?.inning1?.overs!!)%0.10))
+            -((match?.inning2?.score)!! /(((match?.inning2?.overs!!.toInt())*6)+(match?.inning2?.overs!!)%0.10))
+            p.teamName=wTeam!!
+            p.points=k.points+2
+            p.nrr=roundOffDecimal(k.nrr+t)
+            p.matchesPlayed=k.matchesPlayed+1
+            p.noOfMatchesWon=k.noOfMatchesWon+1
+
+            q.noOfMatchesWon=j.noOfMatchesWon+0
+            q.teamName=lTeam!!
+            q.matchesPlayed=j.matchesPlayed+1
+
+            q.nrr = roundOffDecimal(j.nrr+(-(p.nrr)))
+
+            val l =SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+            val m = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+            l.teamName="Team A"
+            m.teamName="Team B"
+
+            tournamentModel?.pointsTableAJson = SerializationToJson.fromPointsTable(l)
+            tournamentModel?.pointsTableBJson = SerializationToJson.fromPointsTable(m)
+
+
+
+            tournamentModel?.pointsTableDJson = SerializationToJson.fromPointsTable(p)
+            tournamentModel?.pointsTableCJson = SerializationToJson.fromPointsTable(q)
+
+
+
+            return tournamentModel!!
+        }else{
+            return tournamentModel!!
+        }
+
+
+
+
+
+
+
     }
 
     private fun incrementBall()
@@ -700,7 +2189,11 @@ class GameController(var match : Match?) {
 
     }
 
-
+    fun roundOffDecimal(number: Double): Double{
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.FLOOR
+        return df.format(number).toDouble()
+    }
     private fun finish() :Match?{
       return  matchWon()
     }

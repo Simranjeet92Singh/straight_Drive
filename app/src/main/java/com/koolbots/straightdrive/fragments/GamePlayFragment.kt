@@ -33,6 +33,8 @@ import com.koolbots.straightdrive.Util.SharedData
 import com.koolbots.straightdrive.Util.UtilityFunctions
 import com.koolbots.straightdrive.database.quickmatch.GlobalDatabase
 import com.koolbots.straightdrive.database.quickmatch.MatchAccessDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDAO
+import com.koolbots.straightdrive.database.tournament.TournamentDb
 import com.koolbots.straightdrive.models.*
 import com.koolbots.straightdrive.networks.ApiService
 import kotlinx.coroutines.GlobalScope
@@ -58,14 +60,6 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var over_change_:MediaPlayer?=null
     private var wide_:MediaPlayer?=null
     private var date=System.currentTimeMillis()
-
-
-
-
-
-
-
-
     private var mainLayout: LinearLayout?=null
     private var match:Match?=null
 
@@ -94,6 +88,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var redu:CardView?=null
     private var gameController:GameController?=null
     private var matchDAO: MatchAccessDAO?=null
+    private var torunamentDAO:TournamentDAO?=null
     private var clickable=true
     private var scoreCardA:ImageView?=null
     private var scoreCardB:ImageView?=null
@@ -102,6 +97,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     private var batter_b:TextView?=null
      private var music:LinkedList<MediaPlayer> = LinkedList<MediaPlayer>()
     private var handler=Handler()
+    private var tournamentModel:TournamentModel?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,9 +134,12 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
 //        wide_?.prepare()
         arguments?.let {
                 match=it.getSerializable("match") as Match
+                tournamentModel=it.getSerializable("t") as TournamentModel
+            Log.d("tt button ========",tournamentModel.toString())
+
         }
         Log.d("Console team Playing",""+match?.firstBattingTeam)
-        gameController= GameController((match))
+        gameController= GameController(match,tournamentModel)
     }
 
 
@@ -320,14 +319,37 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
     companion object {
 
         @JvmStatic
-        fun newInstance(match: Match) =
-            GamePlayFragment().apply {
-                arguments=Bundle().apply {
-                    putSerializable("match",match)
+        fun newInstance(match: Match,tournamentModel: TournamentModel?) :GamePlayFragment{
+//            if(tournamentModel != null){
+
+                return  GamePlayFragment().apply {
+                    arguments=Bundle().apply {
+                        putSerializable("match",match)
+                        putSerializable("t",tournamentModel)
+                    }
                 }
-            }
+//            }else {
+//                val t = TournamentModel()
+//                return GamePlayFragment().apply {
+//                    arguments=Bundle().apply {
+//                        putSerializable("match",match)
+//                        putSerializable("t",t)
+//                    }
+//                }
+//
+//            }
+
+
+        }
+
+
+
+
+
     }
- fun stopMusic()
+
+
+    fun stopMusic()
  {
     //music.clear()
  }
@@ -570,6 +592,8 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             Toast.makeText(act,"Match uploaded",Toast.LENGTH_LONG).show()
         }
         match?.matchDate=xx
+
+
         GlobalScope.launch {
             match?.inning1?.bowlers?.forEach() {
                 //it.overs=UtilityFunctions.overToBalls(it.overs).toDouble()
@@ -587,8 +611,105 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             match?.inning2Json=SerializationToJson.fromInning(match?.inning2)
             matchDAO= GlobalDatabase.getInstance(act.applicationContext).matchAccessDAO()
             matchDAO?.addMatch(match)
+
+            tournamentModel?.pointsTableAJson=match?.pointsTableAJson!!
+            tournamentModel?.pointsTableBJson=match?.pointsTableBJson!!
+            tournamentModel?.pointsTableCJson=match?.pointsTableCJson!!
+            tournamentModel?.pointsTableDJson=match?.pointsTableDJson!!
+            tournamentModel?.date=xx
+           tournamentModel?.isMatch1Completed=    match?.isMatch1Completed
+            tournamentModel?.isMatch2Completed=    match?.isMatch2Completed
+            tournamentModel?.isMatch3Completed=    match?.isMatch3Completed
+            tournamentModel?.isMatch4Completed=    match?.isMatch4Completed
+
+            tournamentModel?.isMatch5Completed=    match?.isMatch5Completed
+            tournamentModel?.isMatch6Completed=    match?.isMatch6Completed
+            tournamentModel?.isMatch7Completed=    match?.isMatch7Completed
+            tournamentModel?.isMatch5Started = match?.isMatch5Started
+            tournamentModel?.isMatch6Started = match?.isMatch6Started
+            tournamentModel?.isMatch7Started = match?.isMatch7Started
+
+            tournamentModel?.isMatch1Started = match?.isMatch1Started
+           tournamentModel?.isMatch2Started =  match?.isMatch2Started
+            tournamentModel?.isMatch3Started =  match?.isMatch3Started
+            tournamentModel?.isMatch4Started =  match?.isMatch4Started
+            tournamentModel?.match1Winner=match?.match1Winner
+            tournamentModel?.match2Winner=match?.match2Winner
+            tournamentModel?.match3Winner=match?.match3Winner
+            tournamentModel?.match4Winner=match?.match4Winner
+            tournamentModel?.match5Winner=match?.match5Winner
+            tournamentModel?.match6Winner=match?.match6Winner
+            tournamentModel?.match7Winner=match?.match7Winner
+
+
+            tournamentModel?.tournamentWinnerName=match?.tournamentWinnerName
+
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==false
+                &&tournamentModel?.isMatch3Completed!! ==false &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match1=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==false &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match2=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==false
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match3=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==false &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match4=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==false
+                &&tournamentModel?.isMatch7Completed!! ==false){
+                tournamentModel?.match5=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==true
+                &&tournamentModel?.isMatch7Completed!! ==true){
+                tournamentModel?.match6=SerializationToJson.fromMatch(match)
+            }
+            if(tournamentModel?.isMatch1Completed!! ==true  &&tournamentModel?.isMatch2Completed!! ==true
+                &&tournamentModel?.isMatch3Completed!! ==true &&tournamentModel?.isMatch4Completed!! ==true
+                &&tournamentModel?.isMatch5Completed!! ==true &&tournamentModel?.isMatch6Completed!! ==true
+                &&tournamentModel?.isMatch7Completed!! ==true){
+                tournamentModel?.match7=SerializationToJson.fromMatch(match)
+            }
+
+
+            Log.d("**-*-*-*-*",tournamentModel.toString())
+            torunamentDAO=TournamentDb.getInstance(act.applicationContext).tournamentDAO()
+                if(tournamentModel?.key!=0){
+                    torunamentDAO?.update(tournamentModel)
+
+                }else{
+
+
+                    torunamentDAO?.addTournament(tournamentModel)
+                }
+
+
+
+
+
         }
+
+
+
     }
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateUI(mat: Match?) {
@@ -735,13 +856,23 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         val no = alertDialog.findViewById<TextView>(R.id.no)
         val image=alertDialog.findViewById<ImageView>(R.id.winning_team)
 
+
         setUpWinningImageResource(act,image)
         yes?.setOnClickListener({
-            match= Match()
+//            match= Match()
             match_end_?.stop()
             alertDialog.dismiss()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, NewGameFragment.newInstance(null))?.commit()
+            if(match?.isFromTournament == true && match?.isFromSeries ==false){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.commit()
 
+            }else if(match?.isFromTournament ==false && match?.isFromSeries == true){
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, StartNewTournamentFragment.newInstance(match))?.commit()
+
+            }else {
+                match= Match()
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+
+            }
         })
         if(match?.winningTeam.equals("Both Team"))
 
@@ -754,8 +885,61 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         no?.setOnClickListener({
             match_end_?.stop()
             alertDialog.dismiss()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("",""))?.commit()
+            Log.d("**-*-***",tournamentModel.toString())
 
+            if(tournamentModel?.isFromTournament == true && tournamentModel?.isFromSeries ==false) {
+                if (tournamentModel?.teamCount == 3 && tournamentModel?.isMatch4Completed == true) {
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        TournamentWonDashBoard.newInstance(match, tournamentModel)
+                    )?.commit()
+
+                } else if (tournamentModel?.teamCount == 4 && tournamentModel?.isMatch7Completed == true) {
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        TournamentWonDashBoard.newInstance(match, tournamentModel)
+                    )?.commit()
+
+                } else {
+
+
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        tournamentDashboard.newInstance(match, tournamentModel)
+                    )?.commit()
+
+                }
+            }
+
+            else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
+                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch3Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }else if(tournamentModel?.teamCount==5 && tournamentModel?.isMatch5Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }
+                else if(tournamentModel?.teamCount==7 && tournamentModel?.isMatch7Completed ==true){
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+
+                }else{
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(match,tournamentModel))?.commit()
+
+                }
+            }
+            else {
+                activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
+
+            }
+
+            val maxLogSize = 1000
+            val stringLength = match.toString().length
+            for (i in 0..stringLength / maxLogSize) {
+                val start = i * maxLogSize
+                var end = (i + 1) * maxLogSize
+                end = if (end > match.toString().length) match.toString().length else end
+                Log.v("----**------", match.toString().substring(start, end))
+            }
         })
 
 

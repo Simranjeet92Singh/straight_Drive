@@ -5,10 +5,7 @@ import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.koolbots.straightdrive.models.Batter
-import com.koolbots.straightdrive.models.Bowler
-import com.koolbots.straightdrive.models.Inning
-import com.koolbots.straightdrive.models.Match
+import com.koolbots.straightdrive.models.*
 import java.util.*
 
 class SerializationToJson
@@ -35,6 +32,24 @@ class SerializationToJson
         {
             return gson.toJson(match)
 
+        }
+        fun fromPointsTable(pointsTable:PointsTableModel?):String
+        {
+            return gson.toJson(pointsTable)
+        }
+
+        fun fromTournamtent(tournamentModel: TournamentModel?):String
+        {
+            return gson.toJson(tournamentModel)
+        }
+        fun toTournament(json:String?):TournamentModel{
+
+            return return gson.fromJson(json,
+            object : TypeToken<TournamentModel>() {}.type)
+        }
+        fun toPointsTable(json:String?):PointsTableModel{
+            return return gson.fromJson(json,
+            object: TypeToken<PointsTableModel>() {}.type)
         }
         fun toBatters(json: String?):LinkedList<Batter>
         {

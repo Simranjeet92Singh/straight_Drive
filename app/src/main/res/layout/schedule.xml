@@ -57,13 +57,20 @@
     </LinearLayout>
 
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:scrollbars="none">
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <LinearLayout
         android:id="@+id/linMatch1"
         android:layout_width="wrap_content"
@@ -75,10 +82,10 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
 
             android:text="Match1"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:padding="10sp"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
@@ -87,8 +94,9 @@
             android:textStyle="bold">
 
         </TextView>
-        <EditText
+        <TextView
             android:id="@+id/macth1"
+            android:gravity="center|left"
             android:singleLine="true"
             android:layout_width="400dp"
             android:layout_height="40dp"
@@ -96,20 +104,21 @@
             android:background="@drawable/rounded_sides_white"
             android:paddingLeft="10dp"
             android:layout_marginLeft="50dp"
-            ></EditText>
+            ></TextView>
         <TextView
             android:id="@+id/match1Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:textColor="@color/black"
             android:layout_marginLeft="50dp"
-            android:text="  Play  "
+            android:text="  TBD  "
             android:textSize="20dp"
             android:gravity="center"
             android:fontFamily="@font/roboto"
-            android:paddingLeft="10dp"
 
-            android:background="@drawable/right_circular_corner_white"
+
+            android:background="@drawable/rounded_sides_white"
             android:textStyle="bold">
 
         </TextView>
@@ -125,10 +134,10 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
 
             android:text="Match2"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:padding="10sp"
             android:layout_weight="1"
             android:fontFamily="@font/roboto"
@@ -137,29 +146,30 @@
             android:textStyle="bold">
 
         </TextView>
-        <EditText
+        <TextView
             android:id="@+id/macth2"
             android:singleLine="true"
+            android:gravity="center|left"
             android:layout_width="400dp"
             android:layout_height="40dp"
             android:textColor="@color/black"
             android:background="@drawable/rounded_sides_white"
             android:paddingLeft="10dp"
             android:layout_marginLeft="50dp"
-            ></EditText>
+            ></TextView>
         <TextView
             android:id="@+id/match2Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:textColor="@color/black"
             android:layout_marginLeft="50dp"
-            android:text="  Play  "
+            android:text="  TBD  "
             android:textSize="20dp"
             android:gravity="center"
             android:fontFamily="@font/roboto"
             android:paddingLeft="10dp"
 
-            android:background="@drawable/right_circular_corner_white"
+            android:background="@drawable/rounded_sides_white"
             android:textStyle="bold">
 
         </TextView>
@@ -174,10 +184,10 @@
     android:orientation="horizontal">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:text="Match3"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -186,29 +196,31 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
         android:id="@+id/macth3"
         android:singleLine="true"
+        android:gravity="center|left"
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
-        ></EditText>
+        ></TextView>
     <TextView
         android:id="@+id/match3Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
-        android:text="  Play  "
+        android:text="  TBD  "
         android:textSize="20dp"
-        android:gravity="center"
+
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
-        android:background="@drawable/right_circular_corner_white"
+        android:background="@drawable/rounded_sides_white"
         android:textStyle="bold">
 
     </TextView>
@@ -222,11 +234,12 @@
     android:layout_marginLeft="10dp"
     android:orientation="horizontal">
     <TextView
+        android:id="@+id/tv_match4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:text="Match4"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -235,29 +248,30 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
         android:id="@+id/macth4"
         android:singleLine="true"
         android:layout_width="400dp"
+        android:gravity="center|left"
         android:layout_height="40dp"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
-        ></EditText>
+        ></TextView>
     <TextView
         android:id="@+id/match4Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
-        android:text="  Play  "
+        android:text="  TBD  "
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
-        android:background="@drawable/right_circular_corner_white"
+        android:background="@drawable/rounded_sides_white"
         android:textStyle="bold">
 
     </TextView>
@@ -272,10 +286,10 @@
     android:orientation="horizontal">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:text="Match5"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -284,29 +298,30 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
         android:id="@+id/macth5"
         android:singleLine="true"
         android:layout_width="400dp"
         android:layout_height="40dp"
+        android:gravity="center|left"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
-        ></EditText>
+        ></TextView>
     <TextView
         android:id="@+id/match5Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
-        android:text="  Play  "
+        android:text="  TBD  "
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
-        android:background="@drawable/right_circular_corner_white"
+        android:background="@drawable/rounded_sides_white"
         android:textStyle="bold">
 
     </TextView>
@@ -321,10 +336,10 @@
     android:orientation="horizontal">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:text="Match6"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -333,29 +348,30 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
         android:id="@+id/macth6"
         android:singleLine="true"
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:textColor="@color/black"
+        android:gravity="center|left"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
-        ></EditText>
+        ></TextView>
     <TextView
         android:id="@+id/match6Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
-        android:text="  Play  "
+        android:text="  TBD  "
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
-        android:background="@drawable/right_circular_corner_white"
+        android:background="@drawable/rounded_sides_white"
         android:textStyle="bold">
 
     </TextView>
@@ -370,10 +386,10 @@
     android:orientation="horizontal">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:text="  Final   "
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:padding="10sp"
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
@@ -382,33 +398,35 @@
         android:textStyle="bold">
 
     </TextView>
-    <EditText
+    <TextView
         android:id="@+id/macth7"
         android:singleLine="true"
         android:layout_width="400dp"
         android:layout_height="40dp"
+        android:gravity="center|left"
         android:textColor="@color/black"
         android:background="@drawable/rounded_sides_white"
         android:paddingLeft="10dp"
         android:layout_marginLeft="50dp"
-        ></EditText>
+        ></TextView>
     <TextView
         android:id="@+id/match7Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:layout_marginLeft="50dp"
-        android:text="  Play  "
+        android:text="  TBD  "
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/roboto"
         android:paddingLeft="10dp"
 
-        android:background="@drawable/right_circular_corner_white"
+        android:background="@drawable/rounded_sides_white"
         android:textStyle="bold">
 
     </TextView>
 </LinearLayout>
     </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 </LinearLayout>
