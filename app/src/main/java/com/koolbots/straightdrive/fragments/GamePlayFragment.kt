@@ -888,13 +888,13 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             Log.d("**-*-***",tournamentModel.toString())
 
             if(tournamentModel?.isFromTournament == true && tournamentModel?.isFromSeries ==false) {
-                if (tournamentModel?.numberOfMatches == 3 && tournamentModel?.isMatch4Completed == true) {
+                if (tournamentModel?.teamCount == 3 && tournamentModel?.isMatch4Completed == true) {
                     activity?.supportFragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
                         TournamentWonDashBoard.newInstance(match, tournamentModel)
                     )?.commit()
 
-                } else if (tournamentModel?.numberOfMatches == 4 && tournamentModel?.isMatch7Completed == true) {
+                } else if (tournamentModel?.teamCount == 4 && tournamentModel?.isMatch7Completed == true) {
                     activity?.supportFragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
                         TournamentWonDashBoard.newInstance(match, tournamentModel)
@@ -912,7 +912,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
             }
 
             else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
-                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
+                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch3Completed ==true){
                     activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
 
                 }else if(tournamentModel?.teamCount==5 && tournamentModel?.isMatch5Completed ==true){

@@ -961,15 +961,49 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
         }
         else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
+
+
             if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
-                tournamentModel?.tournamentWinnerName=wTeam
+
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
+
+
             }else if(tournamentModel?.teamCount==5 && tournamentModel?.isMatch5Completed ==true){
                 tournamentModel?.tournamentWinnerName=wTeam
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
+
             }
             else if(tournamentModel?.teamCount==7 && tournamentModel?.isMatch7Completed ==true){
                 tournamentModel?.tournamentWinnerName=wTeam
+
+                val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
+                val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
+                if(j.points>k.points){
+                    tournamentModel?.tournamentWinnerName="Team A"
+                }else if (k.points>j.points){
+                    tournamentModel?.tournamentWinnerName="Team B"
+                }else{
+                    tournamentModel?.tournamentWinnerName="Both Team"
+                }
             }else{
                 tournamentModel?.tournamentWinnerName=""
+
             }
         }
 
