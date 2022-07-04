@@ -132,7 +132,27 @@ class tournamentDashboard : Fragment() {
        if(match?.isFromTournament==true){
            matchWinnerName?.text=match?.winningTeam
            backToMatches?.setOnClickListener({
-               fragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match, tournamentModel))?.commit()
+               if(tournamentModel?.key == 0){
+                   if(tournamentModel?.isFromTournament!!){
+                       val m=Match()
+                       m.isFromTournament=true
+                       m.isFromSeries=false
+                       fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentFragment.newInstance("","",m))?.commit()
+
+                   }
+                   if(tournamentModel?.isFromSeries!!){
+                       val m=Match()
+                       m.isFromTournament=false
+                       m.isFromSeries=true
+
+                       fragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentFragment.newInstance("","",m))?.commit()
+
+                   }
+
+               }else{
+                   fragmentManager?.beginTransaction()?.replace(android.R.id.content, Schedule.newInstance(match, tournamentModel))?.commit()
+
+               }
 
            })
        }

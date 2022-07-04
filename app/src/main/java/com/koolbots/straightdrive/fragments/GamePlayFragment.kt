@@ -856,6 +856,7 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         val no = alertDialog.findViewById<TextView>(R.id.no)
         val image=alertDialog.findViewById<ImageView>(R.id.winning_team)
 
+
         setUpWinningImageResource(act,image)
         yes?.setOnClickListener({
 //            match= Match()
@@ -884,20 +885,33 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
         no?.setOnClickListener({
             match_end_?.stop()
             alertDialog.dismiss()
-            if(match?.isFromTournament == true && match?.isFromSeries ==false){
-                if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+            Log.d("**-*-***",tournamentModel.toString())
 
-                }else if(tournamentModel?.teamCount==4 && tournamentModel?.isMatch7Completed ==true){
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
+            if(tournamentModel?.isFromTournament == true && tournamentModel?.isFromSeries ==false) {
+                if (tournamentModel?.numberOfMatches == 3 && tournamentModel?.isMatch4Completed == true) {
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        TournamentWonDashBoard.newInstance(match, tournamentModel)
+                    )?.commit()
 
-                }else{
-                    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(match,tournamentModel))?.commit()
+                } else if (tournamentModel?.numberOfMatches == 4 && tournamentModel?.isMatch7Completed == true) {
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        TournamentWonDashBoard.newInstance(match, tournamentModel)
+                    )?.commit()
+
+                } else {
+
+
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(
+                        android.R.id.content,
+                        tournamentDashboard.newInstance(match, tournamentModel)
+                    )?.commit()
 
                 }
-
             }
-            else if(match?.isFromTournament ==false && match?.isFromSeries == true){
+
+            else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
                 if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
                     activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, TournamentWonDashBoard.newInstance(match,tournamentModel))?.commit()
 
@@ -912,7 +926,8 @@ class GamePlayFragment : Fragment(),View.OnClickListener {
                     activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, tournamentDashboard.newInstance(match,tournamentModel))?.commit()
 
                 }
-            }else {
+            }
+            else {
                 activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content, RecentGamesFragment.newInstance("","",match))?.commit()
 
             }

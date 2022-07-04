@@ -759,7 +759,7 @@ class Schedule : Fragment(){
     }
 
     fun forViewingMatch(){
-    if(match?.isFromSeries==false)
+    if(tournamentModel?.isFromSeries==false)
     {
         if(tournamentModel?.isMatch1Completed!!){
             match1Button?.text="View"

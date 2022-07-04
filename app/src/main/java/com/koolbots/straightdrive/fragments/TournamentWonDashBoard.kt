@@ -55,23 +55,12 @@ class TournamentWonDashBoard : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-       setUpWinningImageResource()
-
-        initializeMatchStatusView(view)
-    }
-    private fun initializeMatchStatusView(view: View) {
-
         matchWinnerName=view.findViewById(R.id.matchWinnerName)
         backToMatches=view.findViewById(R.id.backtoMatches)
         topName=view.findViewById(R.id.topname)
 
 
 
-    }
-
-    private fun setUpWinningImageResource() {
         if(match?.isFromTournament==true){
             topName?.text="Tournament"
             matchWinnerName?.text=tournamentModel?.tournamentWinnerName
@@ -88,14 +77,19 @@ class TournamentWonDashBoard : Fragment() {
 
             })
         }
+
+
     }
+
+
+
 
 
 
     companion object {
 
 
-        fun newInstance(match: Match?, tournamentModel: TournamentModel?) = tournamentDashboard().apply {
+        fun newInstance(match: Match?, tournamentModel: TournamentModel?) = TournamentWonDashBoard().apply {
             arguments= Bundle().apply {
                 putSerializable("match",match)
                 putSerializable("t",tournamentModel)
