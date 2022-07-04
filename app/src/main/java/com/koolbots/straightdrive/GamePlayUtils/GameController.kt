@@ -488,13 +488,17 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             }
             else{
 
-                bothTeamWon(match?.winningTeam,match?.loosingTeam)
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
 
                 match?.winningTeam="Both Team "
                 match?.loosingTeam="Both Team "
                 checkMatch()
                 tournamentWon(match?.winningTeam)
                 matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
                 match?.isMatch1Started=tournamentModel?.isMatch1Started
                 match?.isMatch2Started=tournamentModel?.isMatch2Started
                 match?.isMatch3Started=tournamentModel?.isMatch3Started
@@ -609,13 +613,17 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
             }
             else{
-                bothTeamWon(match?.winningTeam,match?.loosingTeam)
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
 
                 match?.winningTeam="Both Team "
                 match?.loosingTeam="Both Team "
                 checkMatch()
                 tournamentWon(match?.winningTeam)
                 matchWinner(match?.winningTeam,match?.loosingTeam)
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
                 match?.isMatch1Started=tournamentModel?.isMatch1Started
                 match?.isMatch2Started=tournamentModel?.isMatch2Started
                 match?.isMatch3Started=tournamentModel?.isMatch3Started
@@ -735,13 +743,18 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
             }
             else if(match?.first_team_play?:false&&match?.second_team_playing?:false&&match?.inning2?.score?:0==match?.inning1?.score?:0&&match?.inning2?.wickets?:0>=10)
             {
-                bothTeamWon(match?.winningTeam,match?.loosingTeam)
+                matchBothWon(match?.inning1?.teamName,match?.inning2?.teamName)
 
                 match?.winningTeam="Both Team "
                 match?.loosingTeam="Both Team "
                 checkMatch()
                 tournamentWon(match?.winningTeam)
                 matchWinner(match?.winningTeam,match?.loosingTeam)
+
+                match?.pointsTableAJson=tournamentModel?.pointsTableAJson!!
+                match?.pointsTableBJson=tournamentModel?.pointsTableBJson!!
+                match?.pointsTableCJson=tournamentModel?.pointsTableCJson!!
+                match?.pointsTableDJson=tournamentModel?.pointsTableDJson!!
                 match?.isMatch1Started=tournamentModel?.isMatch1Started
                 match?.isMatch2Started=tournamentModel?.isMatch2Started
                 match?.isMatch3Started=tournamentModel?.isMatch3Started
@@ -781,20 +794,20 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
         }else if(tournamentModel?.isMatch3Completed==true && tournamentModel?.match3Winner==""){
             if(tournamentModel?.isFromSeries==true && tournamentModel?.teamCount==3){
-            tournamentModel?.tournamentWinnerName=wTeam
+//            tournamentModel?.tournamentWinnerName=wTeam
             }
             tournamentModel?.match3Winner=wTeam
 
         }else if(tournamentModel?.isMatch4Completed==true&& tournamentModel?.match4Winner==""){
            if(tournamentModel?.isFromTournament==true && tournamentModel?.teamCount==4){
-               tournamentModel?.tournamentWinnerName=wTeam
+//               tournamentModel?.tournamentWinnerName=wTeam
            }
             tournamentModel?.match4Winner=wTeam
 
         }else if(tournamentModel?.isMatch5Completed==true && tournamentModel?.match5Winner==""){
             if(tournamentModel?.isFromSeries==true && tournamentModel?.teamCount==5)
             {
-                tournamentModel?.tournamentWinnerName=wTeam
+//                tournamentModel?.tournamentWinnerName=wTeam
             }
             tournamentModel?.match5Winner=wTeam
 
@@ -803,7 +816,7 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
 
         }else if(tournamentModel?.isMatch7Completed==true && tournamentModel?.match7Winner==""){
             tournamentModel?.match7Winner=wTeam
-            tournamentModel?.tournamentWinnerName=wTeam
+//            tournamentModel?.tournamentWinnerName=wTeam
         }
 
 
@@ -963,7 +976,7 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
         else if(tournamentModel?.isFromTournament ==false && tournamentModel?.isFromSeries == true){
 
 
-            if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch4Completed ==true){
+            if(tournamentModel?.teamCount==3 && tournamentModel?.isMatch3Completed ==true){
 
                 val j = SerializationToJson.toPointsTable(tournamentModel?.pointsTableAJson)
                 val k = SerializationToJson.toPointsTable(tournamentModel?.pointsTableBJson)
@@ -1011,14 +1024,14 @@ class GameController(var match : Match?,var tournamentModel: TournamentModel?) {
         return tournamentModel!!
     }
 
-        fun bothTeamWon(wTeam:String?,lTeam:String?):TournamentModel{
-            if(wTeam == lTeam){
-                val m =match?.team1
-                val n =match?.team2
-                matchBothWon(m,n)
-            }
-            return tournamentModel!!
-        }
+//        fun bothTeamWon(wTeam:String?,lTeam:String?):TournamentModel{
+//            if(wTeam == lTeam){
+//                val m =match?.team1
+//                val n =match?.team2
+//                matchBothWon(m,n)
+//            }
+//            return tournamentModel!!
+//        }
 
     fun matchBothWon(wTeam:String?,lTeam:String?):TournamentModel{
 
