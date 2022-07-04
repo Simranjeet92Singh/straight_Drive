@@ -218,19 +218,9 @@ class Schedule : Fragment() {
                     newmatch?.isFromTournament = true
                     newmatch?.firstBattingTeam = teamA
 
+                newmatch?.totalOvers=tournamentModel?.totalOvers
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
-
-//                    newmatch=match!!
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -254,15 +244,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -286,16 +268,7 @@ class Schedule : Fragment() {
                     newmatch?.firstBattingTeam = teamA
 
 
-
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -321,15 +294,7 @@ class Schedule : Fragment() {
 
 
 
-                        if (noOfOvers[0]) {
-                            newmatch?.totalOvers = 5.toDouble()
-                        } else if (noOfOvers[1]) {
-                            newmatch?.totalOvers = 10.toDouble()
-
-                        } else if (noOfOvers[2]) {
-                            newmatch?.totalOvers = 20.toDouble()
-
-                        }
+                        newmatch?.totalOvers=tournamentModel?.totalOvers
 
                         fragmentManager?.beginTransaction()?.replace(
                             android.R.id.content,
@@ -352,16 +317,7 @@ class Schedule : Fragment() {
                         newmatch?.firstBattingTeam = teamA
 
 
-
-                        if (noOfOvers[0]) {
-                            newmatch?.totalOvers = 5.toDouble()
-                        } else if (noOfOvers[1]) {
-                            newmatch?.totalOvers = 10.toDouble()
-
-                        } else if (noOfOvers[2]) {
-                            newmatch?.totalOvers = 20.toDouble()
-
-                        }
+                        newmatch?.totalOvers=tournamentModel?.totalOvers
 
                         fragmentManager?.beginTransaction()?.replace(
                             android.R.id.content,
@@ -388,15 +344,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -420,15 +368,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -451,16 +391,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
-
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
                     newmatch = match!!
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -487,17 +418,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
-
-//                    newmatch=match!!
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -521,15 +442,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -554,15 +467,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -587,15 +492,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -620,15 +517,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -652,15 +541,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     fragmentManager?.beginTransaction()?.replace(
                         android.R.id.content,
@@ -683,15 +564,7 @@ class Schedule : Fragment() {
 
 
 
-                    if (noOfOvers[0]) {
-                        newmatch?.totalOvers = 5.toDouble()
-                    } else if (noOfOvers[1]) {
-                        newmatch?.totalOvers = 10.toDouble()
-
-                    } else if (noOfOvers[2]) {
-                        newmatch?.totalOvers = 20.toDouble()
-
-                    }
+                    newmatch?.totalOvers=tournamentModel?.totalOvers
 
                     newmatch = match!!
                     fragmentManager?.beginTransaction()?.replace(

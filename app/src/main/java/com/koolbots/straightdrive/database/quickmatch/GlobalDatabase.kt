@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.koolbots.straightdrive.models.Match
 
-@Database(entities = [Match::class], version = 12,exportSchema = false)
+@Database(entities = [Match::class], version = 1,exportSchema = false)
 abstract class GlobalDatabase : RoomDatabase() {
     abstract fun matchAccessDAO(): MatchAccessDAO
     companion object {
